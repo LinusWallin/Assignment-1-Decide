@@ -1,4 +1,4 @@
-public static class Enums {
+public class Enums {
     enum CONNECTORS {
         NOTUSED,
         ORR,
