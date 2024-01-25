@@ -5,7 +5,7 @@ public static class Enums {
         ANDD
     }
     enum COMPTYPE {
-        LT=1111, 
+        LT, 
         EQ, 
         GT
     }
