@@ -1,10 +1,10 @@
 public class Enums {
-    static enum CONNECTORS {
+    enum CONNECTORS {
         NOTUSED,
         ORR,
         ANDD
     }
-    static enum COMPTYPE {
+    enum COMPTYPE {
         LT, 
         EQ, 
         GT
