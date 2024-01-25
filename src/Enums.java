@@ -1,3 +1,5 @@
+package src;
+
 public class Enums {
     enum CONNECTORS {
         NOTUSED,
