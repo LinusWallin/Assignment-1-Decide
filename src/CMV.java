@@ -1,3 +1,5 @@
+package src;
+
 class CMV {
 
   private double LENGTH1; // Length in LICs 0, 7, 12
