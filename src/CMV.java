@@ -1,6 +1,6 @@
+package src;
 
-
-class CMV {
+public class CMV {
 
   private double LENGTH1; // Length in LICs 0, 7, 12
   private double RADIUS1; // Radius in LICs 1, 8, 13
@@ -22,12 +22,17 @@ class CMV {
   private double RADIUS2; // Maximum radius in LIC 13
   private double AREA2;
 
+  public CMV() {
+    this.LENGTH1 = 1;
+    this.LENGTH2 = 2;
+  }
+
   boolean cmvFunction1() {
     //This is the first function
     return true;
   }
 
-  boolean cmvFunction2(double[] x, double[] y, double pi) {
+  public boolean cmvFunction2(double[] x, double[] y, double pi) {
     for (int i = 1; i < x.length - 2; i++) {
       Vector2D first = new Vector2D(x[i], y[i]);
       Vector2D sec = new Vector2D(x[i + 1], y[i + 1]);
@@ -52,6 +57,7 @@ class CMV {
       );
 
       if ((angle < (pi - this.EPSILON)) || (angle > (pi + this.EPSILON))) {
+        // System.out.println(angle);
         return true;
       }
     }
