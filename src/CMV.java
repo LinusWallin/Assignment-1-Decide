@@ -30,7 +30,7 @@ public class CMV {
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
     }
-
+    
     public boolean cmvFunction0(){
         if(this.NUMPOINTS == 0){
             return false;
@@ -42,6 +42,7 @@ public class CMV {
             if(prev.squaredDistance(this.POINTS[i]) > limit){
                 return true;
             }
+            prev = this.POINTS[i];
         }
         return false;
     }
