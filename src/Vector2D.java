@@ -9,7 +9,7 @@ public class Vector2D {
 	}
 
 	public double squaredDistance(Vector2D other){
-		return (this.x - other.x) * (this.x - other.x) - (this.y - other.y) * (this.y - other.y);  
+		return (this.x - other.x) * (this.x - other.x) + (this.y - other.y) * (this.y - other.y);  
 	}
 
 }
