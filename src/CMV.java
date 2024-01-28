@@ -27,7 +27,7 @@ class CMV {
     return true;
   }
 
-  static boolean cmvFunction2(double[] x, double[] y, double pi) {
+  boolean cmvFunction2(double[] x, double[] y, double pi) {
     for (int i = 1; i < x.length - 2; i++) {
       Vector2D first = new Vector2D(x[i], y[i]);
       Vector2D sec = new Vector2D(x[i + 1], y[i + 1]);
@@ -59,7 +59,7 @@ class CMV {
     return false;
   }
 
-  static boolean cmvFunction7(double[] x, double[] y) {
+  boolean cmvFunction7(double[] x, double[] y) {
     int start = 0;
     int end = 0 + this.K_PTS;
     if (x.length < 3) {
@@ -78,5 +78,30 @@ class CMV {
       }
     }
     return false;
+  }
+
+  boolean cmvFunction12(double[] x, double[] y) {
+    boolean ans = false;
+    if (x.length < 3 || this.LENGTH2 < 0) {
+      return false;
+    }
+    int start = 0;
+    int end = 0 + this.K_PTS;
+
+    while (end < x.length) {
+      Vector2D first = new Vector2D(x[start], y[start]);
+      Vector2D sec = new Vector2D(x[end], y[end]);
+
+      double line = Math.pow(
+        Math.pow(first.x - sec.x, 2) + Math.pow(first.y - sec.y, 2),
+        0.5
+      );
+
+      if (line < this.LENGTH2) {
+        ans = true;
+        break;
+      }
+    }
+    return ans && cmvFunction7(x, y);
   }
 }
