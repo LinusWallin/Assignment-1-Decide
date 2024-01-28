@@ -29,23 +29,20 @@ class CMV {
 
   static boolean cmvFunction2(double[] x, double[] y, double pi) {
     for (int i = 1; i < x.length - 2; i++) {
-      double firstX = x[i];
-      double firstY = y[i];
-      double secX = x[i + 1];
-      double secY = y[i + 1];
-      double thirdX = x[i + 2];
-      double thirdY = y[i + 2];
+      Vector2D first = new Vector2D(x[i], y[i]);
+      Vector2D sec = new Vector2D(x[i + 1], y[i + 1]);
+      Vector2D third = new Vector2D(x[i + 2], y[i + 2]);
       double line1 = Math.pow(
-        Math.pow(firstX - secX, 2) + Math.pow(firstY - secY, 2),
+        Math.pow(first.x - sec.x, 2) + Math.pow(first.y - sec.y, 2),
         0.5
       );
       double line2 = Math.pow(
-        Math.pow(secX - thirdX, 2) + Math.pow(secY - thirdY, 2),
+        Math.pow(sec.x - third.x, 2) + Math.pow(sec.y - third.y, 2),
         0.5
       );
 
       double line3 = Math.pow(
-        Math.pow(thirdX - firstX, 2) + Math.pow(thirdY - firstY, 2),
+        Math.pow(third.x - first.x, 2) + Math.pow(third.y - first.y, 2),
         0.5
       );
 
@@ -69,12 +66,11 @@ class CMV {
       return false;
     }
     while (end < x.length) {
-      double firstX = x[start];
-      double firstY = y[start];
-      double secX = x[end];
-      double secY = y[end];
+      Vector2D first = new Vector2D(x[start], y[start]);
+      Vector2D sec = new Vector2D(x[end], y[end]);
+
       double line = Math.pow(
-        Math.pow(firstX - secX, 2) + Math.pow(firstY - secY, 2),
+        Math.pow(first.x - sec.x, 2) + Math.pow(first.y - sec.y, 2),
         0.5
       );
       if (line > this.LENGTH1) {
