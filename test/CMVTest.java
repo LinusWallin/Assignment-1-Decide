@@ -36,4 +36,21 @@ public class CMVTest {
 
         assertFalse(cmv.cmvFunction0());
     }
+
+    @Test
+    public void testFunction0_3(){
+
+        Vector2D[] points = new Vector2D[100];
+
+        for(int i=0; i < 100; i++){
+            points[i] = new Vector2D(2.0,2.0);
+        }
+    
+        points[7] = new Vector2D(2.5,2.5);
+        points[8] = new Vector2D(1.6,1.6);
+        
+        CMV cmv  = new CMV(points, 100, 1.0);
+
+        assertTrue(cmv.cmvFunction0());
+    }
 }
