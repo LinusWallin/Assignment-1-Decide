@@ -27,7 +27,7 @@ class CMV {
     return true;
   }
 
-  boolean cmvFunction2(double[] x, double[] y, double pi) {
+  static boolean cmvFunction2(double[] x, double[] y, double pi) {
     for (int i = 1; i < x.length - 2; i++) {
       double firstX = x[i];
       double firstY = y[i];
@@ -59,6 +59,28 @@ class CMV {
       }
     }
 
+    return false;
+  }
+
+  static boolean cmvFunction7(double[] x, double[] y) {
+    int start = 0;
+    int end = 0 + this.K_PTS;
+    if (x.length < 3) {
+      return false;
+    }
+    while (end < x.length) {
+      double firstX = x[start];
+      double firstY = y[start];
+      double secX = x[end];
+      double secY = y[end];
+      double line = Math.pow(
+        Math.pow(firstX - secX, 2) + Math.pow(firstY - secY, 2),
+        0.5
+      );
+      if (line > this.LENGTH1) {
+        return true;
+      }
+    }
     return false;
   }
 }
