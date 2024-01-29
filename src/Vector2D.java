@@ -23,7 +23,6 @@ public class Vector2D {
         double cosAngle = (AC + CB - AB) / (2 * Math.sqrt(AC) * Math.sqrt(CB));
 
         return Math.acos(cosAngle);
-
     }
 
     public Vector2D centroid(Vector2D A, Vector2D C){
@@ -32,5 +31,4 @@ public class Vector2D {
 
         return new Vector2D(x,y);
     }
-
 }
