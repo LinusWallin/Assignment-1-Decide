@@ -29,4 +29,37 @@ class CMV {
         return true;
     }
 
+    /**
+     * The function looks calculates the area of a triangle created by
+     * three consecutive points from the give list of 2D vectors. The
+     * area of the triangle is then compared with the input value area1
+     * and if larger the function returns true, else it returns false.
+     * 
+     * @param points    a list of 2D vectors that contain the information
+     * of the points to look at
+     * @param area1     the area which has to be surpassed by the triangle
+     * created by the three choosen points
+     * @return          returns a boolean
+     */
+
+     boolean cmvFunction3(Vector2D[] points, double area1){
+
+        if (points.length > 2){
+            for (int i = 0; points.length > i+2; i++) {
+                //determinant of the 3 consecutive vectors from i to i+2
+                double det = points[i].x * points[i+1].y - points[i].x * points[i+2].y + 
+                points[i+1].x * points[i+2].y - points[i+1].x * points[i].y + 
+                points[i+2].x * points[i].y - points[i+2].x * points[i+1].y;
+
+                double area = 0.5*Math.abs(det);
+
+                if (area > area1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }
