@@ -64,7 +64,7 @@ public class CMVTest {
         }
     
                 
-        CMV cmv  = new CMV(points, 10, 0, 1);
+        CMV cmv  = new CMV(points, 100, 0, 1);
 
         assertTrue(cmv.cmvFunction1());
     }
@@ -79,7 +79,7 @@ public class CMVTest {
         }
     
                 
-        CMV cmv  = new CMV(points, 10, 0, 2);
+        CMV cmv  = new CMV(points, 100, 0, 2);
 
         assertFalse(cmv.cmvFunction1());
     }
@@ -97,7 +97,7 @@ public class CMVTest {
         points[2] = new Vector2D(4,5);
     
                 
-        CMV cmv  = new CMV(points, 10, 0, 5);
+        CMV cmv  = new CMV(points, 100, 0, 5);
 
         assertFalse(cmv.cmvFunction1());
     }
