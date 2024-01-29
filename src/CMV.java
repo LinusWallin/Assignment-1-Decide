@@ -1,6 +1,6 @@
 
 
-class CMV {
+public class CMV {
     private double LENGTH1; // Length in LICs 0, 7, 12
     private double RADIUS1 ; // Radius in LICs 1, 8, 13
     private double EPSILON ; // Deviation from PI in LICs 2, 9
@@ -21,8 +21,31 @@ class CMV {
     private double RADIUS2 ; // Maximum radius in LIC 13
     private double AREA2; 
 
+    private Vector2D[] POINTS;
+    private int NUMPOINTS;
 
-
+    //constructor for cmvFunction0
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1){
+        this.POINTS = POINTS;
+        this.NUMPOINTS = NUMPOINTS;
+        this.LENGTH1 = LENGTH1;
+    }
+    
+    public boolean cmvFunction0(){
+        if(this.NUMPOINTS == 0){
+            return false;
+        }
+        //check if two adjacent points square distance are smaller than LENGTH1 squared.
+        Vector2D prev = this.POINTS[0];
+        double limit = this.LENGTH1*this.LENGTH1; 
+        for(int i = 1; i< this.NUMPOINTS; i++) {
+            if(prev.squaredDistance(this.POINTS[i]) > limit){
+                return true;
+            }
+            prev = this.POINTS[i];
+        }
+        return false;
+    }
      
     boolean cmvFunction1(){
         //This is the first function
