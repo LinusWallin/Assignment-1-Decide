@@ -1,6 +1,6 @@
 
 
-class CMV {
+public class CMV {
     private double LENGTH1; // Length in LICs 0, 7, 12
     private double RADIUS1 ; // Radius in LICs 1, 8, 13
     private double EPSILON ; // Deviation from PI in LICs 2, 9
@@ -21,8 +21,32 @@ class CMV {
     private double RADIUS2 ; // Maximum radius in LIC 13
     private double AREA2; 
 
+    private Vector2D[] POINTS;
+    private int NUMPOINTS;
 
-
+    //constructor for cmvFunction0
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double AREA1){
+        this.POINTS = POINTS;
+        this.NUMPOINTS = NUMPOINTS;
+        this.LENGTH1 = LENGTH1;
+        this.AREA1 = AREA1;
+    }
+    
+    public boolean cmvFunction0(){
+        if(this.NUMPOINTS == 0){
+            return false;
+        }
+        //check if two adjacent points square distance are smaller than LENGTH1 squared.
+        Vector2D prev = this.POINTS[0];
+        double limit = this.LENGTH1*this.LENGTH1; 
+        for(int i = 1; i< this.NUMPOINTS; i++) {
+            if(prev.squaredDistance(this.POINTS[i]) > limit){
+                return true;
+            }
+            prev = this.POINTS[i];
+        }
+        return false;
+    }
      
     boolean cmvFunction1(){
         //This is the first function
@@ -35,30 +59,25 @@ class CMV {
      * area of the triangle is then compared with the input value area1
      * and if larger the function returns true, else it returns false.
      * 
-     * @param points    a list of 2D vectors that contain the information
-     * of the points to look at
-     * @param area1     the area which has to be surpassed by the triangle
-     * created by the three choosen points
      * @return          returns a boolean
      */
 
-     boolean cmvFunction3(Vector2D[] points, double area1){
+     public boolean cmvFunction3(){
 
-        if (points.length > 2){
-            for (int i = 0; points.length > i+2; i++) {
+        if (POINTS.length > 2){
+            for (int i = 0; POINTS.length > i+2; i++) {
                 //determinant of the 3 consecutive vectors from i to i+2
-                double det = points[i].x * points[i+1].y - points[i].x * points[i+2].y + 
-                points[i+1].x * points[i+2].y - points[i+1].x * points[i].y + 
-                points[i+2].x * points[i].y - points[i+2].x * points[i+1].y;
+                double det = this.POINTS[i].x * this.POINTS[i+1].y - this.POINTS[i].x * this.POINTS[i+2].y + 
+                this.POINTS[i+1].x * this.POINTS[i+2].y - this.POINTS[i+1].x * this.POINTS[i].y + 
+                this.POINTS[i+2].x * this.POINTS[i].y - this.POINTS[i+2].x * this.POINTS[i+1].y;
 
                 double area = 0.5*Math.abs(det);
 
-                if (area > area1) {
+                if (area > this.AREA1) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 
