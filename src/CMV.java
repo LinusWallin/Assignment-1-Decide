@@ -22,9 +22,23 @@ public class CMV {
   private double RADIUS2; // Maximum radius in LIC 13
   private double AREA2;
 
-  public CMV() {
-    this.LENGTH1 = 1;
-    this.LENGTH2 = 2;
+  private double PI;
+  private Vector2D[] POINTS;
+
+  public CMV(
+    Vector2D[] POINTS,
+    double length1,
+    double length2,
+    double pi,
+    double EPSILON,
+    int K_PTS
+  ) {
+    this.LENGTH1 = length1;
+    this.LENGTH2 = length2;
+    this.POINTS = POINTS;
+    this.PI = pi;
+    this.EPSILON = EPSILON;
+    this.K_PTS = K_PTS;
   }
 
   boolean cmvFunction1() {
@@ -32,32 +46,44 @@ public class CMV {
     return true;
   }
 
-  public boolean cmvFunction2(double[] x, double[] y, double pi) {
-    for (int i = 1; i < x.length - 2; i++) {
-      Vector2D first = new Vector2D(x[i], y[i]);
-      Vector2D sec = new Vector2D(x[i + 1], y[i + 1]);
-      Vector2D third = new Vector2D(x[i + 2], y[i + 2]);
-      double line1 = Math.pow(
-        Math.pow(first.x - sec.x, 2) + Math.pow(first.y - sec.y, 2),
-        0.5
-      );
-      double line2 = Math.pow(
-        Math.pow(sec.x - third.x, 2) + Math.pow(sec.y - third.y, 2),
-        0.5
-      );
+  public boolean cmvFunction2() {
+    for (int i = 0; i < this.POINTS.length - 2; i++) {
+      Vector2D first = this.POINTS[i];
+      Vector2D sec = this.POINTS[i + 1];
+      Vector2D third = this.POINTS[i + 2];
 
-      double line3 = Math.pow(
-        Math.pow(third.x - first.x, 2) + Math.pow(third.y - first.y, 2),
-        0.5
-      );
+      //   System.out.printf(
+      //     "points: (%f, %f), (%f, %f), (%f, %f) ",
+      //     first.x,
+      //     first.y,
+      //     sec.x,
+      //     sec.y,
+      //     third.x,
+      //     third.y
+      //   );
+
+      double line1 = Math.pow(first.squaredDistance(sec), 0.5);
+      double line2 = Math.pow(sec.squaredDistance(third), 0.5);
+      double line3 = Math.pow(third.squaredDistance(first), 0.5);
+
+      //   System.out.printf(
+      //     "line length : %f, %f, %f ",
+      //     first.squaredDistance(sec),
+      //     line2,
+      //     line3
+      //   );
 
       double angle = Math.acos(
         (Math.pow(line1, 2) + Math.pow(line2, 2) - Math.pow(line3, 2)) /
         (2 * line1 * line2)
       );
+      //   System.out.printf("angle : %f \n", angle);
 
-      if ((angle < (pi - this.EPSILON)) || (angle > (pi + this.EPSILON))) {
+      if (
+        (angle < (this.PI - this.EPSILON)) || (angle > (this.PI + this.EPSILON))
+      ) {
         // System.out.println(angle);
+        // System.out.printf("true angle : %f", angle);
         return true;
       }
     }
@@ -65,49 +91,49 @@ public class CMV {
     return false;
   }
 
-  boolean cmvFunction7(double[] x, double[] y) {
+  public boolean cmvFunction7() {
     int start = 0;
     int end = 0 + this.K_PTS;
-    if (x.length < 3) {
+    if (this.POINTS.length < 3 || this.K_PTS >= this.POINTS.length) {
       return false;
     }
-    while (end < x.length) {
-      Vector2D first = new Vector2D(x[start], y[start]);
-      Vector2D sec = new Vector2D(x[end], y[end]);
+    while (end < this.POINTS.length) {
+      Vector2D first = this.POINTS[start];
+      Vector2D sec = this.POINTS[end];
 
-      double line = Math.pow(
-        Math.pow(first.x - sec.x, 2) + Math.pow(first.y - sec.y, 2),
-        0.5
-      );
+      double line = Math.pow(first.squaredDistance(sec), 0.5);
+
       if (line > this.LENGTH1) {
+        System.out.println(line);
         return true;
       }
+      end++;
+      start++;
     }
     return false;
   }
 
-  boolean cmvFunction12(double[] x, double[] y) {
+  public boolean cmvFunction12() {
     boolean ans = false;
-    if (x.length < 3 || this.LENGTH2 < 0) {
+    if (this.POINTS.length < 3 || this.LENGTH2 < 0) {
       return false;
     }
     int start = 0;
     int end = 0 + this.K_PTS;
 
-    while (end < x.length) {
-      Vector2D first = new Vector2D(x[start], y[start]);
-      Vector2D sec = new Vector2D(x[end], y[end]);
+    while (end < this.POINTS.length) {
+      Vector2D first = this.POINTS[start];
+      Vector2D sec = this.POINTS[end];
 
-      double line = Math.pow(
-        Math.pow(first.x - sec.x, 2) + Math.pow(first.y - sec.y, 2),
-        0.5
-      );
+      double line = Math.pow(first.squaredDistance(sec), 0.5);
 
       if (line < this.LENGTH2) {
         ans = true;
         break;
       }
+      end++;
+      start++;
     }
-    return ans && cmvFunction7(x, y);
+    return ans && cmvFunction7();
   }
 }
