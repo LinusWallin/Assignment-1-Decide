@@ -30,6 +30,15 @@ public class CMV {
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
     }
+
+    //constructor for cmvFunction9
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, int C_PTS, int D_PTS, double EPSILON){
+        this.POINTS = POINTS;
+        this.NUMPOINTS = NUMPOINTS;
+        this.C_PTS = C_PTS;
+        this.D_PTS = D_PTS;
+        this.EPSILON = EPSILON; 
+    }
     
     public boolean cmvFunction0(){
         if(this.NUMPOINTS == 0){
@@ -50,6 +59,44 @@ public class CMV {
     boolean cmvFunction1(){
         //This is the first function
         return true;
+    }
+
+    boolean cmvFunction9(){
+        //assert((this.C_PTS + this.D_PTS) < (this.NUMPOINTS -3));
+        //assert(C_PTS >= 1);
+        //assert(D_PTS >= 1);
+
+        if(NUMPOINTS <5){
+            return false;
+        }
+
+        for(int i=0; i<NUMPOINTS-C_PTS-D_PTS; i++){
+            Vector2D first = this.POINTS[i];
+            Vector2D vertex = this.POINTS[i+C_PTS];
+            Vector2D last = this.POINTS[i+C_PTS+D_PTS];
+
+            //if vertex and first or last coincide. reject
+            if(first.x == vertex.x && first.y == vertex.y){
+                return false;
+            }
+            if(last.x == vertex.x && last.y == vertex.y){
+                return false;
+            }
+
+            // angle calculation
+            double angle = vertex.angle(first,last);
+            System.out.println(i +" " + (i+C_PTS) +" "+(i+C_PTS+D_PTS) + " " + angle);
+            if(angle < Main.PI - this.EPSILON){
+                System.out.println("Found an angle < PI - EPSILON:  Angle - " + angle);
+                return true;
+            }
+            if(angle > Main.PI + this.EPSILON){
+                System.out.println("Found an angle < PI + EPSILON:  Angle - " + angle);
+                return true;
+            }
+        }
+        
+        return false;
     }
 
 }

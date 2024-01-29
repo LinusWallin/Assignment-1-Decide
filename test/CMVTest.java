@@ -53,4 +53,41 @@ public class CMVTest {
 
         assertTrue(cmv.cmvFunction0());
     }
+
+    //The function goes through all iterations
+    @Test
+    public void testFunction9_0(){
+        Vector2D[] points = new Vector2D[100];
+        
+        double x = 0.0;
+        for(int i=0; i < 100; i++){
+            points[i] = new Vector2D(x,0.0);
+            x = x + 1.0;
+        }
+    
+        int C_PTS = 1;
+        int D_PTS = 1;
+        double EPSILON = 0.01;
+        CMV cmv  = new CMV(points, 100, C_PTS, D_PTS, EPSILON);
+
+        assertFalse(cmv.cmvFunction9());
+    }
+    //The function true on big angle
+    @Test
+    public void testFunction9_1(){
+        Vector2D[] points = new Vector2D[100];
+        
+        double x = 0.0;
+        for(int i=0; i < 100; i++){
+            points[i] = new Vector2D(x,0.0);
+            x = x + 1.0;
+        }
+    
+        int C_PTS = 1;
+        int D_PTS = 1;
+        double EPSILON = 0.01;
+        CMV cmv  = new CMV(points, 100, C_PTS, D_PTS, EPSILON);
+
+        assertFalse(cmv.cmvFunction9());
+    }
 }
