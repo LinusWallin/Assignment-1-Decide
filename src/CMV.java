@@ -30,6 +30,17 @@ public class CMV {
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
     }
+
+        //constructor for cmvFunction13
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, int A_PTS, int B_PTS, double RADIUS1, double RADIUS2){
+        this.POINTS = POINTS;
+        this.NUMPOINTS = NUMPOINTS;
+        this.A_PTS = A_PTS;
+        this.B_PTS = B_PTS;
+        this.RADIUS1 = RADIUS1;
+        this.RADIUS2 = RADIUS2;
+    }
+
     
     public boolean cmvFunction0(){
         if(this.NUMPOINTS == 0){
@@ -50,6 +61,48 @@ public class CMV {
     boolean cmvFunction1(){
         //This is the first function
         return true;
+    }
+
+    boolean cmvFunction13(){
+        boolean[] result = {false,false};
+        if(NUMPOINTS <5){
+            return false;
+        }
+        for(int i=0; i<NUMPOINTS-A_PTS-B_PTS; i++){
+            if(result[0] && result[1]) break;
+            Vector2D first = this.POINTS[i];
+            Vector2D second = this.POINTS[i+A_PTS];
+            Vector2D last = this.POINTS[i+A_PTS+B_PTS];
+
+            System.out.println(i + " " + (i+A_PTS) + " " + (i+A_PTS+B_PTS));
+
+            Vector2D centroid = first.centroid(second,last);
+
+            double squaredRadius1 = Math.pow(RADIUS1,2);
+            double squaredRadius2 = Math.pow(RADIUS2,2);
+
+            double distFirst = centroid.squaredDistance(first);
+            double distSecond = centroid.squaredDistance(second);
+            double distLast = centroid.squaredDistance(last);
+            if(!result[0]){
+                if(distFirst >= squaredRadius1 || distSecond >= squaredRadius1 || distLast >= squaredRadius1){
+                    System.out.println("found 3 points not containable in RADIUS1");
+                    result[0] =  true;
+                }
+            }
+            if(!result[1]){
+                if(distFirst <= squaredRadius2 && distSecond <= squaredRadius2 && distLast <= squaredRadius2){
+                    System.out.println("found 3 points containable in RADIUS2");
+                    result[1] = true;
+                }
+            }
+        }
+
+        if(result[0] && result[1]){
+            return true;
+        }
+
+        return false;
     }
 
 }
