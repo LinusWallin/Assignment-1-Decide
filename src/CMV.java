@@ -66,12 +66,8 @@ public class CMV {
 
         if (POINTS.length > 2){
             for (int i = 0; POINTS.length > i+2; i++) {
-                //determinant of the 3 consecutive vectors from i to i+2
-                double det = this.POINTS[i].x * this.POINTS[i+1].y - this.POINTS[i].x * this.POINTS[i+2].y + 
-                this.POINTS[i+1].x * this.POINTS[i+2].y - this.POINTS[i+1].x * this.POINTS[i].y + 
-                this.POINTS[i+2].x * this.POINTS[i].y - this.POINTS[i+2].x * this.POINTS[i+1].y;
 
-                double area = 0.5*Math.abs(det);
+                double area = this.POINTS[i].traingleArea(this.POINTS[i+1], this.POINTS[i+2]);
 
                 if (area > this.AREA1) {
                     return true;
