@@ -59,6 +59,13 @@ public class CMV {
     this.AREA1 = AREA1;
   }
 
+  /**
+   * Evaluates Condition 2.
+   * Calculates the angle between 3 consecutive data points
+   *
+   * @return true if angle < PI - Episilon or angle > PI + EPSILON otherwise false
+   */
+
   public boolean cmvFunction2() {
     for (int i = 0; i < this.POINTS.length - 2; i++) {
       Vector2D first = this.POINTS[i];
@@ -104,6 +111,13 @@ public class CMV {
     return false;
   }
 
+  /**
+   * Evaluates Condition 6.
+   * Calculates the distance between the line formed by the first
+   * and last point and every other point where NUMPOINTS >= 3
+   * @return true if distance is greater than this.DIST otherwise false
+   */
+
   public boolean cmvFunction6() {
     if (this.POINTS.length < 3) {
       return false;
@@ -121,6 +135,13 @@ public class CMV {
     return false;
   }
 
+  /**
+   * Evaluates Condition 10.
+   * Calculates the area of the triangle formed by the 3 consecutive points spaced E_PTS and F_PTS
+   * apart.
+   * @return true if area > this.AREA1 otherwise false
+   */
+
   public boolean cmvFunction10() {
     if (this.POINTS.length < 5) {
       return false;
@@ -129,15 +150,15 @@ public class CMV {
       Vector2D first = this.POINTS[i];
       Vector2D vertex = this.POINTS[i + E_PTS];
       Vector2D last = this.POINTS[i + E_PTS + F_PTS];
-      System.out.printf(
-        "first : (%f,%f),vertex : (%f,%f),last : (%f,%f)\n",
-        first.x,
-        first.y,
-        vertex.x,
-        vertex.y,
-        last.x,
-        last.y
-      );
+      // System.out.printf(
+      //   "first : (%f,%f),vertex : (%f,%f),last : (%f,%f)\n",
+      //   first.x,
+      //   first.y,
+      //   vertex.x,
+      //   vertex.y,
+      //   last.x,
+      //   last.y
+      // );
 
       double line1 = Math.sqrt(first.squaredDistance(vertex));
       double line2 = Math.sqrt(vertex.squaredDistance(last));
@@ -145,7 +166,7 @@ public class CMV {
       double s = (line1 + line2 + line3) / 2;
       double area = Math.sqrt(s * (s - line1) * (s - line2) * (s - line3));
 
-      System.out.printf("area : %f \n", area);
+      // System.out.printf("area : %f \n", area);
 
       if (area > this.AREA1) {
         return true;
