@@ -25,11 +25,12 @@ public class CMV {
     private int NUMPOINTS;
 
     //constructor for cmvFunction0
-    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double AREA1){
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double AREA1, int K_PTS){
         this.POINTS = POINTS;
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
         this.AREA1 = AREA1;
+        this.K_PTS = K_PTS;
     }
     
     public boolean cmvFunction0(){
@@ -74,6 +75,20 @@ public class CMV {
                 double area = 0.5*Math.abs(det);
 
                 if (area > this.AREA1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean cmvFunction7(){
+
+        if (this.NUMPOINTS >= 3){
+
+            for (int i = 0; i < this.NUMPOINTS - (this.K_PTS+1); i++){
+
+                if (Math.sqrt(this.POINTS[i].squaredDistance(this.POINTS[i+this.K_PTS+1])) > this.LENGTH1){
                     return true;
                 }
             }
