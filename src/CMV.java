@@ -83,7 +83,7 @@ public class CMV {
    * If these points are collinear, sets the circumradius to be 1/4th of the sum of side lengths.
    * @return false if any circumradius is greater than RADIUS1, true otherwise.
    */
-  boolean cmvFunction1() {
+  public boolean cmvFunction1() {
     for (int i = 0; i <= this.NUMPOINTS - 3; i++) {
       Vector2D point1 = this.POINTS[i];
       Vector2D point2 = this.POINTS[i + 1];
