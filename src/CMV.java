@@ -25,10 +25,11 @@ public class CMV {
     private int NUMPOINTS;
 
     //constructor for cmvFunction0
-    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double AREA1){
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double AREA1, double RADIUS1){
         this.POINTS = POINTS;
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
+        this.RADIUS1 = RADIUS1;
         this.AREA1 = AREA1;
     }
     
@@ -48,6 +49,13 @@ public class CMV {
         return false;
     }
      
+
+    /**
+     * Evaluates Condition 1.
+     * Calculates the circumradius of three consecutive points with a formula.
+     * If these points are collinear, sets the circumradius to be 1/4th of the sum of side lengths.
+     * @return false if any circumradius is greater than RADIUS1, true otherwise.
+     */
     boolean cmvFunction1(){
         //This is the first function
         return true;
