@@ -13,9 +13,13 @@ public class Vector2D {
   public double squaredDistance(Vector2D other) {
     return (
       (this.x - other.x) *
-      (this.x - other.x) -
+      (this.x - other.x) +
       (this.y - other.y) *
       (this.y - other.y)
     );
+  }
+
+  public Vector2D midPoint(Vector2D other) {
+    return new Vector2D((this.x + other.x) / 2, (this.y + other.y) / 2);
   }
 }

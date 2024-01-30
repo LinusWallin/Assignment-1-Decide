@@ -25,25 +25,38 @@ public class CMV {
   private double PI;
   private Vector2D[] POINTS;
 
+  // public CMV(
+  //   Vector2D[] POINTS,
+  //   double length1,
+  //   double length2,
+  //   double pi,
+  //   double EPSILON,
+  //   int K_PTS
+  // ) {
+  //   this.LENGTH1 = length1;
+  //   this.LENGTH2 = length2;
+  //   this.POINTS = POINTS;
+  //   this.PI = pi;
+  //   this.EPSILON = EPSILON;
+  //   this.K_PTS = K_PTS;
+  // }
+
   public CMV(
     Vector2D[] POINTS,
-    double length1,
-    double length2,
     double pi,
     double EPSILON,
-    int K_PTS
+    double DIST,
+    int E_PTS,
+    int F_PTS,
+    double AREA1
   ) {
-    this.LENGTH1 = length1;
-    this.LENGTH2 = length2;
     this.POINTS = POINTS;
     this.PI = pi;
     this.EPSILON = EPSILON;
-    this.K_PTS = K_PTS;
-  }
-
-  boolean cmvFunction1() {
-    //This is the first function
-    return true;
+    this.DIST = DIST;
+    this.E_PTS = E_PTS;
+    this.F_PTS = F_PTS;
+    this.AREA1 = AREA1;
   }
 
   public boolean cmvFunction2() {
@@ -91,49 +104,53 @@ public class CMV {
     return false;
   }
 
-  public boolean cmvFunction7() {
-    int start = 0;
-    int end = 0 + this.K_PTS;
-    if (this.POINTS.length < 3 || this.K_PTS >= this.POINTS.length) {
+  public boolean cmvFunction6() {
+    if (this.POINTS.length < 3) {
       return false;
     }
-    while (end < this.POINTS.length) {
-      Vector2D first = this.POINTS[start];
-      Vector2D sec = this.POINTS[end];
+    Vector2D start = this.POINTS[0];
+    Vector2D end = this.POINTS[this.POINTS.length - 1];
+    Vector2D midpoint = start.midPoint(end);
 
-      double line = Math.pow(first.squaredDistance(sec), 0.5);
-
-      if (line > this.LENGTH1) {
-        System.out.println(line);
+    for (Vector2D p : this.POINTS) {
+      double dist = Math.sqrt(midpoint.squaredDistance(p));
+      if (dist > this.DIST) {
         return true;
       }
-      end++;
-      start++;
     }
     return false;
   }
 
-  public boolean cmvFunction12() {
-    boolean ans = false;
-    if (this.POINTS.length < 3 || this.LENGTH2 < 0) {
+  public boolean cmvFunction10() {
+    if (this.POINTS.length < 5) {
       return false;
     }
-    int start = 0;
-    int end = 0 + this.K_PTS;
+    for (int i = 0; i < this.POINTS.length - this.E_PTS - this.F_PTS; i++) {
+      Vector2D first = this.POINTS[i];
+      Vector2D vertex = this.POINTS[i + E_PTS];
+      Vector2D last = this.POINTS[i + E_PTS + F_PTS];
+      System.out.printf(
+        "first : (%f,%f),vertex : (%f,%f),last : (%f,%f)\n",
+        first.x,
+        first.y,
+        vertex.x,
+        vertex.y,
+        last.x,
+        last.y
+      );
 
-    while (end < this.POINTS.length) {
-      Vector2D first = this.POINTS[start];
-      Vector2D sec = this.POINTS[end];
+      double line1 = Math.sqrt(first.squaredDistance(vertex));
+      double line2 = Math.sqrt(vertex.squaredDistance(last));
+      double line3 = Math.sqrt(last.squaredDistance(first));
+      double s = (line1 + line2 + line3) / 2;
+      double area = Math.sqrt(s * (s - line1) * (s - line2) * (s - line3));
 
-      double line = Math.pow(first.squaredDistance(sec), 0.5);
+      System.out.printf("area : %f \n", area);
 
-      if (line < this.LENGTH2) {
-        ans = true;
-        break;
+      if (area > this.AREA1) {
+        return true;
       }
-      end++;
-      start++;
     }
-    return ans && cmvFunction7();
+    return false;
   }
 }
