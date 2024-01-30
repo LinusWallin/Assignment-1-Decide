@@ -25,11 +25,12 @@ public class CMV {
     private int NUMPOINTS;
 
     //constructor for cmvFunction0
-    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double RADIUS1){
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double RADIUS1, double AREA1){
         this.POINTS = POINTS;
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
         this.RADIUS1 = RADIUS1;
+        this.AREA1 = AREA1;
     }
     
     public boolean cmvFunction0(){
@@ -76,7 +77,30 @@ public class CMV {
             if(r > this.RADIUS1) return true;
 
         }
+        return false;
+    }
 
+    /**
+     * The function looks calculates the area of a triangle created by
+     * three consecutive points from the give list of 2D vectors. The
+     * area of the triangle is then compared with the input value area1
+     * and if larger the function returns true, else it returns false.
+     * 
+     * @return          returns a boolean
+     */
+
+     public boolean cmvFunction3(){
+
+        if (POINTS.length > 2){
+            for (int i = 0; POINTS.length > i+2; i++) {
+
+                double area = this.POINTS[i].traingleArea(this.POINTS[i+1], this.POINTS[i+2]);
+
+                if (area > this.AREA1) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 

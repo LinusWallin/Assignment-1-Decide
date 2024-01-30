@@ -80,4 +80,40 @@ public class Vector2DTest {
         
     }
 
+    @Test
+    public void testTriangleArea_0(){
+
+        Vector2D vec1 = new Vector2D(0, 0);
+        Vector2D vec2 = new Vector2D(1, 2);
+        Vector2D vec3 = new Vector2D(2, 0);
+
+        double area = vec1.traingleArea(vec2, vec3);
+
+        assertEquals(2.0, area);
+    }
+
+    @Test
+    public void testTriangleArea_1(){
+
+        Vector2D vec1 = new Vector2D(1, 2);
+        Vector2D vec2 = new Vector2D(0, 0);
+        Vector2D vec3 = new Vector2D(2, 0);
+
+        double area = vec1.traingleArea(vec2, vec3);
+
+        assertEquals(2.0, area);
+    }
+
+    @Test
+    public void testTriangleArea_2(){
+
+        Vector2D vec1 = new Vector2D(-1.5, 4);
+        Vector2D vec2 = new Vector2D(1.5, 2);
+        Vector2D vec3 = new Vector2D(3, -1.5);
+
+        double area = vec1.traingleArea(vec2, vec3);
+
+        assertEquals(3.75, area);
+    }
+
 }

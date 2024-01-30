@@ -31,4 +31,22 @@ public class Vector2D {
 
         return new Vector2D(x,y);
     }
+
+    /**
+     * The function calculates the area of a triangle genereated by 3
+     * points.
+     * @param A a 2D vector representing the second point
+     * @param B a 2D vector representing the third point
+     * @return returns the area of the triangle created by the points
+     */
+    public double traingleArea(Vector2D A, Vector2D B){
+
+        //determinant of the 3 consecutive vectors from i to i+2
+        double det = this.x * A.y - this.x * B.y + A.x * B.y - A.x * this.y + 
+        B.x * this.y - B.x * A.y;
+
+        double area = 0.5*Math.abs(det);
+
+        return area;
+    }
 }
