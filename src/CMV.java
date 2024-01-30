@@ -24,22 +24,24 @@ public class CMV {
 
   private double PI;
   private Vector2D[] POINTS;
+  private int NUMPOINTS;
 
-  // public CMV(
-  //   Vector2D[] POINTS,
-  //   double length1,
-  //   double length2,
-  //   double pi,
-  //   double EPSILON,
-  //   int K_PTS
-  // ) {
-  //   this.LENGTH1 = length1;
-  //   this.LENGTH2 = length2;
-  //   this.POINTS = POINTS;
-  //   this.PI = pi;
-  //   this.EPSILON = EPSILON;
-  //   this.K_PTS = K_PTS;
-  // }
+  //constructor for cmvFunction0
+  public CMV(
+    Vector2D[] POINTS,
+    int NUMPOINTS,
+    double LENGTH1,
+    double RADIUS1,
+    double AREA1,
+    int K_PTS
+  ) {
+    this.POINTS = POINTS;
+    this.NUMPOINTS = NUMPOINTS;
+    this.LENGTH1 = LENGTH1;
+    this.RADIUS1 = RADIUS1;
+    this.AREA1 = AREA1;
+    this.K_PTS = K_PTS;
+  }
 
   public CMV(
     Vector2D[] POINTS,
@@ -59,6 +61,54 @@ public class CMV {
     this.AREA1 = AREA1;
   }
 
+  public boolean cmvFunction0() {
+    if (this.NUMPOINTS == 0) {
+      return false;
+    }
+    //check if two adjacent points square distance are smaller than LENGTH1 squared.
+    Vector2D prev = this.POINTS[0];
+    double limit = this.LENGTH1 * this.LENGTH1;
+    for (int i = 1; i < this.NUMPOINTS; i++) {
+      if (prev.squaredDistance(this.POINTS[i]) > limit) {
+        return true;
+      }
+      prev = this.POINTS[i];
+    }
+    return false;
+  }
+
+  /**
+   * Evaluates Condition 1.
+   * Calculates the circumradius of three consecutive points with a formula.
+   * If these points are collinear, sets the circumradius to be 1/4th of the sum of side lengths.
+   * @return false if any circumradius is greater than RADIUS1, true otherwise.
+   */
+  boolean cmvFunction1() {
+    for (int i = 0; i <= this.NUMPOINTS - 3; i++) {
+      Vector2D point1 = this.POINTS[i];
+      Vector2D point2 = this.POINTS[i + 1];
+      Vector2D point3 = this.POINTS[i + 2];
+
+      double a = Math.sqrt(point1.squaredDistance(point2));
+      double b = Math.sqrt(point2.squaredDistance(point3));
+      double c = Math.sqrt(point3.squaredDistance(point1));
+
+      if (c == a + b || b == a + c || a == b + c) { //If the points are collinear
+        double r = (a + b + c) / 4;
+        if (r > this.RADIUS1) return true;
+        continue;
+      }
+
+      double r =
+        a *
+        b *
+        c /
+        Math.sqrt((a + b + c) * (b + c - a) * (c + a - b) * (a + b - c)); //Finds the Circumradius of the triangle
+      if (r > this.RADIUS1) return true;
+    }
+    return false;
+  }
+
   /**
    * Evaluates Condition 2.
    * Calculates the angle between 3 consecutive data points
@@ -71,27 +121,9 @@ public class CMV {
       Vector2D first = this.POINTS[i];
       Vector2D sec = this.POINTS[i + 1];
       Vector2D third = this.POINTS[i + 2];
-
-      //   System.out.printf(
-      //     "points: (%f, %f), (%f, %f), (%f, %f) ",
-      //     first.x,
-      //     first.y,
-      //     sec.x,
-      //     sec.y,
-      //     third.x,
-      //     third.y
-      //   );
-
       double line1 = Math.pow(first.squaredDistance(sec), 0.5);
       double line2 = Math.pow(sec.squaredDistance(third), 0.5);
       double line3 = Math.pow(third.squaredDistance(first), 0.5);
-
-      //   System.out.printf(
-      //     "line length : %f, %f, %f ",
-      //     first.squaredDistance(sec),
-      //     line2,
-      //     line3
-      //   );
 
       double angle = Math.acos(
         (Math.pow(line1, 2) + Math.pow(line2, 2) - Math.pow(line3, 2)) /
@@ -108,6 +140,29 @@ public class CMV {
       }
     }
 
+    return false;
+  }
+
+  /**
+   * The function looks calculates the area of a triangle created by
+   * three consecutive points from the give list of 2D vectors. The
+   * area of the triangle is then compared with the input value area1
+   * and if larger the function returns true, else it returns false.
+   *
+   * @return          returns a boolean
+   */
+
+  public boolean cmvFunction3() {
+    if (POINTS.length > 2) {
+      for (int i = 0; POINTS.length > i + 2; i++) {
+        double area =
+          this.POINTS[i].traingleArea(this.POINTS[i + 1], this.POINTS[i + 2]);
+
+        if (area > this.AREA1) {
+          return true;
+        }
+      }
+    }
     return false;
   }
 
@@ -135,6 +190,22 @@ public class CMV {
     return false;
   }
 
+  public boolean cmvFunction7() {
+    if (this.NUMPOINTS >= 3) {
+      for (int i = 0; i < this.NUMPOINTS - (this.K_PTS + 1); i++) {
+        if (
+          Math.sqrt(
+            this.POINTS[i].squaredDistance(this.POINTS[i + this.K_PTS + 1])
+          ) >
+          this.LENGTH1
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   /**
    * Evaluates Condition 10.
    * Calculates the area of the triangle formed by the 3 consecutive points spaced E_PTS and F_PTS
@@ -150,23 +221,12 @@ public class CMV {
       Vector2D first = this.POINTS[i];
       Vector2D vertex = this.POINTS[i + E_PTS];
       Vector2D last = this.POINTS[i + E_PTS + F_PTS];
-      // System.out.printf(
-      //   "first : (%f,%f),vertex : (%f,%f),last : (%f,%f)\n",
-      //   first.x,
-      //   first.y,
-      //   vertex.x,
-      //   vertex.y,
-      //   last.x,
-      //   last.y
-      // );
 
       double line1 = Math.sqrt(first.squaredDistance(vertex));
       double line2 = Math.sqrt(vertex.squaredDistance(last));
       double line3 = Math.sqrt(last.squaredDistance(first));
       double s = (line1 + line2 + line3) / 2;
       double area = Math.sqrt(s * (s - line1) * (s - line2) * (s - line3));
-
-      // System.out.printf("area : %f \n", area);
 
       if (area > this.AREA1) {
         return true;
