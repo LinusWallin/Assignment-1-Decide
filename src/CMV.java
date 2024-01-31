@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.util.LinkedList;
 
 public class CMV {
@@ -25,6 +26,77 @@ public class CMV {
   private double PI;
   private Vector2D[] POINTS;
   private int NUMPOINTS;
+
+    /**
+     * Construct an instance of CMV from all the input parameters.
+     * @param points
+     * @param numpoints
+     * @param length1 Length in LICs 0, 7, 12
+     * @param radius1 Radius in LICs 1, 8, 13
+     * @param epsilon Deviation from PI in LICs 2, 9
+     * @param area1 Area in LICs 3, 10, 14
+     * @param qPts No. of consecutive points in LIC 4
+     * @param quads No. of quadrants in LIC 4
+     * @param dist Distance in LIC 6
+     * @param nPoints No. of consecutive pts. in LIC 6
+     * @param kPoints No. of int. pts. in LICs 7, 12
+     * @param aPoints No. of int. pts. in LICs 8, 13
+     * @param bPoints No. of int. pts. in LICs 8, 13
+     * @param cPoints No. of int. pts. in LIC 9
+     * @param dPoints No. of int. pts. in LIC 9
+     * @param ePoints No. of int. pts. in LICs 10, 14
+     * @param fPoints No. of int. pts. in LICs 10, 14
+     * @param gPoints No. of int. pts. in LIC 11
+     * @param length2 Maximum length in LIC 12
+     * @param radius2 Maximum radius in LIC 13
+     * @param area2 Maximum a r e a i n LIC 14
+     */
+    public CMV(
+        Vector2D[] points, 
+        int numpoints, 
+        double length1, 
+        double radius1, 
+        double epsilon, 
+        double area1, 
+        int qPts, 
+        int quads, 
+        double dist, 
+        int nPoints, 
+        int kPoints, 
+        int aPoints, 
+        int bPoints, 
+        int cPoints, 
+        int dPoints, 
+        int ePoints, 
+        int fPoints, 
+        int gPoints, 
+        double length2, 
+        double radius2, 
+        double area2
+    ){
+        if(points.length != numpoints) throw new InvalidParameterException("POINTS.length != NUMPOINTS");
+        this.NUMPOINTS = numpoints;
+        this.POINTS = points;
+        this.LENGTH1 = length1;
+        this.RADIUS1 = radius1;
+        this.EPSILON = epsilon;
+        this.AREA1 = area1;
+        this.QPTS = qPts;
+        this.QUADS = quads;
+        this.DIST = dist;
+        this.N_PTS = nPoints;
+        this.K_PTS = kPoints;
+        this.A_PTS = aPoints;
+        this.B_PTS = bPoints;
+        this.C_PTS = cPoints;
+        this.D_PTS = dPoints;
+        this.E_PTS = ePoints;
+        this.F_PTS = fPoints;
+        this.G_PTS = gPoints;
+        this.LENGTH2 = length2;
+        this.RADIUS2 = radius2;
+        this.AREA2 = area2; 
+    }
 
   //constructor for cmvFunction0
   public CMV(
