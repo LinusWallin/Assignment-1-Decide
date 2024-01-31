@@ -445,7 +445,22 @@ public class CMV {
         return false;
     }
 
-
+    /**
+     * Evaluates LIC 9
+     *
+     * least one set of three data points separated by exactly C PTS and D PTS
+     * consecutive intervening points, respectively, form an angle such that:
+     * angle < (PI − EPSILON)
+     * or
+     * angle > (PI + EPSILON)
+     * The second point of the set of three points is always the vertex of the angle. If either the first
+     * point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+     * is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
+     * 1 ≤ C PTS, 1 ≤ D PTS
+     * C PTS + D PTS ≤ NUMPOINTS − 3
+     *
+     * @return true if angle between 3 separated points is close to PI, false otherwise.
+     */
     boolean cmvFunction9(){
         if(NUMPOINTS <5){
             return false;
