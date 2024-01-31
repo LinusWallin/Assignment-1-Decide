@@ -52,10 +52,10 @@ public class Vector2D {
 
     /** 
      * Compute the quadrant (quarter of the plain) that contains the Vector2D
-     * 0 - top right
-     * 1 - top left
-     * 2 - bottom left
-     * 3 - bottom right
+     * 1 - top right
+     * 2 - top left
+     * 3 - bottom left
+     * 4 - bottom right
      * @return (int) the quadrant of the point
     **/
     public int quadrant(){
