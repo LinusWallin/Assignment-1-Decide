@@ -43,5 +43,6 @@ generated.
 
 ### Way of working
 
-| Principals | We agreed that we had to create an issue everytime we wanted to edit the main branch and create a seperate branch to work on issue before creating a pull request to merge it back to main. |
-|
+| Way of working | Details                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Principals     | We agreed that we had to create an issue everytime we wanted to edit the main branch and create a seperate branch to work on issue before creating a pull request to merge it back to main. |
