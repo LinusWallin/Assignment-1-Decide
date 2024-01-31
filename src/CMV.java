@@ -392,6 +392,20 @@ public class CMV {
     return false;
   }
 
+    /**
+     * Evaluates LIC 13
+     *
+     * Condition 1: There exists at least one set of three data points, separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. 
+     *
+     * Condition 2: There exists at least one set of three data points (which can be
+     * the same or different from the three data points just mentioned) separated by exactly A PTS
+     * and B PTS consecutive intervening points, respectively, that can be contained in or on a
+     * circle of radius RADIUS2. 
+     *
+     * @return True if both conditions are met, false otherwise
+     */
     boolean cmvFunction13(){
         boolean[] result = {false,false};
         if(this.NUMPOINTS <5){
