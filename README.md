@@ -1,8 +1,8 @@
 # Assignment-1-Decide
 
-Java version : V21.0.2
-JUnit : V5.8.1
-Gradle : V8.5
+Java version : V21.0.2 \n
+JUnit : V5.8.1 \n
+Gradle : V8.5 \n
 
 ## Description
 
