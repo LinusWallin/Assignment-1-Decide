@@ -57,4 +57,4 @@ generated.
 | Foundations    | We had to create an issue everytime we wanted to edit the main branch and create a seperate branch to work on issue before creating a pull request to merge it back to main. |
 | In Use         | We introduced Gradle, JUnit and JavaDocs to help us in our testing and documenting of the Assignment                                                                         |
 
-| **In Place** | The practice was adopted by all our team members and we worked well together to implement the deliverables. We do not hesistate to voice out our ideas if we feel that something could be improved.|
+| **In Place** | The practice was adopted by all our team members and we worked well together to implement the deliverables. We do not hesistate to voice out our ideas if we feel that something could be improved. |
