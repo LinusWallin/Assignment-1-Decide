@@ -51,6 +51,14 @@ public class Vector2D {
         return area;
     }
 
+    public Vector2D mean(Vector2D other){
+        double x = (this.x + other.x) * 0.5;
+        double y = (this.y + other.y) * 0.5;
+
+        return new Vector2D(x, y);
+    }
+
+    
 
     @Override
     public boolean equals(Object obj) {
