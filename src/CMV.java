@@ -105,6 +105,22 @@ public class CMV {
         return false;
     }
 
+    /**
+     * The function evaluates the condition 5.
+     * Iterates over POINTS array, looks for consecutive points and checks if the smaller indexed point 
+     * has an x bigger than the next point's x
+     * @return true if any such points can be found, false otherwise.
+     */
+    public boolean cmvFunction5() {
+
+        for (int i = 0; i < this.POINTS.length-1; i++) {
+            if(this.POINTS[i+1].x < this.POINTS[i].x) return true;
+        }
+
+        return false;
+    }
+
+
     public boolean cmvFunction7(){
 
         if (this.NUMPOINTS >= 3){
