@@ -355,6 +355,27 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction7());
   }
 
+    @Test
+    public void testFunction12_0(){
+        Vector2D[] points = new Vector2D[10];
+        for(int i = 0; i < 10; i++){
+            points[i] = new Vector2D(0, i);
+        }
+
+        
+        CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
+        assertFalse(cmv.cmvFunction12());
+
+        CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
+        assertFalse(cmv1.cmvFunction12());
+        
+        CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
+        assertTrue(cmv2.cmvFunction12());
+
+        CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
+        assertTrue(cmv3.cmvFunction12());
+    }  
+
   @Test
   public void testFunction13_0(){
       Vector2D[] points = new Vector2D[100];
@@ -470,4 +491,57 @@ public class CMVTest {
 
     assertFalse(t.cmvFunction10());
   }
+
+  @Test
+  public void testFunction11_0(){
+    
+    Vector2D[] points = new Vector2D[10];
+
+    for (int i = 0; i < 10; i++){
+      points[i] = new Vector2D((-1)*i, (-1)*i);
+    }
+
+    CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0);
+
+    assertTrue(cmv.cmvFunction11());
+  }
+
+  @Test
+  public void testFunction11_1(){
+
+    Vector2D[] points = new Vector2D[10];
+
+    for (int i = 0; i < 10; i++){
+      points[i] = new Vector2D((-1)*i, (-1)*i);
+    }
+
+    CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0);
+
+    assertFalse(cmv.cmvFunction11());
+  }
+
+  @Test
+  public void testFunction11_2(){
+
+    Vector2D[] points = new Vector2D[2];
+
+    for (int i = 0; i < 2; i++){
+      points[i] = new Vector2D((-1)*i, (-1)*i);
+    }
+
+    CMV cmv = new CMV(points, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertFalse(cmv.cmvFunction11());
+  }
+
+  @Test
+  public void testFunction11_3(){
+
+    Vector2D[] points = new Vector2D[10];
+
+    for (int i = 0; i < 10; i++){
+      points[i] = new Vector2D(i, i);
+    }
+  }
+
 }
