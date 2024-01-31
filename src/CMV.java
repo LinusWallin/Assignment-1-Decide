@@ -314,6 +314,12 @@ public class CMV {
     return false;
   }
 
+  /**
+   * Checks that there exists atleast one set of two data points separated by
+   * exactly G_PTS consecutive intervening points, such that X[j] - X[i] < 0 (
+   * where i<j). The condition is not met when NUMPOINTS < 3. 
+   * @return (boolean)
+   */
   public boolean cmvFunction11(){
     if (this.NUMPOINTS >= 3){
         int j = this.G_PTS+1;
