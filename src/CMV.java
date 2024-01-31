@@ -98,6 +98,10 @@ public class CMV {
         this.PI = 3.1415926535;
     }
 
+  /**
+   * Evaluates LIC 0
+   * @return true if two conscutive points are less than LENGTH1 distance from eachother. false otherwise.
+   */
   public boolean cmvFunction0() {
     if (this.NUMPOINTS == 0) {
       return false;
