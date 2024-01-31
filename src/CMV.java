@@ -1,4 +1,4 @@
-package src;
+import java.util.LinkedList;
 
 public class CMV {
 
@@ -41,6 +41,13 @@ public class CMV {
     this.RADIUS1 = RADIUS1;
     this.AREA1 = AREA1;
     this.K_PTS = K_PTS;
+  }
+
+  public CMV(Vector2D[] POINTS, int NUMPOINTS, int QPTS, int QUADS) {
+    this.POINTS = POINTS;
+    this.NUMPOINTS = NUMPOINTS;
+    this.QPTS = QPTS;
+    this.QUADS = QUADS;
   }
 
   public CMV(
@@ -163,6 +170,50 @@ public class CMV {
         }
       }
     }
+    return false;
+  }
+
+  /**
+   * This function returns true if there exist QPTS consecutives
+   * points that lies in at least QUADS different quadrants
+   * @return (boolean)
+   */
+  public boolean cmvFunction4() {
+    LinkedList<Integer> quadrantQueue = new LinkedList<>();
+
+    for (int i = 0; i < QPTS; i++) {
+      quadrantQueue.add(POINTS[i].quadrant());
+    }
+
+    for (int i = 0; i < POINTS.length - QPTS; i++) {
+      int count = 0;
+
+      for (int j = 0; j < 4; j++) {
+        if (quadrantQueue.contains(j + 1)) {
+          count++;
+        }
+      }
+
+      if (count >= QUADS) return true;
+
+      quadrantQueue.add(POINTS[QPTS + i].quadrant());
+      quadrantQueue.poll();
+    }
+
+    return false;
+  }
+
+  /**
+   * The function evaluates the condition 5.
+   * Iterates over POINTS array, looks for consecutive points and checks if the smaller indexed point
+   * has an x bigger than the next point's x
+   * @return true if any such points can be found, false otherwise.
+   */
+  public boolean cmvFunction5() {
+    for (int i = 0; i < this.POINTS.length - 1; i++) {
+      if (this.POINTS[i + 1].x < this.POINTS[i].x) return true;
+    }
+
     return false;
   }
 
