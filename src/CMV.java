@@ -135,4 +135,25 @@ public class CMV {
         return false;
     }
 
+    /**
+     * There exists at least one set of three data points separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. The condition is not met when NUMPOINTS < 5.
+     * 1 ≤ A PTS, 1 ≤ B PTS
+     * A PTS + B PTS ≤ (NUMPOINTS − 3)
+     */
+    public boolean CMVFunction8(){
+        
+        for(int i = 0; i + A_PTS + B_PTS + 2 < NUMPOINTS; i++){
+            Vector2D p1 = POINTS[i];
+            Vector2D p2 = POINTS[i+A_PTS+1];
+            Vector2D p3 = POINTS[i+A_PTS+B_PTS+2];
+
+            if(p1.circleRadius(p2,p3) > RADIUS1){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
