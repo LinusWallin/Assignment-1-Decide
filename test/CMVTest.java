@@ -317,6 +317,14 @@ public class CMVTest {
         assertFalse(cmv.cmvFunction7());
     }
 
+    @Test
+    public void testFunction12_0(){
+        Vector2D[] points = new Vector2D[10];
+        for(int i = 0; i < 10; i++){
+            points[i] = new Vector2D(0, i);
+        }
 
+        
+    }
     
 }
