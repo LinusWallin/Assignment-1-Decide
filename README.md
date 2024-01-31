@@ -41,13 +41,13 @@ generated.
 
 ## Contributions
 
-| Name   | Contribution                       |
-| ------ | ---------------------------------- |
-| Kalle  | Implemented 3 of the CMV functions |
-| Linus  | Implemented 3 of the CMV functions |
-| Martin | Implemented 3 of the CMV functions |
-| Burcu  | Implemented 3 of the CMV functions |
-| JJ     | Implemented 3 of the CMV functions |
+| Name   | Contribution                                                       |
+| ------ | ------------------------------------------------------------------ |
+| Kalle  | Implemented 3 of the CMV functions and helped with other functions |
+| Linus  | Implemented 3 of the CMV functions and helped with other functions |
+| Martin | Implemented 3 of the CMV functions and helped with other functions |
+| Burcu  | Implemented 3 of the CMV functions and helped with other functions |
+| JJ     | Implemented 3 of the CMV functions and helped with other functions |
 
 ## Way of working
 
