@@ -301,7 +301,7 @@ public class CMV {
         boolean condition2 = false;
 
         for(int i = 0; i < NUMPOINTS - K_PTS - 1; i++){
-            double distance = POINTS[i].squaredDistance(POINTS[i + K_PTS + 1]);
+            double distance = Math.sqrt(POINTS[i].squaredDistance(POINTS[i + K_PTS + 1]));
             if(distance > LENGTH1){
                 condition1 = true;
             }
