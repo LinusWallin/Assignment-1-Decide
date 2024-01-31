@@ -1,3 +1,4 @@
+import org.omg.CORBA.VM_CUSTOM;
 
 public class Vector2D {
     public double x;
@@ -49,4 +50,13 @@ public class Vector2D {
 
         return area;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Vector2D)) return false;
+        Vector2D o = (Vector2D) obj;
+        return o.x == x && o.y == y; 
+    }
+
 }
