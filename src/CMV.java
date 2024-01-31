@@ -142,13 +142,10 @@ public class CMV {
         (Math.pow(line1, 2) + Math.pow(line2, 2) - Math.pow(line3, 2)) /
         (2 * line1 * line2)
       );
-      //   System.out.printf("angle : %f \n", angle);
 
       if (
         (angle < (this.PI - this.EPSILON)) || (angle > (this.PI + this.EPSILON))
       ) {
-        // System.out.println(angle);
-        // System.out.printf("true angle : %f", angle);
         return true;
       }
     }
