@@ -96,6 +96,7 @@ public class CMV {
         this.LENGTH2 = length2;
         this.RADIUS2 = radius2;
         this.AREA2 = area2; 
+        this.PI = 3.1415926535;
     }
 
   //constructor for cmvFunction0
