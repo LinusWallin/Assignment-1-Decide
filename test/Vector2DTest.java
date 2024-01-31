@@ -116,4 +116,33 @@ public class Vector2DTest {
         assertEquals(3.75, area);
     }
 
+    @Test
+    public void testQuadrantEdgeCases(){
+        Vector2D vec1 = new Vector2D(0,0);
+        Vector2D vec2 = new Vector2D(1,0);
+        Vector2D vec3 = new Vector2D(0,1);
+        Vector2D vec4 = new Vector2D(-1,0);
+        Vector2D vec5 = new Vector2D(0,-1);
+
+        assertEquals(vec1.quadrant(), 1);
+        assertEquals(vec2.quadrant(), 1);
+        assertEquals(vec3.quadrant(), 1);
+        assertEquals(vec4.quadrant(), 2);
+        assertEquals(vec5.quadrant(), 3);
+
+    }
+
+    @Test
+    public void testQuadrant(){
+        Vector2D vec1 = new Vector2D(143,888);
+        Vector2D vec2 = new Vector2D(-4445,2);
+        Vector2D vec3 = new Vector2D(-0.00000000001,-0.0000000001);
+        Vector2D vec4 = new Vector2D(1,-55);
+
+        assertEquals(vec1.quadrant(), 1);
+        assertEquals(vec2.quadrant(), 2);
+        assertEquals(vec3.quadrant(), 3);
+        assertEquals(vec4.quadrant(), 4);
+    }
+
 }
