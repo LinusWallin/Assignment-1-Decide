@@ -445,11 +445,8 @@ public class CMV {
         return false;
     }
 
-    boolean cmvFunction9(){
-        //assert((this.C_PTS + this.D_PTS) < (this.NUMPOINTS -3));
-        //assert(C_PTS >= 1);
-        //assert(D_PTS >= 1);
 
+    boolean cmvFunction9(){
         if(NUMPOINTS <5){
             return false;
         }
@@ -482,7 +479,4 @@ public class CMV {
         
         return false;
     }
-
-
-
 }
