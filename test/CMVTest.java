@@ -163,6 +163,41 @@ public class CMVTest {
         assertFalse(cmv.cmvFunction3());
     }
 
+    @Test
+    public void testFunction4_0(){
+        Vector2D[] points = new Vector2D[10];
+        for(int i = 0; i < 10; i++){
+            points[i] = new Vector2D(i, i);
+        }
+
+        CMV cmv = new CMV(points, 10, 2, 2);
+        assertFalse(cmv.cmvFunction4());
+    }
+
+    @Test
+    public void testFunction4_1(){
+        Vector2D[] points = new Vector2D[10];
+        for(int i = 0; i < 10; i++){
+            points[i] = new Vector2D(i, i);
+        }
+        points[5].x = -1;
+        points[7].y = -1;
+
+        CMV cmv = new CMV(points, 10, 3, 3);
+        assertTrue(cmv.cmvFunction4());
+    }
+
+    @Test
+    public void testFunction4_2(){
+        Vector2D[] points = new Vector2D[10];
+        for(int i = 0; i < 10; i++){
+            points[i] = new Vector2D(i, i);
+        }
+
+        CMV cmv = new CMV(points, 10, 1, 1);
+        assertTrue(cmv.cmvFunction4());
+    }
+
     @Test 
     public void testFunction5_0(){
 
@@ -281,5 +316,7 @@ public class CMVTest {
 
         assertFalse(cmv.cmvFunction7());
     }
+
+
     
 }
