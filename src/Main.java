@@ -7,7 +7,8 @@ class Main {
         System.out.println("This is the main file");
     
     }
-
+    
+    //Function to determine if the input variables are valid
     public boolean isValidInput(
         Vector2D[] points, 
         int numpoints, 
