@@ -363,7 +363,20 @@ public class CMVTest {
         }
 
         
-    }  @Test
+        CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
+        assertFalse(cmv.cmvFunction12());
+
+        CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
+        assertFalse(cmv1.cmvFunction12());
+        
+        CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
+        assertTrue(cmv2.cmvFunction12());
+
+        CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
+        assertTrue(cmv3.cmvFunction12());
+    }  
+
+  @Test
   public void testFunction14_0() {
     Vector2D[] points = new Vector2D[100];
 
