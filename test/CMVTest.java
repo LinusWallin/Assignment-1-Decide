@@ -563,7 +563,7 @@ public class CMVTest {
         int C_PTS = 1;
         int D_PTS = 1;
         double EPSILON = 0.01;
-        CMV cmv  = new CMV(points, 100, C_PTS, D_PTS, EPSILON);
+        CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
         assertFalse(cmv.cmvFunction9());
     }
@@ -581,7 +581,7 @@ public class CMVTest {
         int C_PTS = 1;
         int D_PTS = 1;
         double EPSILON = 0.01;
-        CMV cmv  = new CMV(points, 100, C_PTS, D_PTS, EPSILON);
+        CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
         assertFalse(cmv.cmvFunction9());
     }
