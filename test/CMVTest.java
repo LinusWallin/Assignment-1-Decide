@@ -16,14 +16,7 @@ public class CMVTest {
 
     points[8] = new Vector2D(3.1, 3.1);
 
-    CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0);
-    for (int i = 0; i < 100; i++) {
-      points[i] = new Vector2D(1.0, 1.0);
-    }
-
-    points[8] = new Vector2D(3.1, 3.1);
-
-    CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction0());
   }
@@ -36,7 +29,7 @@ public class CMVTest {
       points[i] = new Vector2D(1.0, 1.0);
     }
 
-    CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction0());
   }
@@ -52,7 +45,7 @@ public class CMVTest {
     points[7] = new Vector2D(2.5, 2.5);
     points[8] = new Vector2D(1.6, 1.6);
 
-    CMV cmv = new CMV(points, 100, 1.0, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 100, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction0());
   }
@@ -65,7 +58,7 @@ public class CMVTest {
       points[i] = new Vector2D(i, i);
     }
 
-    CMV cmv = new CMV(points, 100, 0, 1, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 100, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction1());
   }
@@ -78,7 +71,7 @@ public class CMVTest {
       points[i] = new Vector2D(i, i);
     }
 
-    CMV cmv = new CMV(points, 100, 0, 2, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 100, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction1());
   }
@@ -94,7 +87,7 @@ public class CMVTest {
     points[1] = new Vector2D(4, 1);
     points[2] = new Vector2D(4, 5);
 
-    CMV cmv = new CMV(points, 100, 0, 5, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 100, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction1());
   }
@@ -111,7 +104,9 @@ public class CMVTest {
     points[2] = new Vector2D(2.0, 2.0);
     points[3] = new Vector2D(3.0, 3.0);
 
-    CMV t = new CMV(points, PI, -1E9, 5.0, 5, 5, 10.0);
+    CMV t = new CMV(points, 100, 0, 0, -1E9, 10.0, 0, 0, 5.0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0);
+
+    
     assertTrue(t.cmvFunction2());
   }
 
@@ -124,7 +119,8 @@ public class CMVTest {
 
     Vector2D[] points = new Vector2D[] { p1, p2, p3 };
 
-    CMV t = new CMV(points, PI, 1.0, 5.0, 5, 5, 10.0);
+    CMV t = new CMV(points, 3, 0, 0, 1.0, 10.0, 0, 0, 5.0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0);
+
     assertFalse(t.cmvFunction2());
   }
 
@@ -136,7 +132,7 @@ public class CMVTest {
     points[1] = new Vector2D(1.0, 4.0);
     points[2] = new Vector2D(2.0, 0.0);
 
-    CMV cmv = new CMV(points, 3, 1, 0, 3.99, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 3, 1, 0, 0.0, 3.99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction3());
   }
@@ -152,7 +148,7 @@ public class CMVTest {
     points[3] = new Vector2D(1.0, 4.0);
     points[6] = new Vector2D(2.0, 0.0);
 
-    CMV cmv = new CMV(points, 10, 1, 0, 3.99, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 10, 1, 0, 0.0, 3.99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction3());
   }
@@ -165,7 +161,7 @@ public class CMVTest {
       points[i] = new Vector2D(0.0, 0.0);
     }
 
-    CMV cmv = new CMV(points, 10, 1, 0, 1, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction3());
   }
@@ -177,7 +173,7 @@ public class CMVTest {
     points[0] = new Vector2D(0.0, 0.0);
     points[1] = new Vector2D(100.0, 100.0);
 
-    CMV cmv = new CMV(points, 2, 1, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 2, 1, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction3());
   }
@@ -189,7 +185,8 @@ public class CMVTest {
       points[i] = new Vector2D(i, i);
     }
 
-    CMV cmv = new CMV(points, 10, 2, 2);
+    CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
     assertFalse(cmv.cmvFunction4());
   }
 
@@ -202,7 +199,8 @@ public class CMVTest {
     points[5].x = -1;
     points[7].y = -1;
 
-    CMV cmv = new CMV(points, 10, 3, 3);
+    CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
     assertTrue(cmv.cmvFunction4());
   }
 
@@ -213,7 +211,8 @@ public class CMVTest {
       points[i] = new Vector2D(i, i);
     }
 
-    CMV cmv = new CMV(points, 10, 1, 1);
+    CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0,1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
     assertTrue(cmv.cmvFunction4());
   }
 
@@ -225,7 +224,7 @@ public class CMVTest {
       points[i] = new Vector2D(1, 1);
     }
 
-    CMV cmv = new CMV(points, 10, 1, 0, 1, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction5());
   }
@@ -237,8 +236,8 @@ public class CMVTest {
     for (int i = 0; i < 10; i++) {
       points[i] = new Vector2D(i, i);
     }
-
-    CMV cmv = new CMV(points, 10, 1, 0, 1, 0, 0, 0, 0);
+    
+    CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction5());
   }
@@ -253,7 +252,7 @@ public class CMVTest {
 
     points[5].x = 0;
 
-    CMV cmv = new CMV(points, 10, 1, 0, 1, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction5());
   }
@@ -270,7 +269,7 @@ public class CMVTest {
     points[1 + 6] = new Vector2D(1.0, 1.0);
     points[1 + 6 + 7] = new Vector2D(2.0, 13.0);
 
-    CMV t = new CMV(points, PI, -1E9, 10.0, 6, 7, 10.0);
+    CMV t = new CMV(points, 100, 0, 0, -1E9, 10.0, 0, 0, 10.0, 0, 0, 0, 0, 0, 0, 6, 7, 0, 0, 0, 0);
 
     assertTrue(t.cmvFunction6());
   }
@@ -285,7 +284,7 @@ public class CMVTest {
 
     points[12] = new Vector2D(2.0, 9.0);
 
-    CMV t = new CMV(points, PI, -1E9, 10.0, 6, 7, 10.0);
+    CMV t = new CMV(points, 100, 0, 0, -1E9, 10.0, 0, 0, 10.0, 0, 0, 0, 0, 0, 0, 6, 7, 0, 0, 0, 0);
 
     assertFalse(t.cmvFunction6());
   }
@@ -298,7 +297,7 @@ public class CMVTest {
       points[i] = new Vector2D(i * 1, 0);
     }
 
-    CMV cmv = new CMV(points, 10, 8.99, 0, 0, 0, 8, 0, 0);
+    CMV cmv = new CMV(points, 10, 8.99, 0, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction7());
   }
@@ -311,7 +310,7 @@ public class CMVTest {
       points[i] = new Vector2D(i, i);
     }
 
-    CMV cmv = new CMV(points, 3, 0.5, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 3, 0.5, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction7());
   }
@@ -324,7 +323,7 @@ public class CMVTest {
       points[i] = new Vector2D(i * 1, 0);
     }
 
-    CMV cmv = new CMV(points, 10, 9, 0, 0, 0, 8, 0, 0);
+    CMV cmv = new CMV(points, 10, 9, 0, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction7());
   }
@@ -336,7 +335,7 @@ public class CMVTest {
     points[0] = new Vector2D(0, 0);
     points[1] = new Vector2D(1, 1);
 
-    CMV cmv = new CMV(points, 2, 0.5, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 2, 0.5, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction7());
   }
@@ -351,7 +350,7 @@ public class CMVTest {
 
     points[5] = new Vector2D(1, 1);
 
-    CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 8, 0, 0);
+    CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction7());
   }
@@ -367,7 +366,7 @@ public class CMVTest {
     points[4].y = 5;
     points[4].x = 4;
 
-    CMV cmv = new CMV(points, 100, 0, 0, 4, 8, 0, 1, 2);
+    CMV cmv = new CMV(points, 100, 0, 0, 0.0, 4.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 8);
 
     assertTrue(cmv.cmvFunction14());
   }
@@ -382,6 +381,11 @@ public class CMVTest {
     points[2].x = 4;
     points[3].x = 4;
     points[3].y = 5;
+
+    CMV cmv = new CMV(points, 100, 0, 0, 0.0, 6.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertFalse(cmv.cmvFunction14());
+
   }
 
   @Test
@@ -398,7 +402,7 @@ public class CMVTest {
     points[1 + E] = new Vector2D(0.0, 1.0);
     points[1 + E + F] = new Vector2D(2.5, 11.0);
 
-    CMV t = new CMV(points, PI, -1E9, 10.0, E, F, 24.9);
+    CMV t = new CMV(points, 100, 0, 0, -1E9, 24.9, 0, 0, 10.0, 0, 0, 0, 0, 0, 0, E, F, 0, 0, 0, 0);
 
     assertTrue(t.cmvFunction10());
   }
@@ -417,11 +421,7 @@ public class CMVTest {
     points[1 + E] = new Vector2D(0.0, 1.0);
     points[1 + E + F] = new Vector2D(2.5, 10.0);
 
-    CMV cmv = new CMV(points, 100, 0, 0, 6, 7, 0, 1, 1);
-
-    assertFalse(cmv.cmvFunction14());
-
-    CMV t = new CMV(points, PI, -1E9, 10.0, E, F, 24.9);
+    CMV t = new CMV(points, 100, 0, 0, -1E9, 24.9, 0, 0, 10.0, 0, 0, 0, 0, 0, 0, E, F, 0, 0, 0, 0);
 
     assertFalse(t.cmvFunction10());
   }
