@@ -25,13 +25,16 @@ public class CMV {
     private int NUMPOINTS;
 
     //constructor for cmvFunction0
-    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double RADIUS1, double AREA1, int K_PTS){
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, double LENGTH1, double RADIUS1, double AREA1, double AREA2, int K_PTS, int E_PTS, int F_PTS){
         this.POINTS = POINTS;
         this.NUMPOINTS = NUMPOINTS;
         this.LENGTH1 = LENGTH1;
         this.RADIUS1 = RADIUS1;
         this.AREA1 = AREA1;
+        this.AREA2 = AREA2;
         this.K_PTS = K_PTS;
+        this.E_PTS = E_PTS;
+        this.F_PTS = F_PTS;
     }
 
     public CMV(Vector2D[] POINTS, int NUMPOINTS, int QPTS, int QUADS){
@@ -171,6 +174,38 @@ public class CMV {
                 }
             }
         }
+        return false;
+    }
+
+    /**
+     * Evaluates condition 14.
+     * Iterates over the array, looks for 3 points seperated by E_PTS and F_PTS respectively
+     * Finds the area of the triangle created by these 3 points as vertices
+     * Checks if the area is bigger than AREA1, also checks if it's smaller than AREA2
+     * At the end of iteration, returns true if both conditions were satisfied at least once.
+     * @return true if result1 && result2, false otherwise.
+     */
+    public boolean cmvFunction14() {
+
+        if(NUMPOINTS < 5) return false;
+
+        boolean result1 = false;
+        boolean result2 = false;
+        for(int i=0; i<this.NUMPOINTS-this.E_PTS-this.F_PTS; i++) {
+            if(result1 && result2) return true;
+            Vector2D point1 = this.POINTS[i];
+            Vector2D point2 = this.POINTS[i+this.E_PTS];
+            Vector2D point3 = this.POINTS[i+this.E_PTS+this.F_PTS];
+
+            double area = point1.traingleArea(point2, point3);
+
+            if(area > this.AREA1) result1 = true;
+            if(area < this.AREA2) result2 = true;
+
+        }
+
+        if(result1 && result2) return true;
+
         return false;
     }
 
