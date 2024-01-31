@@ -1,4 +1,4 @@
-
+import java.util.LinkedList;
 
 public class CMV {
     private double LENGTH1; // Length in LICs 0, 7, 12
@@ -33,6 +33,14 @@ public class CMV {
         this.AREA1 = AREA1;
         this.K_PTS = K_PTS;
     }
+
+    public CMV(Vector2D[] POINTS, int NUMPOINTS, int QPTS, int QUADS){
+        this.POINTS = POINTS;
+        this.NUMPOINTS = NUMPOINTS;
+        this.QPTS = QPTS;
+        this.QUADS = QUADS;
+    }
+
     
     public boolean cmvFunction0(){
         if(this.NUMPOINTS == 0){
@@ -102,6 +110,37 @@ public class CMV {
                 }
             }
         }
+        return false;
+    }
+
+    /**
+     * This function returns true if there exist QPTS consecutives 
+     * points that lies in at least QUADS different quadrants
+     * @return (boolean)
+     */
+    public boolean cmvFunction4(){
+
+        LinkedList<Integer> quadrantQueue = new LinkedList<>();
+
+        for(int i = 0; i < QPTS; i++){
+            quadrantQueue.add(POINTS[i].quadrant());
+        }
+
+        for(int i = 0; i < POINTS.length - QPTS; i++){
+            int count = 0;
+
+            for(int j = 0; j < 4; j++){
+                if(quadrantQueue.contains(j+1)){
+                    count++;
+                }
+            }
+
+            if(count >= QUADS) return true;
+
+            quadrantQueue.add(POINTS[QPTS+i].quadrant());
+            quadrantQueue.poll();
+        }
+
         return false;
     }
 

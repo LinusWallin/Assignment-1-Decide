@@ -49,4 +49,25 @@ public class Vector2D {
 
         return area;
     }
+
+    /** 
+     * Compute the quadrant (quarter of the plain) that contains the Vector2D
+     * 1 - top right
+     * 2 - top left
+     * 3 - bottom left
+     * 4 - bottom right
+     * @return (int) the quadrant of the point
+    **/
+    public int quadrant(){
+		if(this.x >= 0 && this.y >= 0){
+			return 1;
+		}
+		if(this.x < 0 && this.y >= 0){
+			return 2;
+		}
+		if(this.x <= 0 && this.y < 0){
+			return 3;
+		}
+		return 4;
+	}
 }
