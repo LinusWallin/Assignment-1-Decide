@@ -342,6 +342,24 @@ public class CMV {
   }
 
   /**
+   * Checks that there exists atleast one set of two data points separated by
+   * exactly G_PTS consecutive intervening points, such that X[j] - X[i] < 0 (
+   * where i<j). The condition is not met when NUMPOINTS < 3. 
+   * @return (boolean)
+   */
+  public boolean cmvFunction11(){
+    if (this.NUMPOINTS >= 3){
+        int j = this.G_PTS+1;
+        for (int i = 0; i < this.NUMPOINTS - j; i++){
+            if (this.POINTS[i+j].x - this.POINTS[i].x < 0){
+                return true;
+            }
+        }
+    }
+    return false;
+  }
+
+  /**
    * Evaluates condition 14.
    * Iterates over the array, looks for 3 points seperated by E_PTS and F_PTS respectively
    * Finds the area of the triangle created by these 3 points as vertices
