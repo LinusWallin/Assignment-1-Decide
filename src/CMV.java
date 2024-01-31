@@ -99,54 +99,6 @@ public class CMV {
         this.PI = 3.1415926535;
     }
 
-  //constructor for cmvFunction0
-  public CMV(
-    Vector2D[] POINTS,
-    int NUMPOINTS,
-    double LENGTH1,
-    double RADIUS1,
-    double AREA1,
-    double AREA2,
-    int K_PTS,
-    int E_PTS,
-    int F_PTS
-  ) {
-    this.POINTS = POINTS;
-    this.NUMPOINTS = NUMPOINTS;
-    this.LENGTH1 = LENGTH1;
-    this.RADIUS1 = RADIUS1;
-    this.AREA1 = AREA1;
-    this.AREA2 = AREA2;
-    this.K_PTS = K_PTS;
-    this.E_PTS = E_PTS;
-    this.F_PTS = F_PTS;
-  }
-
-  public CMV(Vector2D[] POINTS, int NUMPOINTS, int QPTS, int QUADS) {
-    this.POINTS = POINTS;
-    this.NUMPOINTS = NUMPOINTS;
-    this.QPTS = QPTS;
-    this.QUADS = QUADS;
-  }
-
-  public CMV(
-    Vector2D[] POINTS,
-    double pi,
-    double EPSILON,
-    double DIST,
-    int E_PTS,
-    int F_PTS,
-    double AREA1
-  ) {
-    this.POINTS = POINTS;
-    this.PI = pi;
-    this.EPSILON = EPSILON;
-    this.DIST = DIST;
-    this.E_PTS = E_PTS;
-    this.F_PTS = F_PTS;
-    this.AREA1 = AREA1;
-  }
-
   public boolean cmvFunction0() {
     if (this.NUMPOINTS == 0) {
       return false;
