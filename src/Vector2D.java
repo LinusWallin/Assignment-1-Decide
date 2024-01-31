@@ -74,6 +74,16 @@ public class Vector2D {
         return Math.sqrt(squaredDistance(intersect));
     }
 
+    public Vector2D circleCenter(Vector2D v1, double radius){
+        Vector2D d1 = new Vector2D(this.x - v1.x, this.y - v1.y);
+        Vector2D m1 = mean(v1);
+        double a1 = -d1.x/d1.y;
+        double b1 = m1.y - a1*m1.x;
+        
+        return new Vector2D(0, 0);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if(!(obj instanceof Vector2D)) return false;
