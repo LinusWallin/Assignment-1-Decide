@@ -285,6 +285,33 @@ public class CMV {
     return false;
   }
 
+    /**
+     * There exists at least one set of two data points, separated by exactly K PTS consecutive
+     * intervening points, which are a distance greater than the length, LENGTH1, apart. 
+     * In addition, there exists at least one set of two data points (which can be the same or different from
+     * the two data points just mentioned), separated by exactly K PTS consecutive intervening
+     * points, that are a distance less than the length, LENGTH2, apart. Both parts must be true
+     * for the LIC to be true. The condition is not met when NUMPOINTS < 3.
+     * 0 ≤ LENGTH2
+     * @return true if both condition are met
+     */
+    public boolean cmvFunction12(){
+        
+        boolean condition1 = false;
+        boolean condition2 = false;
+
+        for(int i = 0; i < NUMPOINTS - K_PTS - 1; i++){
+            double distance = Math.sqrt(POINTS[i].squaredDistance(POINTS[i + K_PTS + 1]));
+            if(distance > LENGTH1){
+                condition1 = true;
+            }
+            if(distance < LENGTH2){
+                condition2 = true;
+            }
+        }
+
+        return condition1 && condition2;
+    }
   /**
    * Evaluates Condition 10.
    * Calculates the area of the triangle formed by the 3 consecutive points spaced E_PTS and F_PTS
