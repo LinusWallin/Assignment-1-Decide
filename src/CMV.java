@@ -489,11 +489,9 @@ public class CMV {
             double angle = vertex.angle(first,last);
             System.out.println(i +" " + (i+C_PTS) +" "+(i+C_PTS+D_PTS) + " " + angle);
             if(angle < this.PI - this.EPSILON){
-                System.out.println("Found an angle < PI - EPSILON:  Angle - " + angle);
                 return true;
             }
             if(angle > this.PI + this.EPSILON){
-                System.out.println("Found an angle < PI + EPSILON:  Angle - " + angle);
                 return true;
             }
         }
