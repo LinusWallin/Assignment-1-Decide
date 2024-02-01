@@ -512,107 +512,69 @@ public class CMVTest {
 
   }
 
+  //The function goes through all iterations
   @Test
-  public void testFunction12_0(){
-      Vector2D[] points = new Vector2D[10];
-      for(int i = 0; i < 10; i++){
-          points[i] = new Vector2D(0, i);
-      }
-
-      
-      CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
-      assertFalse(cmv.cmvFunction12());
-
-      CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
-      assertFalse(cmv1.cmvFunction12());
-      
-      CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
-      assertTrue(cmv2.cmvFunction12());
-
-      CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
-      assertTrue(cmv3.cmvFunction12());
-  }  
-
-
-  // returns false if RADIUS1 is smaller than distance between all 3 points.
-  @Test
-  public void testFunction13_0(){
+  public void testFunction9_0(){
       Vector2D[] points = new Vector2D[100];
       
-      double x = 0.0; 
+      double x = 0.0;
       for(int i=0; i < 100; i++){
           points[i] = new Vector2D(x,0.0);
-          x = x + 0.1;
+          x = x + 1.0;
       }
   
-      int A_PTS = 1;
-      int B_PTS = 1;
-      double RADIUS1 = 1.0;
-      double RADIUS2 = 0.0;
+      int C_PTS = 1;
+      int D_PTS = 1;
+      double EPSILON = 0.01;
+      CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
-      CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
-
-      assertFalse(cmv.cmvFunction13());
+      assertFalse(cmv.cmvFunction9());
   }
-
-  // return true when 2 pair of points exists.
+  //tests true if there is big angle between 3 points that are C_PTS and D_PTS points apart.
+  // every big angle have an opposite small angle.
   @Test
-  public void testFunction13_1(){
+  public void testFunction9_1(){
       Vector2D[] points = new Vector2D[100];
-       
-      double x = 1.0;
+
+      double x = 0.0;
       for(int i=0; i < 100; i++){
           points[i] = new Vector2D(x,0.0);
+          x = x + 1.0;
       }
 
-      points[19] = new Vector2D(1000.0,1000.0);
-      points[20] = new Vector2D(0.0,0.0);
+      //.....89...93.....99 expected 3 points returning true. 
+      int C_PTS = 3;
+      int D_PTS = 5;
+      points[89]= new Vector2D(89.0,0.0);
+      points[93]= new Vector2D(93.0,0.0);
+      points[99]= new Vector2D(99.0,-10.0);
+      double EPSILON = 1.0;
+      CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
-      points[77] = new Vector2D(3000.1,3000.0);
-      points[78] = new Vector2D(3000.2,3000.0);
-      points[79] = new Vector2D(3000.3,3000.0);
-  
-      int A_PTS = 1;
-      int B_PTS = 1;
-      double RADIUS2 = 0.5;
-      double RADIUS1 = 790.0;
-
-      CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
-
-      assertTrue(cmv.cmvFunction13());
+      assertTrue(cmv.cmvFunction9());
   }
 
+  //tests true if there is small angle between 3 points that are C_PTS and D_PTS points apart.
   @Test
-  public void testFunction14_0() {
-    Vector2D[] points = new Vector2D[100];
+  public void testFunction9_2(){
+      Vector2D[] points = new Vector2D[100];
 
-    for (int i = 0; i < 100; i++) {
-      points[i] = new Vector2D(1, 1);
-    }
-    points[2].x = 4;
-    points[4].y = 5;
-    points[4].x = 4;
+      double x = 0.0;
+      for(int i=0; i < 100; i++){
+          points[i] = new Vector2D(x,0.0);
+          x = x + 1.0;
+      }
 
-    CMV cmv = new CMV(points, 100, 0, 0, 0.0, 4.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 8);
+      //.....89...93.....99 expected 3 points returning true. 
+      int C_PTS = 3;
+      int D_PTS = 5;
+      points[89]= new Vector2D(89.0,0.0);
+      points[93]= new Vector2D(93.0,0.0);
+      points[99]= new Vector2D(99.0,10.0);
+      double EPSILON = 1.0;
+      CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
-    assertTrue(cmv.cmvFunction14());
-  }
-
-  @Test
-  public void testFunction14_1() {
-    Vector2D[] points = new Vector2D[100];
-
-    for (int i = 0; i < 100; i++) {
-      points[i] = new Vector2D(1, 1);
-    }
-    points[2].x = 4;
-    points[3].x = 4;
-    points[3].y = 5;
-
-    CMV cmv = new CMV(points, 100, 0, 0, 0.0, 6.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-    assertFalse(cmv.cmvFunction14());
-
+      assertTrue(cmv.cmvFunction9());
   }
 
   @Test
@@ -705,70 +667,107 @@ public class CMVTest {
     }
   }
 
+  @Test
+    public void testFunction12_0(){
+        Vector2D[] points = new Vector2D[10];
+        for(int i = 0; i < 10; i++){
+            points[i] = new Vector2D(0, i);
+        }
 
-    //The function goes through all iterations
+        
+        CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
+        assertFalse(cmv.cmvFunction12());
+
+        CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
+        assertFalse(cmv1.cmvFunction12());
+        
+        CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
+        assertTrue(cmv2.cmvFunction12());
+
+        CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
+        assertTrue(cmv3.cmvFunction12());
+    }  
+
+
+    // returns false if RADIUS1 is smaller than distance between all 3 points.
     @Test
-    public void testFunction9_0(){
+    public void testFunction13_0(){
         Vector2D[] points = new Vector2D[100];
         
-        double x = 0.0;
+        double x = 0.0; 
         for(int i=0; i < 100; i++){
             points[i] = new Vector2D(x,0.0);
-            x = x + 1.0;
+            x = x + 0.1;
         }
     
-        int C_PTS = 1;
-        int D_PTS = 1;
-        double EPSILON = 0.01;
-        CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
+        int A_PTS = 1;
+        int B_PTS = 1;
+        double RADIUS1 = 1.0;
+        double RADIUS2 = 0.0;
 
-        assertFalse(cmv.cmvFunction9());
-    }
-    //tests true if there is big angle between 3 points that are C_PTS and D_PTS points apart.
-    // every big angle have an opposite small angle.
-    @Test
-    public void testFunction9_1(){
-        Vector2D[] points = new Vector2D[100];
+        CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
-        double x = 0.0;
-        for(int i=0; i < 100; i++){
-            points[i] = new Vector2D(x,0.0);
-            x = x + 1.0;
-        }
-
-        //.....89...93.....99 expected 3 points returning true. 
-        int C_PTS = 3;
-        int D_PTS = 5;
-        points[89]= new Vector2D(89.0,0.0);
-        points[93]= new Vector2D(93.0,0.0);
-        points[99]= new Vector2D(99.0,-10.0);
-        double EPSILON = 1.0;
-        CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
-
-        assertTrue(cmv.cmvFunction9());
+        assertFalse(cmv.cmvFunction13());
     }
 
-    //tests true if there is small angle between 3 points that are C_PTS and D_PTS points apart.
+    // return true when 2 pair of points exists.
     @Test
-    public void testFunction9_2(){
+    public void testFunction13_1(){
         Vector2D[] points = new Vector2D[100];
-
-        double x = 0.0;
+        
+        double x = 1.0;
         for(int i=0; i < 100; i++){
             points[i] = new Vector2D(x,0.0);
-            x = x + 1.0;
         }
 
-        //.....89...93.....99 expected 3 points returning true. 
-        int C_PTS = 3;
-        int D_PTS = 5;
-        points[89]= new Vector2D(89.0,0.0);
-        points[93]= new Vector2D(93.0,0.0);
-        points[99]= new Vector2D(99.0,10.0);
-        double EPSILON = 1.0;
-        CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
+        points[19] = new Vector2D(1000.0,1000.0);
+        points[20] = new Vector2D(0.0,0.0);
 
-        assertTrue(cmv.cmvFunction9());
+        points[77] = new Vector2D(3000.1,3000.0);
+        points[78] = new Vector2D(3000.2,3000.0);
+        points[79] = new Vector2D(3000.3,3000.0);
+    
+        int A_PTS = 1;
+        int B_PTS = 1;
+        double RADIUS2 = 0.5;
+        double RADIUS1 = 790.0;
+
+        CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
+
+        assertTrue(cmv.cmvFunction13());
+    }
+
+    @Test
+    public void testFunction14_0() {
+      Vector2D[] points = new Vector2D[100];
+
+      for (int i = 0; i < 100; i++) {
+        points[i] = new Vector2D(1, 1);
+      }
+      points[2].x = 4;
+      points[4].y = 5;
+      points[4].x = 4;
+
+      CMV cmv = new CMV(points, 100, 0, 0, 0.0, 4.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 8);
+
+      assertTrue(cmv.cmvFunction14());
+    }
+
+    @Test
+    public void testFunction14_1() {
+      Vector2D[] points = new Vector2D[100];
+
+      for (int i = 0; i < 100; i++) {
+        points[i] = new Vector2D(1, 1);
+      }
+      points[2].x = 4;
+      points[3].x = 4;
+      points[3].y = 5;
+
+      CMV cmv = new CMV(points, 100, 0, 0, 0.0, 6.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+      assertFalse(cmv.cmvFunction14());
+
     }
 
 }
