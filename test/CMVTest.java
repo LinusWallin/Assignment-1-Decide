@@ -64,8 +64,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 can identify that 3 consecutive points can be 
-   * contained by a radius of 1.
+   * Tests that Function1 returns true when RADIUS1 is large
+   * enough so that three consecutive points can be placed inside or
+   * on a circle with radius RADIUS1.
    */
   @Test
   public void testFunction1_0() {
@@ -81,8 +82,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 can identify that the points in test 1_0 can't be 
-   * contained by a radius of 2.
+   * Tests that Function1 returns false when the radius is too
+   * small to create a circle which can contain three consecutive
+   * points.
    */
   @Test
   public void testFunction1_1() {
@@ -97,6 +99,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction1());
   }
 
+  /**
+   * Tests that Function1 returns false when the radius is too
+   * small to create a circle which can contain three consecutive
+   * points.
+   */
   @Test
   public void testFunction1_2() {
     Vector2D[] points = new Vector2D[100];
