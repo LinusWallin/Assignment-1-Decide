@@ -94,7 +94,6 @@ public class CMVTest {
 
   @Test
   public void testFunction2_0() {
-    double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(1.0, 1.0);
@@ -259,7 +258,6 @@ public class CMVTest {
 
   @Test
   public void testFunction6_0() {
-    double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(2.0, 2.0);
