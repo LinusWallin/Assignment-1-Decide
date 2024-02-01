@@ -1,6 +1,6 @@
 public class PUM{
 
-    private OP[][] LCM;
+    private Enums.CONNECTORS[][] LCM;
     private boolean[] cmvVector;
     private boolean[][] matrix = new boolean[15][15];
     private int row_size = 15;
@@ -12,7 +12,7 @@ public class PUM{
     }
 
     //This constructor should be used in production.
-    public PUM(boolean[] cmvVector, OP[][] LCM){
+    public PUM(boolean[] cmvVector, Enums.CONNECTORS[][] LCM){
         this.LCM = LCM;
         this.cmvVector = cmvVector;
         calculatePUM();
@@ -41,13 +41,13 @@ public class PUM{
         //else if lcm[i][j] = ORR -> PUM[i][j] = CMV[i] || CMV[j]  -- 
         for(int i = 0; i < 15; i++){
             for(int j=0; j<15;j++){
-                if(this.LCM[i][j] == OP.NOTUSED){
+                if(this.LCM[i][j] == Enums.CONNECTORS.NOTUSED){
                     this.matrix[i][j] = true;
                 }
-                else if(this.LCM[i][j] == OP.ANDD){
+                else if(this.LCM[i][j] == Enums.CONNECTORS.ANDD){
                     this.matrix[i][j] = cmvVector[i] && cmvVector[j];
                 }
-                else if(this.LCM[i][j] == OP.ORR){
+                else if(this.LCM[i][j] == Enums.CONNECTORS.ORR){
                     this.matrix[i][j] = cmvVector[i] || cmvVector[j];
                 }
             }
