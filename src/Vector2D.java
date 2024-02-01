@@ -149,8 +149,8 @@ public class Vector2D {
     public Vector2D[] circleCenters(Vector2D v1, double radius){
         Vector2D difference = new Vector2D(this.x - v1.x, this.y - v1.y);
         Vector2D m = midPoint(v1);
-        Vector2D orthonormalDirection = new Vector2D(1, -difference.x/difference.y)
-          .multiply(1/Math.sqrt(1 + (difference.x/difference.y)*(difference.x/difference.y)));
+        Vector2D orthonormalDirection = difference.y == 0  ? new Vector2D(0, 1) : new Vector2D(1, -difference.x/difference.y)
+        .multiply(1/Math.sqrt(1 + (difference.x/difference.y)*(difference.x/difference.y)));
         //double bias = m.y - slope*m.x;
 
         double squaredDistanceToMean = squaredDistance(m); 
