@@ -64,8 +64,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 can identify that 3 consecutive points can be 
-   * contained by a radius of 1.
+   * Tests that Function1 returns true when RADIUS1 is large
+   * enough so that three consecutive points can be placed inside or
+   * on a circle with radius RADIUS1.
    */
   @Test
   public void testFunction1_0() {
@@ -81,8 +82,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 can identify that the points in test 1_0 can't be 
-   * contained by a radius of 2.
+   * Tests that Function1 returns false when the radius is too
+   * small to create a circle which can contain three consecutive
+   * points.
    */
   @Test
   public void testFunction1_1() {
@@ -97,6 +99,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction1());
   }
 
+  /**
+   * Tests that Function1 returns false when the radius is too
+   * small to create a circle which can contain three consecutive
+   * points.
+   */
   @Test
   public void testFunction1_2() {
     Vector2D[] points = new Vector2D[100];
@@ -119,7 +126,6 @@ public class CMVTest {
    */
   @Test
   public void testFunction2_0() {
-    double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(1.0, 1.0);
@@ -327,10 +333,13 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction5());
   }
 
-  
+  /**
+   * Test that Function6 returns true if the distance to the line
+   * for every other point than the start and end points, which
+   * represent the line, is greater than DIST.
+   */
   @Test
   public void testFunction6_0() {
-    double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(2.0, 2.0);
@@ -345,6 +354,11 @@ public class CMVTest {
     assertTrue(t.cmvFunction6());
   }
 
+  /**
+   * Test that Function6 returns false if the distance to the line
+   * for every other point than the start and end points, which
+   * represent the line, is less than DIST.
+   */
   @Test
   public void testFunction6_1() {
     double PI = 3.1415926535;
@@ -494,7 +508,7 @@ public class CMVTest {
     Vector2D[] points = new Vector2D[10];
 
     for(int i = 0; i < 10; i++){
-      points[i] = new Vector2D(i*0.05, i*0.05);
+      points[i] = new Vector2D(i, i);
     }
 
     points[2] = new Vector2D(0.5, 0.5);
@@ -502,11 +516,11 @@ public class CMVTest {
     points[4] = new Vector2D(0, 0.5);
 
 
-    CMV cmv = new CMV(points, 10, 0, 0.35, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 10, 0, 0.5, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction8());
 
-    cmv = new CMV(points, 10, 0, 0.354, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+    cmv = new CMV(points, 10, 0, 7.072, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction8());
 
@@ -711,6 +725,16 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction11());
   }
 
+  /**
+   * Tests that Function12 returns false if the distance between
+   * all points separated by K_PTS is less than LENGTH1.
+   * Tests that Function12 returns false if the distance between
+   * all points separated by K_PTS is greater than LENGTH2.
+   * Tests that Function12 returns true if the distance between
+   * two points separated by K_PTS is greater than LENGTH1 and
+   * the distance between two other points or the same points
+   * separated by K_PTS consecutive points is less than LENGTH2.
+   */
   @Test
     public void testFunction12_0(){
         Vector2D[] points = new Vector2D[10];
@@ -781,6 +805,11 @@ public class CMVTest {
         assertTrue(cmv.cmvFunction13());
     }
 
+    /**
+     * Tests that Function 14 returns true when the area given
+     * by the three points separated by E_PTS and F_PTS consecutive
+     * points is greater than AREA1 but smaller than AREA2.
+     */
     @Test
     public void testFunction14_0() {
       Vector2D[] points = new Vector2D[100];
@@ -797,6 +826,11 @@ public class CMVTest {
       assertTrue(cmv.cmvFunction14());
     }
 
+    /**
+     * Tests that Function 14 returns false when the area given
+     * by the three points separated by E_PTS and F_PTS consecutive
+     * points is equal to AREA1 and larger than AREA2.
+     */
     @Test
     public void testFunction14_1() {
       Vector2D[] points = new Vector2D[100];
