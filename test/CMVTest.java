@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 
 public class CMVTest {
 
+  /**
+   * Tests that Function0 can identify that a point is further away than 2
+   * from one of its adjecent points.
+   */
   @Test
   public void testFunction0_1() {
     Vector2D[] points = new Vector2D[100];
@@ -21,6 +25,11 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction0());
   }
 
+  /**
+   * Tests that Function0 can identify that a point isn't further away than LENGTH1
+   * from one of its adjecent points, when all points are located on the same
+   * position.
+   */
   @Test
   public void testFunction0_2() {
     Vector2D[] points = new Vector2D[100];
@@ -34,6 +43,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction0());
   }
 
+  /**
+   * Tests that Function0 can identify that a point is further away than LENGTH1
+   * from one of its adjecent points.
+   */
   @Test
   public void testFunction0_3() {
     Vector2D[] points = new Vector2D[100];
@@ -50,6 +63,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction0());
   }
 
+  /**
+   * Tests that Function1 can identify that 3 consecutive points can be 
+   * contained by a radius of 1.
+   */
   @Test
   public void testFunction1_0() {
     Vector2D[] points = new Vector2D[100];
@@ -63,6 +80,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction1());
   }
 
+  /**
+   * Tests that Function1 can identify that the points in test 1_0 can't be 
+   * contained by a radius of 2.
+   */
   @Test
   public void testFunction1_1() {
     Vector2D[] points = new Vector2D[100];
@@ -92,6 +113,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction1());
   }
 
+  /**
+   * Tests that Function2 can identify that there are 3 consecutive points
+   * which form an angle < PI + EPSILON or angle > PI - EPSILON.
+   */
   @Test
   public void testFunction2_0() {
     double PI = 3.1415926535;
@@ -110,6 +135,10 @@ public class CMVTest {
     assertTrue(t.cmvFunction2());
   }
 
+  /**
+   * Tests that Function2 can identify that there are no 3 consecutive points
+   * which form an angle < PI - EPSILON or angle > PI + EPSILON.
+   */
   @Test
   public void testFunction2_1() {
     double PI = 3.1415926535;
@@ -124,6 +153,10 @@ public class CMVTest {
     assertFalse(t.cmvFunction2());
   }
 
+  /**
+   * Tests that Function3 can identify that 3 consecutive create a triangle
+   * with area greater than AREA1.
+   */
   @Test
   public void testFunction3_0() {
     Vector2D[] points = new Vector2D[3];
@@ -137,6 +170,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction3());
   }
 
+  /**
+   * Tests that Function3 can identify that there isn't 3 consecutive which
+   * create a triangle with area greater than AREA1.
+   */
   @Test
   public void testFunction3_1() {
     Vector2D[] points = new Vector2D[10];
@@ -153,6 +190,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction3());
   }
 
+  /**
+   * Tests that Function3 can identify that there isn't 3 consecutive which
+   * create a triangle with area greater than AREA1, when all points are
+   * in the same position.
+   */
   @Test
   public void testFunction3_2() {
     Vector2D[] points = new Vector2D[10];
@@ -166,6 +208,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction3());
   }
 
+  /**
+   * Tests that Function3 can identify that there isn't 3 consecutive which
+   * create a triangle with area greater than AREA1 when there only is 2 points.
+   */
   @Test
   public void testFunction3_3() {
     Vector2D[] points = new Vector2D[2];
@@ -178,6 +224,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction3());
   }
 
+  /**
+   * Tests that Function4 can find Q_PTS consecutive points in at least QUADS
+   * different quadrants.
+   */
   @Test
   public void testFunction4_0() {
     Vector2D[] points = new Vector2D[10];
@@ -190,6 +240,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction4());
   }
 
+  /**
+   * Tests that Function4 can find Q_PTS consecutive points in at least QUADS
+   * different quadrants, when x-values and y values are negative.
+   */
   @Test
   public void testFunction4_1() {
     Vector2D[] points = new Vector2D[10];
@@ -204,6 +258,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction4());
   }
 
+  /**
+   * Tests that Function4 can find Q_PTS consecutive points in at least QUADS
+   * different quadrants, when both variables are 1.
+   */
   @Test
   public void testFunction4_2() {
     Vector2D[] points = new Vector2D[10];
@@ -216,6 +274,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction4());
   }
 
+  /**
+   * Tests that Function5 can identify when there is no point with larger
+   * x-value than the next point, when all points are at the same position.
+   */
   @Test
   public void testFunction5_0() {
     Vector2D[] points = new Vector2D[10];
@@ -229,6 +291,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction5());
   }
 
+  /**
+   * Tests that Function5 can identify when there is no point with larger
+   * x-value than the previous point, when the points are on the line y=x.
+   */
   @Test
   public void testFunction5_1() {
     Vector2D[] points = new Vector2D[10];
@@ -242,6 +308,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction5());
   }
 
+  /**
+   * Tests that Function5 can identify when there is a point that has a 
+   * larger x-value than the next point.
+   */
   @Test
   public void testFunction5_2() {
     Vector2D[] points = new Vector2D[10];
@@ -257,6 +327,7 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction5());
   }
 
+  
   @Test
   public void testFunction6_0() {
     double PI = 3.1415926535;
@@ -290,6 +361,10 @@ public class CMVTest {
     assertFalse(t.cmvFunction6());
   }
 
+  /**
+   * Tests that Function7 can find 2 points separated by K_PTS consecutive
+   * points and that are no further apart than LENGTH1.
+   */
   @Test
   public void testFunction7_0() {
     Vector2D[] points = new Vector2D[10];
@@ -303,6 +378,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction7());
   }
 
+  /**
+   * Tests that Function7 can find 2 points separated by K_PTS consecutive
+   * points and that are no further apart than LENGTH1.
+   */
   @Test
   public void testFunction7_1() {
     Vector2D[] points = new Vector2D[3];
@@ -316,6 +395,10 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction7());
   }
 
+  /**
+   * Tests that Function7 can't find 2 points separated by K_PTS consecutive
+   * points and that are no further apart than LENGTH1.
+   */
   @Test
   public void testFunction7_2() {
     Vector2D[] points = new Vector2D[10];
@@ -329,6 +412,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction7());
   }
 
+  /**
+   * Tests that Function7 can't find 2 points separated by K_PTS consecutive
+   * points and that are no further apart than LENGTH1 if there only is 2 points.
+   */
   @Test
   public void testFunction7_3() {
     Vector2D[] points = new Vector2D[2];
@@ -341,6 +428,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction7());
   }
 
+  /**
+   * Tests that Function7 can't find 2 points separated by K_PTS consecutive
+   * points and that are no further apart than LENGTH1, when all points are
+   * at the same position.
+   */
   @Test
   public void testFunction7_4() {
     Vector2D[] points = new Vector2D[10];
@@ -356,6 +448,7 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction7());
   }
 
+  
   @Test
   public void testFunction8_0(){
     Vector2D[] points = new Vector2D[10];
