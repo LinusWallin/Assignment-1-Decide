@@ -447,40 +447,27 @@ public class CMV {
    * @return True if both conditions are met, false otherwise
    */
   boolean cmvFunction13() {
+
     boolean[] result = { false, false };
     if (this.NUMPOINTS < 5) {
       return false;
     }
     for (int i = 0; i < this.NUMPOINTS - this.A_PTS - this.B_PTS - 2; i++) {
-      if (result[0] && result[1]) break;
+      if (result[0] && result[1]){ break; } 
       Vector2D first = this.POINTS[i];
       Vector2D second = this.POINTS[i + this.A_PTS + 1];
       Vector2D last = this.POINTS[i + this.A_PTS + this.B_PTS + 2];
-
-      Vector2D centroid = first.centroid(second, last);
-
-      double squaredradius1 = Math.pow(this.RADIUS2, 2);
-      double squaredradius2 = Math.pow(this.RADIUS2, 2);
-
-      double distfirst = centroid.squaredDistance(first);
-      double distsecond = centroid.squaredDistance(second);
-      double distlast = centroid.squaredDistance(last);
-      if (!result[0]) {
-        if (
-          distfirst >= squaredradius1 ||
-          distsecond >= squaredradius1 ||
-          distlast >= squaredradius1
-        ) {
-          result[0] = true;
+            
+      //if 3 points cannot be contained with radius 1
+      if(!result[0]){
+        if(!first.areFittingInCircle(second,last,RADIUS1)){
+            result[0] = true;
         }
       }
-      if (!result[1]) {
-        if (
-          distfirst <= squaredradius2 &&
-          distsecond <= squaredradius2 &&
-          distlast <= squaredradius2
-        ) {
-          result[1] = true;
+            //if 3 points can be contained with radius 2.
+      if(!result[1]){
+        if(first.areFittingInCircle(second,last,RADIUS2)){
+            result[1] = true;
         }
       }
     }
