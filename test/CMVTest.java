@@ -512,7 +512,11 @@ public class CMVTest {
 
   }
 
-  //The function goes through all iterations
+  /**
+   * Tests that Function9 is false when there are no three points
+   * separated by C_PTS and D_PTS consecutive points, which create
+   * an angle < PI - EPSILON or angle > PI + EPSILON.
+   */
   @Test
   public void testFunction9_0(){
       Vector2D[] points = new Vector2D[100];
@@ -530,8 +534,13 @@ public class CMVTest {
 
       assertFalse(cmv.cmvFunction9());
   }
-  //tests true if there is big angle between 3 points that are C_PTS and D_PTS points apart.
-  // every big angle have an opposite small angle.
+
+  /**
+   * Tests that Function9 is true if there is big angle between
+   * 3 points that are C_PTS and D_PTS points apart.
+   * Every big angle have an opposite small angle.
+   */
+  
   @Test
   public void testFunction9_1(){
       Vector2D[] points = new Vector2D[100];
@@ -554,7 +563,10 @@ public class CMVTest {
       assertTrue(cmv.cmvFunction9());
   }
 
-  //tests true if there is small angle between 3 points that are C_PTS and D_PTS points apart.
+  /**
+   * Tests true if there is small angle between 3 points
+   * that are C_PTS and D_PTS points apart.
+   */
   @Test
   public void testFunction9_2(){
       Vector2D[] points = new Vector2D[100];
@@ -577,6 +589,11 @@ public class CMVTest {
       assertTrue(cmv.cmvFunction9());
   }
 
+  /**
+   * Test that Function10 returns true when the area of the
+   * triangle formed by 3 points separated by E_PTS and F_PTS
+   * consecutive points is larger than AREA1.
+   */
   @Test
   public void testFunction10_0() {
     double PI = 3.1415926535;
@@ -596,6 +613,11 @@ public class CMVTest {
     assertTrue(t.cmvFunction10());
   }
 
+  /**
+   * Test that Function10 returns false when the area of the
+   * triangle formed by 3 points separated by E_PTS and F_PTS
+   * consecutive points is smaller than AREA1.
+   */
   @Test
   public void testFunction10_1() {
     double PI = 3.1415926535;
@@ -615,6 +637,11 @@ public class CMVTest {
     assertFalse(t.cmvFunction10());
   }
 
+  /**
+   * Test that Function11 returns true when the x-value of the
+   * point is less than that of the point that is G_PTS
+   * consecutive points apart from the current point.
+   */
   @Test
   public void testFunction11_0(){
     
@@ -629,6 +656,11 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction11());
   }
 
+  /**
+   * Test that Function11 returns false when the x-value of the
+   * point is larger than that of the point that is G_PTS
+   * consecutive points apart from the current point.
+   */
   @Test
   public void testFunction11_1(){
 
@@ -643,6 +675,10 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction11());
   }
 
+  /**
+   * Test that Function11 returns false when there are only 2
+   * points.
+   */
   @Test
   public void testFunction11_2(){
 
@@ -657,6 +693,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction11());
   }
 
+  /**
+   * Test that Function11 returns false when the x-value of the
+   * current point - the x-value of the point that is G_PTS 
+   * consecutive points further is less than 0.
+   */
   @Test
   public void testFunction11_3(){
 
