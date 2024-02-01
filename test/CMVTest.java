@@ -397,11 +397,11 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0.5, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction8());
-
-    cmv = new CMV(points, 10, 0, 0.351, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
-
     assertTrue(cmv.cmvFunction8());
+
+    cmv = new CMV(points, 10, 0, 7.072, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertFalse(cmv.cmvFunction8());
 
   }
 
