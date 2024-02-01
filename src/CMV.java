@@ -451,4 +451,50 @@ public class CMV {
         return false;
     }
 
+    /**
+     * Evaluates LIC 9
+     *
+     * least one set of three data points separated by exactly C PTS and D PTS
+     * consecutive intervening points, respectively, form an angle such that:
+     * angle < (PI − EPSILON)
+     * or
+     * angle > (PI + EPSILON)
+     * The second point of the set of three points is always the vertex of the angle. If either the first
+     * point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+     * is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
+     * 1 ≤ C PTS, 1 ≤ D PTS
+     * C PTS + D PTS ≤ NUMPOINTS − 3
+     *
+     * @return true if angle between 3 separated points is close to PI, false otherwise.
+     */
+    boolean cmvFunction9(){
+        if(NUMPOINTS <5){
+            return false;
+        }
+
+        for(int i=0; i<NUMPOINTS-C_PTS-D_PTS-2; i++){
+            Vector2D first = this.POINTS[i];
+            Vector2D vertex = this.POINTS[i+C_PTS+1];
+            Vector2D last = this.POINTS[i+C_PTS+D_PTS+2];
+
+            //if vertex and first or last coincide. reject
+            if(first.x == vertex.x && first.y == vertex.y){
+                continue;
+            }
+            if(last.x == vertex.x && last.y == vertex.y){
+                continue;
+            }
+
+            // angle calculation
+            double angle = vertex.angle(first,last);
+            if(angle < this.PI - this.EPSILON){
+                return true;
+            }
+            if(angle > this.PI + this.EPSILON){
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }
