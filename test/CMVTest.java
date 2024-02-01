@@ -119,7 +119,6 @@ public class CMVTest {
    */
   @Test
   public void testFunction2_0() {
-    double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(1.0, 1.0);
@@ -330,7 +329,6 @@ public class CMVTest {
   
   @Test
   public void testFunction6_0() {
-    double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(2.0, 2.0);
@@ -494,7 +492,7 @@ public class CMVTest {
     Vector2D[] points = new Vector2D[10];
 
     for(int i = 0; i < 10; i++){
-      points[i] = new Vector2D(i*0.05, i*0.05);
+      points[i] = new Vector2D(i, i);
     }
 
     points[2] = new Vector2D(0.5, 0.5);
@@ -502,11 +500,11 @@ public class CMVTest {
     points[4] = new Vector2D(0, 0.5);
 
 
-    CMV cmv = new CMV(points, 10, 0, 0.35, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+    CMV cmv = new CMV(points, 10, 0, 0.5, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertTrue(cmv.cmvFunction8());
 
-    cmv = new CMV(points, 10, 0, 0.354, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+    cmv = new CMV(points, 10, 0, 7.072, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
     assertFalse(cmv.cmvFunction8());
 
