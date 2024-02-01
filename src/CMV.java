@@ -295,6 +295,38 @@ public class CMV {
   }
 
     /**
+     * There exists at least one set of three data points separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. The condition is not met when NUMPOINTS < 5.
+     * 1 ≤ A PTS, 1 ≤ B PTS
+     * A PTS + B PTS ≤ (NUMPOINTS − 3)
+     */
+    public boolean CMVFunction8(){  
+
+        for(int i = 0; i + A_PTS + B_PTS + 2 < NUMPOINTS; i++){
+            Vector2D p1 = POINTS[i];
+            Vector2D p2 = POINTS[i+A_PTS+1];
+            Vector2D p3 = POINTS[i+A_PTS+B_PTS+2];
+
+            Vector2D[] centers1 = p1.circleCenters(p2, RADIUS1);
+            Vector2D[] centers2 = p1.circleCenters(p3, RADIUS1);
+            Vector2D[] centers3 = p2.circleCenters(p3, RADIUS1);
+
+            if(Math.sqrt(p3.squaredDistance(centers1[0])) <= RADIUS1 || Math.sqrt(p3.squaredDistance(centers1[1])) <= RADIUS1){
+              return false;
+            }
+            if(Math.sqrt(p2.squaredDistance(centers2[0])) <= RADIUS1 || Math.sqrt(p2.squaredDistance(centers2[1])) <= RADIUS1){
+              return false;
+            }
+            if(Math.sqrt(p1.squaredDistance(centers3[0])) <= RADIUS1 || Math.sqrt(p1.squaredDistance(centers3[1])) <= RADIUS1){
+              return false;
+            }
+
+        }
+        return true;
+    }
+
+    /**
      * There exists at least one set of two data points, separated by exactly K PTS consecutive
      * intervening points, which are a distance greater than the length, LENGTH1, apart. 
      * In addition, there exists at least one set of two data points (which can be the same or different from
