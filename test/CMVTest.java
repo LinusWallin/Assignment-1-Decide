@@ -366,7 +366,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 1, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.CMVFunction8());
+    assertTrue(cmv.cmvFunction8());
   }
 
   @Test
@@ -379,7 +379,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 1.415, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.CMVFunction8());
+    assertFalse(cmv.cmvFunction8());
   }
 
   @Test
@@ -397,11 +397,11 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0.5, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.CMVFunction8());
+    assertFalse(cmv.cmvFunction8());
 
     cmv = new CMV(points, 10, 0, 0.351, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.CMVFunction8());
+    assertTrue(cmv.cmvFunction8());
 
   }
 
