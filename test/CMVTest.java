@@ -787,6 +787,11 @@ public class CMVTest {
         assertTrue(cmv.cmvFunction13());
     }
 
+    /**
+     * Tests that Function 14 returns true when the area given
+     * by the three points separated by E_PTS and F_PTS consecutive
+     * points is greater than AREA1 but smaller than AREA2.
+     */
     @Test
     public void testFunction14_0() {
       Vector2D[] points = new Vector2D[100];
@@ -803,6 +808,11 @@ public class CMVTest {
       assertTrue(cmv.cmvFunction14());
     }
 
+    /**
+     * Tests that Function 14 returns false when the area given
+     * by the three points separated by E_PTS and F_PTS consecutive
+     * points is equal to AREA1 and larger than AREA2.
+     */
     @Test
     public void testFunction14_1() {
       Vector2D[] points = new Vector2D[100];
