@@ -117,7 +117,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction1());
+    assertTrue(cmv.cmvFunction1());
   }
 
   /**
@@ -463,9 +463,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 isn't able to find 3 points separated by exactly
+   * Tests that Function8 is able to find 3 points separated by exactly
    * A_PTS and B_PTS consecutive intervening points that can be contained
-   * inside or on a circle with RADIUS1.
+   * inside or on a circle with RADIUS1, when the radius is larger.
    */
   @Test
   public void testFunction8_0(){
@@ -481,9 +481,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 is able to find 3 points separated by exactly
+   * Tests that Function8 isn't able to find 3 points separated by exactly
    * A_PTS and B_PTS consecutive intervening points that can be contained
-   * inside or on a circle with RADIUS1, when the radius is larger.
+   * inside or on a circle with RADIUS1.
    */
   @Test
   public void testFunction8_1(){
@@ -501,7 +501,8 @@ public class CMVTest {
   /**
    * Tests that Function8 returns true if the distance from each of the
    * possible circle centers have a larger distance to at least one of
-   * the points than the given RADIUS1.
+   * the points than the given RADIUS1. Also tests that false is returned
+   * if the distance is less for all points.
    */
   @Test
   public void testFunction8_2(){
@@ -757,53 +758,105 @@ public class CMVTest {
     }  
 
 
-    // returns false if RADIUS1 is smaller than distance between all 3 points.
-    @Test
-    public void testFunction13_0(){
-        Vector2D[] points = new Vector2D[100];
-        
-        double x = 0.0; 
-        for(int i=0; i < 100; i++){
-            points[i] = new Vector2D(x,0.0);
-            x = x + 0.1;
-        }
-    
-        int A_PTS = 1;
-        int B_PTS = 1;
-        double RADIUS1 = 1.0;
-        double RADIUS2 = 0.0;
+    /**
+     * test if Function13 returns false if no condition is met.
+     */
+  @Test
+  public void testFunction13_0(){
+      Vector2D[] points = new Vector2D[100];
+      
+      double x = 0.0; 
+      for(int i=0; i < 100; i++){
+          points[i] = new Vector2D(x,0.0);
+          x = x + 0.1;
+      }
+  
+      int A_PTS = 1;
+      int B_PTS = 1;
+      double RADIUS1 = 1.0;
+      double RADIUS2 = 0.0;
 
         CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
         assertFalse(cmv.cmvFunction13());
     }
 
-    // return true when 2 pair of points exists.
-    @Test
-    public void testFunction13_1(){
-        Vector2D[] points = new Vector2D[100];
-        
-        double x = 1.0;
-        for(int i=0; i < 100; i++){
-            points[i] = new Vector2D(x,0.0);
-        }
+    /**
+     * Tests if Function13 all points same expect 2 different set of 3 where. 
+     * one set meets condition 1
+     * the other set meets condition 2.
+     * expect the function to return true.
+     */
+  @Test
+  public void testFunction13_1(){
+      Vector2D[] points = new Vector2D[100];
+       
+      for(int i=0; i < 100; i++){
+          points[i] = new Vector2D(1.0,0.0);
+      }
 
-        points[19] = new Vector2D(1000.0,1000.0);
-        points[20] = new Vector2D(0.0,0.0);
+      points[19] = new Vector2D(1000.0,1000.0);
+      points[21] = new Vector2D(0.0,0.0);
 
-        points[77] = new Vector2D(3000.1,3000.0);
-        points[78] = new Vector2D(3000.2,3000.0);
-        points[79] = new Vector2D(3000.3,3000.0);
-    
-        int A_PTS = 1;
-        int B_PTS = 1;
-        double RADIUS2 = 0.5;
-        double RADIUS1 = 790.0;
+      points[77] = new Vector2D(3000.7,3000.0);
+      points[79] = new Vector2D(3000.2,3000.0);
+      points[81] = new Vector2D(3000.3,3000.0);
+  
+      int A_PTS = 1;
+      int B_PTS = 1;
+      double RADIUS2 = 100.0;
+      double RADIUS1 = 50.0;
 
         CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
-        assertTrue(cmv.cmvFunction13());
-    }
+      assertTrue(cmv.cmvFunction13());
+  }
+
+    /**
+     * test if Function13 returns false if only condition 1 met.
+     */
+  @Test
+  public void testFunction13_2(){
+      Vector2D[] points = new Vector2D[100];
+       
+      double x = 1.0;
+      for(int i=0; i < 100; i++){
+            points[i] = new Vector2D(x,0.0);
+            x= x+ 100.0;
+      }
+
+      int A_PTS = 10;
+      int B_PTS = 10;
+      double RADIUS1 = 50.0;
+      double RADIUS2 = 100.0;
+
+      CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
+
+      assertFalse(cmv.cmvFunction13());
+  }
+
+    /**
+     * test if cmvFunction13 returns false if only condition 2 met.
+     */
+  @Test
+  public void testFunction13_3(){
+      Vector2D[] points = new Vector2D[100];
+
+      double x = 0.0;
+      for(int i=0; i < 100; i++){
+            points[i] = new Vector2D(x,0.0);
+            x= x+ 10.0;
+      }
+    
+      int A_PTS = 1;
+      int B_PTS = 1;
+      double RADIUS1 = 5000.0;
+      double RADIUS2 = 100.0;
+
+      CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
+
+      assertFalse(cmv.cmvFunction13());
+  }
 
     /**
      * Tests that Function 14 returns true when the area given

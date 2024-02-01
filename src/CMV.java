@@ -126,9 +126,8 @@ public class CMV {
 
   /**
    * Evaluates Condition 1.
-   * Calculates the circumradius of three consecutive points with a formula.
-   * If these points are collinear, sets the circumradius to be 1/4th of the sum of side lengths.
-   * @return false if any circumradius is greater than RADIUS1, true otherwise.
+   * Check if there exist 3 consecutive that cannot be contained by a circle of radius RADIUS1 
+   * @return false if no such three points exist, true otherwise.
    */
   public boolean cmvFunction1() {
     for (int i = 0; i <= this.NUMPOINTS - 3; i++) {
@@ -136,22 +135,8 @@ public class CMV {
       Vector2D point2 = this.POINTS[i + 1];
       Vector2D point3 = this.POINTS[i + 2];
 
-      double a = Math.sqrt(point1.squaredDistance(point2));
-      double b = Math.sqrt(point2.squaredDistance(point3));
-      double c = Math.sqrt(point3.squaredDistance(point1));
+      if(!point1.areFittingInCircle(point2, point3, RADIUS1)) return true;
 
-      if (c == a + b || b == a + c || a == b + c) { //If the points are collinear
-        double r = (a + b + c) / 4;
-        if (r > this.RADIUS1) return true;
-        continue;
-      }
-
-      double r =
-        a *
-        b *
-        c /
-        Math.sqrt((a + b + c) * (b + c - a) * (c + a - b) * (a + b - c)); //Finds the Circumradius of the triangle
-      if (r > this.RADIUS1) return true;
     }
     return false;
   }
@@ -318,34 +303,8 @@ public class CMV {
       Vector2D p2 = POINTS[i + A_PTS + 1];
       Vector2D p3 = POINTS[i + A_PTS + B_PTS + 2];
 
-      Vector2D[] centers1 = p1.circleCenters(p2, RADIUS1);
-      Vector2D[] centers2 = p1.circleCenters(p3, RADIUS1);
-      Vector2D[] centers3 = p2.circleCenters(p3, RADIUS1);
-
-      boolean condition = false;
-      if (
-        Math.sqrt(p3.squaredDistance(centers1[0])) <= RADIUS1 ||
-        Math.sqrt(p3.squaredDistance(centers1[1])) <= RADIUS1
-      ) {
-        condition = true;
-      }
-      if (
-        Math.sqrt(p2.squaredDistance(centers2[0])) <= RADIUS1 ||
-        Math.sqrt(p2.squaredDistance(centers2[1])) <= RADIUS1
-      ) {
-        condition = true;
-      }
-      if (
-        Math.sqrt(p1.squaredDistance(centers3[0])) <= RADIUS1 ||
-        Math.sqrt(p1.squaredDistance(centers3[1])) <= RADIUS1
-      ) {
-        condition = true;
-      }
-
-      if(!condition) return true;
-      
+      if(!p1.areFittingInCircle(p2, p3, RADIUS1)) return true;
     }
-
 
     return false;
   }
@@ -488,40 +447,27 @@ public class CMV {
    * @return True if both conditions are met, false otherwise
    */
   boolean cmvFunction13() {
+
     boolean[] result = { false, false };
     if (this.NUMPOINTS < 5) {
       return false;
     }
     for (int i = 0; i < this.NUMPOINTS - this.A_PTS - this.B_PTS - 2; i++) {
-      if (result[0] && result[1]) break;
+      if (result[0] && result[1]){ break; } 
       Vector2D first = this.POINTS[i];
       Vector2D second = this.POINTS[i + this.A_PTS + 1];
       Vector2D last = this.POINTS[i + this.A_PTS + this.B_PTS + 2];
-
-      Vector2D centroid = first.centroid(second, last);
-
-      double squaredradius1 = Math.pow(this.RADIUS2, 2);
-      double squaredradius2 = Math.pow(this.RADIUS2, 2);
-
-      double distfirst = centroid.squaredDistance(first);
-      double distsecond = centroid.squaredDistance(second);
-      double distlast = centroid.squaredDistance(last);
-      if (!result[0]) {
-        if (
-          distfirst >= squaredradius1 ||
-          distsecond >= squaredradius1 ||
-          distlast >= squaredradius1
-        ) {
-          result[0] = true;
+            
+      //if 3 points cannot be contained with radius 1
+      if(!result[0]){
+        if(!first.areFittingInCircle(second,last,RADIUS1)){
+            result[0] = true;
         }
       }
-      if (!result[1]) {
-        if (
-          distfirst <= squaredradius2 &&
-          distsecond <= squaredradius2 &&
-          distlast <= squaredradius2
-        ) {
-          result[1] = true;
+            //if 3 points can be contained with radius 2.
+      if(!result[1]){
+        if(first.areFittingInCircle(second,last,RADIUS2)){
+            result[1] = true;
         }
       }
     }
