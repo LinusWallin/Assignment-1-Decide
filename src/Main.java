@@ -8,57 +8,11 @@ class Main {
     int NUMPOINTS = 100; // some number of points
     double[] X = new double[NUMPOINTS];
     double[] Y = new double[NUMPOINTS];
+    boolean LAUNCH;
 
     Enums.CONNECTORS[][] LCM = new Enums.CONNECTORS[15][15];
-    boolean[] pumMatrix;
-    boolean[] PUV = new boolean[] {
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-    };
-    Params PARAMETERS = new Params(
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0,
-      0,
-      0.0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0.0,
-      0.0,
-      0.0
-    );
-    boolean[] cmvMatrix;
-    boolean[] FUV;
-    boolean LAUNCH;
-    PUV = new boolean[15];
-    //make PUV
-    for (int i = 0; i < PUV.length; i++) {
-      if (i % 2 == 0) {
-        PUV[i] = true;
-      }
-    }
+    boolean[] PUV = new boolean[] {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+    Params PARAMETERS = new Params(0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0 );
     //make X & Y & points
     Vector2D[] points = new Vector2D[NUMPOINTS];
     for (int i = 0; i < NUMPOINTS; i++) {
@@ -68,7 +22,6 @@ class Main {
     }
 
     //initialise LCM
-
     for (int i = 0; i < 15; i++) {
       Enums.CONNECTORS[] row = new Enums.CONNECTORS[15];
       for (int j = 0; j < 15; j++) {
@@ -76,10 +29,12 @@ class Main {
       }
       LCM[i] = row;
     }
-
+    //Main DECIDE function & calls 
     LAUNCH = Main.DECIDE(points, NUMPOINTS, LCM, PUV, PARAMETERS);
-    //Dummy input
     System.out.println("LAUNCH : " + LAUNCH);
+
+
+    //Dummy input
     System.out.println("Answer: " + DECIDEtest(PUV));
   }
 
