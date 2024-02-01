@@ -209,4 +209,31 @@ public class Vector2DTest {
 
   }
 
+  /**
+   * Test for limit cases (radius = dist(p1, p2)/2)
+   */
+  @Test
+  public void areFittingInCircleTest_0(){
+
+    Vector2D p1 = new Vector2D(0, 0);
+    Vector2D p2 = new Vector2D(0, 1);
+    Vector2D p3 = new Vector2D(1,1);
+
+    assertFalse(p1.areFittingInCircle(p2, p3, (Math.sqrt(2)/2)-0.01));
+    assertTrue(p1.areFittingInCircle(p2, p3, Math.sqrt(2)/2));
+  }
+
+  /**
+   * Test for colinear points
+   */
+  @Test
+  public void areFittingInCircleTest_1(){
+    Vector2D p1 = new Vector2D(0, 0);
+    Vector2D p2 = new Vector2D(0.5, 0.5);
+    Vector2D p3 = new Vector2D(1,1);
+
+    assertFalse(p1.areFittingInCircle(p2, p3, (Math.sqrt(2)/2)-0.01));
+    assertTrue(p1.areFittingInCircle(p2, p3, Math.sqrt(2)/2));
+  }
+
 }

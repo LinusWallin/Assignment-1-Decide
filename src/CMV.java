@@ -1,7 +1,12 @@
 import java.security.InvalidParameterException;
 import java.util.LinkedList;
 
+/**
+ * Helper class to evaluate the LICs functions and compute the CMV
+ */
 public class CMV {
+
+  private static final double PI = 3.1415926535;
 
   private double LENGTH1; // Length in LICs 0, 7, 12
   private double RADIUS1; // Radius in LICs 1, 8, 13
@@ -21,9 +26,8 @@ public class CMV {
   private int G_PTS; // No. of int. pts. in LIC 11
   private double LENGTH2; // Maximum length in LIC 12
   private double RADIUS2; // Maximum radius in LIC 13
-  private double AREA2;
+  private double AREA2; // Area in LIC 14
 
-  private double PI;
   private Vector2D[] POINTS;
   private int NUMPOINTS;
 
@@ -98,7 +102,6 @@ public class CMV {
     this.LENGTH2 = length2;
     this.RADIUS2 = radius2;
     this.AREA2 = area2;
-    this.PI = 3.1415926535;
   }
 
   /**
@@ -123,9 +126,8 @@ public class CMV {
 
   /**
    * Evaluates Condition 1.
-   * Calculates the circumradius of three consecutive points with a formula.
-   * If these points are collinear, sets the circumradius to be 1/4th of the sum of side lengths.
-   * @return false if any circumradius is greater than RADIUS1, true otherwise.
+   * Check if there exist 3 consecutive that cannot be contained by a circle of radius RADIUS1 
+   * @return false if no such three points exist, true otherwise.
    */
   public boolean cmvFunction1() {
     for (int i = 0; i <= this.NUMPOINTS - 3; i++) {
@@ -133,22 +135,8 @@ public class CMV {
       Vector2D point2 = this.POINTS[i + 1];
       Vector2D point3 = this.POINTS[i + 2];
 
-      double a = Math.sqrt(point1.squaredDistance(point2));
-      double b = Math.sqrt(point2.squaredDistance(point3));
-      double c = Math.sqrt(point3.squaredDistance(point1));
+      if(!point1.areFittingInCircle(point2, point3, RADIUS1)) return true;
 
-      if (c == a + b || b == a + c || a == b + c) { //If the points are collinear
-        double r = (a + b + c) / 4;
-        if (r > this.RADIUS1) return true;
-        continue;
-      }
-
-      double r =
-        a *
-        b *
-        c /
-        Math.sqrt((a + b + c) * (b + c - a) * (c + a - b) * (a + b - c)); //Finds the Circumradius of the triangle
-      if (r > this.RADIUS1) return true;
     }
     return false;
   }
@@ -159,7 +147,6 @@ public class CMV {
    *
    * @return true if angle < PI - Episilon or angle > PI + EPSILON otherwise false
    */
-
   public boolean cmvFunction2() {
     for (int i = 0; i < this.NUMPOINTS - 2; i++) {
       Vector2D first = this.POINTS[i];
@@ -175,7 +162,7 @@ public class CMV {
       );
 
       if (
-        (angle < (this.PI - this.EPSILON)) || (angle > (this.PI + this.EPSILON))
+        (angle < (PI - this.EPSILON)) || (angle > (PI + this.EPSILON))
       ) {
         return true;
       }
@@ -192,7 +179,6 @@ public class CMV {
    *
    * @return          returns a boolean
    */
-
   public boolean cmvFunction3() {
     if (this.NUMPOINTS > 2) {
       for (int i = 0; this.NUMPOINTS > i + 2; i++) {
@@ -257,7 +243,6 @@ public class CMV {
    * and last point and every other point where NUMPOINTS >= 3
    * @return true if distance is greater than this.DIST otherwise false
    */
-
   public boolean cmvFunction6() {
     if (this.NUMPOINTS < 3 || this.NUMPOINTS < this.N_PTS) {
       return false;
@@ -312,65 +297,63 @@ public class CMV {
    * 1 ≤ A PTS, 1 ≤ B PTS
    * A PTS + B PTS ≤ (NUMPOINTS − 3)
    */
-  public boolean CMVFunction8() {
+  public boolean cmvFunction8() {
     for (int i = 0; i + A_PTS + B_PTS + 2 < NUMPOINTS; i++) {
       Vector2D p1 = POINTS[i];
       Vector2D p2 = POINTS[i + A_PTS + 1];
       Vector2D p3 = POINTS[i + A_PTS + B_PTS + 2];
 
-      Vector2D[] centers1 = p1.circleCenters(p2, RADIUS1);
-      Vector2D[] centers2 = p1.circleCenters(p3, RADIUS1);
-      Vector2D[] centers3 = p2.circleCenters(p3, RADIUS1);
-
-      if (
-        Math.sqrt(p3.squaredDistance(centers1[0])) <= RADIUS1 ||
-        Math.sqrt(p3.squaredDistance(centers1[1])) <= RADIUS1
-      ) {
-        return false;
-      }
-      if (
-        Math.sqrt(p2.squaredDistance(centers2[0])) <= RADIUS1 ||
-        Math.sqrt(p2.squaredDistance(centers2[1])) <= RADIUS1
-      ) {
-        return false;
-      }
-      if (
-        Math.sqrt(p1.squaredDistance(centers3[0])) <= RADIUS1 ||
-        Math.sqrt(p1.squaredDistance(centers3[1])) <= RADIUS1
-      ) {
-        return false;
-      }
+      if(!p1.areFittingInCircle(p2, p3, RADIUS1)) return true;
     }
-    return true;
+
+    return false;
   }
 
   /**
-   * There exists at least one set of two data points, separated by exactly K PTS consecutive
-   * intervening points, which are a distance greater than the length, LENGTH1, apart.
-   * In addition, there exists at least one set of two data points (which can be the same or different from
-   * the two data points just mentioned), separated by exactly K PTS consecutive intervening
-   * points, that are a distance less than the length, LENGTH2, apart. Both parts must be true
-   * for the LIC to be true. The condition is not met when NUMPOINTS < 3.
-   * 0 ≤ LENGTH2
-   * @return true if both condition are met
+   * Evaluates LIC 9
+   *
+   * least one set of three data points separated by exactly C PTS and D PTS
+   * consecutive intervening points, respectively, form an angle such that:
+   * angle < (PI − EPSILON)
+   * or
+   * angle > (PI + EPSILON)
+   * The second point of the set of three points is always the vertex of the angle. If either the first
+   * point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+   * is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
+   * 1 ≤ C PTS, 1 ≤ D PTS
+   * C PTS + D PTS ≤ NUMPOINTS − 3
+   *
+   * @return true if angle between 3 separated points is close to PI, false otherwise.
    */
-  public boolean cmvFunction12() {
-    boolean condition1 = false;
-    boolean condition2 = false;
+  boolean cmvFunction9() {
+    if (this.NUMPOINTS < 5) {
+      return false;
+    }
 
-    for (int i = 0; i < this.NUMPOINTS - this.K_PTS - 1; i++) {
-      double distance = Math.sqrt(
-        this.POINTS[i].squaredDistance(this.POINTS[i + this.K_PTS + 1])
-      );
-      if (distance > this.LENGTH1) {
-        condition1 = true;
+    for (int i = 0; i < this.NUMPOINTS - this.C_PTS - this.D_PTS - 2; i++) {
+      Vector2D first = this.POINTS[i];
+      Vector2D vertex = this.POINTS[i + this.C_PTS + 1];
+      Vector2D last = this.POINTS[i + this.C_PTS + this.D_PTS + 2];
+
+      //if vertex and first or last coincide. reject
+      if (first.x == vertex.x && first.y == vertex.y) {
+        continue;
       }
-      if (distance < this.LENGTH2) {
-        condition2 = true;
+      if (last.x == vertex.x && last.y == vertex.y) {
+        continue;
+      }
+
+      // angle calculation
+      double angle = vertex.angle(first, last);
+      if (angle < PI - this.EPSILON) {
+        return true;
+      }
+      if (angle > PI + this.EPSILON) {
+        return true;
       }
     }
 
-    return condition1 && condition2;
+    return false;
   }
 
   /**
@@ -421,6 +404,82 @@ public class CMV {
   }
 
   /**
+   * There exists at least one set of two data points, separated by exactly K PTS consecutive
+   * intervening points, which are a distance greater than the length, LENGTH1, apart.
+   * In addition, there exists at least one set of two data points (which can be the same or different from
+   * the two data points just mentioned), separated by exactly K PTS consecutive intervening
+   * points, that are a distance less than the length, LENGTH2, apart. Both parts must be true
+   * for the LIC to be true. The condition is not met when NUMPOINTS < 3.
+   * 0 ≤ LENGTH2
+   * @return true if both condition are met
+   */
+  public boolean cmvFunction12() {
+    boolean condition1 = false;
+    boolean condition2 = false;
+
+    for (int i = 0; i < this.NUMPOINTS - this.K_PTS - 1; i++) {
+      double distance = Math.sqrt(
+        this.POINTS[i].squaredDistance(this.POINTS[i + this.K_PTS + 1])
+      );
+      if (distance > this.LENGTH1) {
+        condition1 = true;
+      }
+      if (distance < this.LENGTH2) {
+        condition2 = true;
+      }
+    }
+
+    return condition1 && condition2;
+  }
+
+  /**
+   * Evaluates LIC 13
+   *
+   * Condition 1: There exists at least one set of three data points, separated by exactly A PTS and B PTS
+   * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+   * radius RADIUS1.
+   *
+   * Condition 2: There exists at least one set of three data points (which can be
+   * the same or different from the three data points just mentioned) separated by exactly A PTS
+   * and B PTS consecutive intervening points, respectively, that can be contained in or on a
+   * circle of radius RADIUS2.
+   *
+   * @return True if both conditions are met, false otherwise
+   */
+  boolean cmvFunction13() {
+
+    boolean[] result = { false, false };
+    if (this.NUMPOINTS < 5) {
+      return false;
+    }
+    for (int i = 0; i < this.NUMPOINTS - this.A_PTS - this.B_PTS - 2; i++) {
+      if (result[0] && result[1]){ break; } 
+      Vector2D first = this.POINTS[i];
+      Vector2D second = this.POINTS[i + this.A_PTS + 1];
+      Vector2D last = this.POINTS[i + this.A_PTS + this.B_PTS + 2];
+            
+      //if 3 points cannot be contained with radius 1
+      if(!result[0]){
+        if(!first.areFittingInCircle(second,last,RADIUS1)){
+            result[0] = true;
+        }
+      }
+            //if 3 points can be contained with radius 2.
+      if(!result[1]){
+        if(first.areFittingInCircle(second,last,RADIUS2)){
+            result[1] = true;
+        }
+      }
+    }
+
+    if (result[0] && result[1]) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Evaluates condition 14.
    * Iterates over the array, looks for 3 points seperated by E_PTS and F_PTS respectively
    * Finds the area of the triangle created by these 3 points as vertices
@@ -448,114 +507,7 @@ public class CMV {
     if (result1 && result2) return true;
 
     return false;
-  }
-
-  /**
-   * Evaluates LIC 13
-   *
-   * Condition 1: There exists at least one set of three data points, separated by exactly A PTS and B PTS
-   * consecutive intervening points, respectively, that cannot be contained within or on a circle of
-   * radius RADIUS1.
-   *
-   * Condition 2: There exists at least one set of three data points (which can be
-   * the same or different from the three data points just mentioned) separated by exactly A PTS
-   * and B PTS consecutive intervening points, respectively, that can be contained in or on a
-   * circle of radius RADIUS2.
-   *
-   * @return True if both conditions are met, false otherwise
-   */
-  boolean cmvFunction13() {
-    boolean[] result = { false, false };
-    if (this.NUMPOINTS < 5) {
-      return false;
-    }
-    for (int i = 0; i < this.NUMPOINTS - this.A_PTS - this.B_PTS - 2; i++) {
-      if (result[0] && result[1]) break;
-      Vector2D first = this.POINTS[i];
-      Vector2D second = this.POINTS[i + this.A_PTS + 1];
-      Vector2D last = this.POINTS[i + this.A_PTS + this.B_PTS + 2];
-
-      Vector2D centroid = first.centroid(second, last);
-
-      double squaredradius1 = Math.pow(this.RADIUS2, 2);
-      double squaredradius2 = Math.pow(this.RADIUS2, 2);
-
-      double distfirst = centroid.squaredDistance(first);
-      double distsecond = centroid.squaredDistance(second);
-      double distlast = centroid.squaredDistance(last);
-      if (!result[0]) {
-        if (
-          distfirst >= squaredradius1 ||
-          distsecond >= squaredradius1 ||
-          distlast >= squaredradius1
-        ) {
-          result[0] = true;
-        }
-      }
-      if (!result[1]) {
-        if (
-          distfirst <= squaredradius2 &&
-          distsecond <= squaredradius2 &&
-          distlast <= squaredradius2
-        ) {
-          result[1] = true;
-        }
-      }
-    }
-
-    if (result[0] && result[1]) {
-      return true;
-    }
-
-    return false;
-  }
-
-  /**
-   * Evaluates LIC 9
-   *
-   * least one set of three data points separated by exactly C PTS and D PTS
-   * consecutive intervening points, respectively, form an angle such that:
-   * angle < (PI − EPSILON)
-   * or
-   * angle > (PI + EPSILON)
-   * The second point of the set of three points is always the vertex of the angle. If either the first
-   * point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
-   * is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
-   * 1 ≤ C PTS, 1 ≤ D PTS
-   * C PTS + D PTS ≤ NUMPOINTS − 3
-   *
-   * @return true if angle between 3 separated points is close to PI, false otherwise.
-   */
-  boolean cmvFunction9() {
-    if (this.NUMPOINTS < 5) {
-      return false;
-    }
-
-    for (int i = 0; i < this.NUMPOINTS - this.C_PTS - this.D_PTS - 2; i++) {
-      Vector2D first = this.POINTS[i];
-      Vector2D vertex = this.POINTS[i + this.C_PTS + 1];
-      Vector2D last = this.POINTS[i + this.C_PTS + this.D_PTS + 2];
-
-      //if vertex and first or last coincide. reject
-      if (first.x == vertex.x && first.y == vertex.y) {
-        continue;
-      }
-      if (last.x == vertex.x && last.y == vertex.y) {
-        continue;
-      }
-
-      // angle calculation
-      double angle = vertex.angle(first, last);
-      if (angle < this.PI - this.EPSILON) {
-        return true;
-      }
-      if (angle > this.PI + this.EPSILON) {
-        return true;
-      }
-    }
-
-    return false;
-  }
+  }  
 
   /**
    * Evaluate the conditions for given attributes
@@ -571,7 +523,7 @@ public class CMV {
       cmvFunction5(),
       cmvFunction6(),
       cmvFunction7(),
-      CMVFunction8(),
+      cmvFunction8(),
       cmvFunction9(),
       cmvFunction10(),
       cmvFunction11(),
