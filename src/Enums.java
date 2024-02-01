@@ -1,14 +1,14 @@
-
-
 public class Enums {
-    enum CONNECTORS {
-        NOTUSED,
-        ORR,
-        ANDD
-    }
-    enum COMPTYPE {
-        LT, 
-        EQ, 
-        GT
-    }
+
+  public enum CONNECTORS {
+    NOTUSED,
+    ORR,
+    ANDD,
+  }
+
+  public enum COMPTYPE {
+    LT,
+    EQ,
+    GT,
+  }
 }
