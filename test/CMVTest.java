@@ -355,6 +355,55 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction7());
   }
 
+  @Test
+  public void testFunction8_0(){
+    Vector2D[] points = new Vector2D[10];
+
+    for(int i = 0; i < 10; i++){
+      points[i] = new Vector2D(i, i);
+    }
+
+    CMV cmv = new CMV(points, 10, 0, 1, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertTrue(cmv.CMVFunction8());
+  }
+
+  @Test
+  public void testFunction8_1(){
+    Vector2D[] points = new Vector2D[10];
+
+    for(int i = 0; i < 10; i++){
+      points[i] = new Vector2D(i, i);
+    }
+
+    CMV cmv = new CMV(points, 10, 0, 1.415, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertFalse(cmv.CMVFunction8());
+  }
+
+  @Test
+  public void testFunction8_2(){
+    Vector2D[] points = new Vector2D[10];
+
+    for(int i = 0; i < 10; i++){
+      points[i] = new Vector2D(i, i);
+    }
+
+    points[2] = new Vector2D(0.5, 0.5);
+
+    points[4] = new Vector2D(0, 0.5);
+
+
+    CMV cmv = new CMV(points, 10, 0, 0.5, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertFalse(cmv.CMVFunction8());
+
+    cmv = new CMV(points, 10, 0, 0.351, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    assertTrue(cmv.CMVFunction8());
+
+  }
+
     @Test
     public void testFunction12_0(){
         Vector2D[] points = new Vector2D[10];
