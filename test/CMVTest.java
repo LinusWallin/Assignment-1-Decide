@@ -707,6 +707,16 @@ public class CMVTest {
     }
   }
 
+  /**
+   * Tests that Function12 returns false if the distance between
+   * all points separated by K_PTS is less than LENGTH1.
+   * Tests that Function12 returns false if the distance between
+   * all points separated by K_PTS is greater than LENGTH2.
+   * Tests that Function12 returns true if the distance between
+   * two points separated by K_PTS is greater than LENGTH1 and
+   * the distance between two other points or the same points
+   * separated by K_PTS consecutive points is less than LENGTH2.
+   */
   @Test
     public void testFunction12_0(){
         Vector2D[] points = new Vector2D[10];
