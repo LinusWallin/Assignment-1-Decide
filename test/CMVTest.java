@@ -333,7 +333,11 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction5());
   }
 
-  
+  /**
+   * Test that Function6 returns true if the distance to the line
+   * for every other point than the start and end points, which
+   * represent the line, is greater than DIST.
+   */
   @Test
   public void testFunction6_0() {
     Vector2D[] points = new Vector2D[100];
@@ -350,6 +354,11 @@ public class CMVTest {
     assertTrue(t.cmvFunction6());
   }
 
+  /**
+   * Test that Function6 returns false if the distance to the line
+   * for every other point than the start and end points, which
+   * represent the line, is less than DIST.
+   */
   @Test
   public void testFunction6_1() {
     double PI = 3.1415926535;
