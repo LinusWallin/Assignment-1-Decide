@@ -47,7 +47,6 @@ public class PUMTest {
                 assertTrue(pum.row(i));
             }  
         }
-        
     }
     /**
      * Test if a LCM matrix of only NOTUSED results in true matrix.
@@ -86,6 +85,7 @@ public class PUMTest {
         
         PUM pum = new PUM(cmvVector, lcm);
         boolean[][] mat =  pum.getMatrix();
+        
         for(int i = 0; i< 15;i++){
             for(int j = 0; j< 15;j++){
                 if (i != j){
@@ -141,6 +141,7 @@ public class PUMTest {
         
         PUM pum = new PUM(cmvVector, lcm);
         boolean[][] mat =  pum.getMatrix();
+
         for(int i = 0; i< 15;i++){
             for(int j = 0; j< 15;j++){
                 if (i != j){
@@ -152,6 +153,9 @@ public class PUMTest {
         }
     }
 
+    /**
+     * Test that ORR results in false if both i and j are false, and true otherwise.
+     */
     @Test
     public void testPUM_3(){
 
@@ -159,8 +163,8 @@ public class PUMTest {
         Enums.CONNECTORS[][] lcm = new Enums.CONNECTORS[15][15];
 
         boolean[][] expected ={ 
-            {true,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
-            {true,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
+            {true,false,true,true,true, true,true,true,true,true, true,true,true,true,true},
+            {false,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
             {true,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
             {true,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
             {true,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
@@ -176,6 +180,30 @@ public class PUMTest {
             {true,true,true,true,true, true,true,true,true,true, true,true,true,true,true},
         };
 
+        for(int i = 0; i< 15;i++){
+            for(int j = 0; j< 15;j++){
+                lcm[i][j] = Enums.CONNECTORS.ORR;
+            }
+        }
+        
+        for (int i = 0; i < 15; i++){
+            cmvVector[i] = true;
+        }
+        
+        cmvVector[0] = false;
+        cmvVector[1] = false;
 
+        PUM pum = new PUM(cmvVector, lcm);
+        boolean[][] mat = pum.getMatrix();
+
+        for(int i = 0; i< 15;i++){
+            for(int j = 0; j< 15;j++){
+                if (i != j){
+                    assertEquals(expected[i][j], mat[i][j]);
+                }else{
+                    assertFalse(mat[i][j]);//this means values default to false in matrix.
+                }
+            }
+        }
     }
 }
