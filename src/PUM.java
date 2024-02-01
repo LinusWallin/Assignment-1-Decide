@@ -1,10 +1,10 @@
+
 public class PUM{
 
     private Enums.CONNECTORS[][] LCM;
     private boolean[] cmvVector;
     private boolean[][] matrix = new boolean[15][15];
     private int row_size = 15;
-
 
     //set the matrix manually -just for testing
     public PUM(boolean[][] matrix){
@@ -15,7 +15,7 @@ public class PUM{
     public PUM(boolean[] cmvVector, Enums.CONNECTORS[][] LCM){
         this.LCM = LCM;
         this.cmvVector = cmvVector;
-        calculatePUM();
+        calculatePUM(); //fills this.matrix based on cmvVector and LCM,
     }
 
     //returns true if the whole row of PUM is true 
@@ -23,8 +23,10 @@ public class PUM{
     //LIC should not hold back launch) or if all elements in PUM row i are true
     public boolean row(int number){
         for(int i = 0; i < row_size; i++){
-            if(!matrix[number][i]){
-                return false;
+            if(i != number){
+                if(!matrix[number][i]){
+                    return false;
+                }
             }
         }
         return true;
@@ -44,6 +46,7 @@ public class PUM{
         //else if lcm[i][j] = ORR -> PUM[i][j] = CMV[i] || CMV[j]  -- 
         for(int i = 0; i < 15; i++){
             for(int j=0; j<15;j++){
+                if(i == j) {continue;}
                 if(this.LCM[i][j] == Enums.CONNECTORS.NOTUSED){
                     this.matrix[i][j] = true;
                 }
