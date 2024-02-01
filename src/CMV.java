@@ -269,6 +269,12 @@ public class CMV {
     return false;
   }
 
+  /**
+   * Calculates the distance between two points separated by K_PTS consecutive
+   * points. The distance is then compared to LENGTH1. The condition is not met
+   * when NUMPOINTS < 3.
+   * @return  true if the distance is greater than LENGHT1, otherwise false
+   */
   public boolean cmvFunction7() {
     if (this.NUMPOINTS >= 3) {
       for (int i = 0; i < this.NUMPOINTS - (this.K_PTS + 1); i++) {
