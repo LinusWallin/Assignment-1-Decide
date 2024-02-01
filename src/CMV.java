@@ -472,22 +472,21 @@ public class CMV {
             return false;
         }
 
-        for(int i=0; i<NUMPOINTS-C_PTS-D_PTS; i++){
+        for(int i=0; i<NUMPOINTS-C_PTS-D_PTS-2; i++){
             Vector2D first = this.POINTS[i];
-            Vector2D vertex = this.POINTS[i+C_PTS];
-            Vector2D last = this.POINTS[i+C_PTS+D_PTS];
+            Vector2D vertex = this.POINTS[i+C_PTS+1];
+            Vector2D last = this.POINTS[i+C_PTS+D_PTS+2];
 
             //if vertex and first or last coincide. reject
             if(first.x == vertex.x && first.y == vertex.y){
-                return false;
+                continue;
             }
             if(last.x == vertex.x && last.y == vertex.y){
-                return false;
+                continue;
             }
 
             // angle calculation
             double angle = vertex.angle(first,last);
-            System.out.println(i +" " + (i+C_PTS) +" "+(i+C_PTS+D_PTS) + " " + angle);
             if(angle < this.PI - this.EPSILON){
                 return true;
             }
