@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 
 public class Vector2DTest {
@@ -141,5 +143,41 @@ public class Vector2DTest {
     assertEquals(vec4.quadrant(), 4);
   }
   
+  @Test
+  public void testAdd_0(){
+    Random random = new Random();
+    Vector2D origin = new Vector2D(0, 0);
+    Vector2D randomV = new Vector2D(random.nextDouble(), random.nextDouble());
 
+    assertEquals(origin.add(randomV), randomV);
+  }
+
+  @Test
+  public void testAdd_1(){
+    Vector2D origin = new Vector2D(0, 0);
+    Vector2D v1 = new Vector2D(8, 75);
+    Vector2D v2 = new Vector2D(-8, -75);
+
+    assertEquals(v1.add(v2), origin);
+  }
+
+
+  @Test
+  public void testMultiply_0(){
+    Random random = new Random();
+    Vector2D origin = new Vector2D(0, 0);
+    Vector2D randomV = new Vector2D(random.nextDouble(), random.nextDouble());
+
+    assertEquals(randomV.multiply(0), origin);
+    assertEquals(randomV.multiply(1), randomV);
+  }
+
+  @Test
+  public void testMultiply_1(){
+    Vector2D v1 = new Vector2D(8, 75);
+    Vector2D v2 = new Vector2D(32, 300);
+
+
+    assertEquals(v1.multiply(4), v2);
+  }
 }
