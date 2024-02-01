@@ -89,23 +89,6 @@ public class Vector2D {
     return new Vector2D((this.x + other.x) / 2, (this.y + other.y) / 2);
   }
 
-    
-
-    public double circleRadius(Vector2D v1, Vector2D v2){
-        Vector2D d1 = new Vector2D(this.x - v1.x, this.y - v1.y);
-        Vector2D m1 = midPoint(v1);
-        double a1 = -d1.x/d1.y;
-        double b1 = m1.y - a1*m1.x;
-
-        Vector2D d2 = new Vector2D(this.x - v2.x, this.y - v2.y);
-        Vector2D m2 = midPoint(v2);
-        double a2 = -d2.x/d2.y;
-        double b2 = -m2.y - a2*m2.x;
-
-        Vector2D intersect = new Vector2D((b2-b1)/(a1-a2), (a1*b2-a2*b1)/(a1-a2));
-
-        return Math.sqrt(squaredDistance(intersect));
-    }
 
 
     /**
