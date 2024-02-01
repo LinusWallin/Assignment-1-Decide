@@ -568,7 +568,7 @@ public class CMV {
       cmvFunction5(),
       cmvFunction6(),
       cmvFunction7(),
-      CMVFunction8(),
+      cmvFunction8(),
       cmvFunction9(),
       cmvFunction10(),
       cmvFunction11(),
