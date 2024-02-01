@@ -1,6 +1,9 @@
 import java.security.InvalidParameterException;
 import java.util.LinkedList;
 
+/**
+ * Helper class to evaluate the LICs functions and compute the CMV
+ */
 public class CMV {
 
   private static final double PI = 3.1415926535;
