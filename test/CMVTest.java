@@ -705,6 +705,10 @@ public class CMVTest {
     for (int i = 0; i < 10; i++){
       points[i] = new Vector2D(i, i);
     }
+
+    CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0);
+    
+    assertFalse(cmv.cmvFunction11());
   }
 
   @Test
