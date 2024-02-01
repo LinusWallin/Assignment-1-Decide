@@ -309,7 +309,7 @@ public class CMV {
    * 1 ≤ A PTS, 1 ≤ B PTS
    * A PTS + B PTS ≤ (NUMPOINTS − 3)
    */
-  public boolean CMVFunction8() {
+  public boolean cmvFunction8() {
     for (int i = 0; i + A_PTS + B_PTS + 2 < NUMPOINTS; i++) {
       Vector2D p1 = POINTS[i];
       Vector2D p2 = POINTS[i + A_PTS + 1];
