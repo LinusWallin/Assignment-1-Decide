@@ -126,7 +126,29 @@ public class Vector2D {
       return new Vector2D(this.x * scalar, this.y * scalar);
     }
 
-    
+    /**
+     * This function takes two Vector2D and a radius and return the centers of the two circles 
+     * of that radius that go through those points
+     * @param v1 The other point to construct the circles
+     * @param radius The radius of the circles
+     * @return The two centers as Vector2Ds
+     */
+    public Vector2D[] circleCenters(Vector2D v1, double radius){
+        Vector2D difference = new Vector2D(this.x - v1.x, this.y - v1.y);
+        Vector2D m = midPoint(v1);
+        Vector2D orthonormalDirection = new Vector2D(1, -difference.x/difference.y)
+          .multiply(1/Math.sqrt(1 + (difference.x/difference.y)*(difference.x/difference.y)));
+        //double bias = m.y - slope*m.x;
+
+        double squaredDistanceToMean = squaredDistance(m); 
+
+        double distMeanToCenter = Math.sqrt(radius*radius-squaredDistanceToMean);
+        
+        Vector2D center1 = m.add(orthonormalDirection.multiply(distMeanToCenter));
+        Vector2D center2 = m.add(orthonormalDirection.multiply(-distMeanToCenter));
+
+        return new Vector2D[]{center1, center2};
+    }
 
 
     @Override
