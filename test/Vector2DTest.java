@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 
 public class Vector2DTest {
@@ -140,4 +142,71 @@ public class Vector2DTest {
     assertEquals(vec3.quadrant(), 3);
     assertEquals(vec4.quadrant(), 4);
   }
+  
+  @Test
+  public void testAdd_0(){
+    Random random = new Random();
+    Vector2D origin = new Vector2D(0, 0);
+    Vector2D randomV = new Vector2D(random.nextDouble(), random.nextDouble());
+
+    assertEquals(origin.add(randomV), randomV);
+  }
+
+  @Test
+  public void testAdd_1(){
+    Vector2D origin = new Vector2D(0, 0);
+    Vector2D v1 = new Vector2D(8, 75);
+    Vector2D v2 = new Vector2D(-8, -75);
+
+    assertEquals(v1.add(v2), origin);
+  }
+
+  @Test
+  public void testMultiply_0(){
+    Random random = new Random();
+    Vector2D origin = new Vector2D(0, 0);
+    Vector2D randomV = new Vector2D(random.nextDouble(), random.nextDouble());
+
+    assertEquals(randomV.multiply(0), origin);
+    assertEquals(randomV.multiply(1), randomV);
+  }
+
+  @Test
+  public void testMultiply_1(){
+    Vector2D v1 = new Vector2D(8, 75);
+    Vector2D v2 = new Vector2D(32, 300);
+
+    assertEquals(v1.multiply(4), v2);
+  }
+
+  @Test
+  public void testCircleCenter_0(){
+    Vector2D p1 = new Vector2D(3, 4);
+    Vector2D p2 = new Vector2D(5, 7);
+
+    Vector2D[] centers1 = p1.circleCenters(p2, 4);
+    Vector2D[] centers2 = p2.circleCenters(p1, 4);
+
+    assertTrue((centers1[0].equals(centers2[0]) && centers1[1].equals(centers2[1])) || (centers1[1].equals(centers2[0]) && centers1[0].equals(centers2[1])));
+  }
+
+  @Test
+  public void testCircleCenter_1(){
+    Vector2D p1 = new Vector2D(3, 4);
+    Vector2D p2 = new Vector2D(5, 7);
+
+
+    // Values from https://www.geogebra.org/classic
+    Vector2D center1 = new Vector2D(0.99, 7.51);
+    Vector2D center2 = new Vector2D(7.01, 3.49);
+
+    Vector2D[] centers = p1.circleCenters(p2, 4.04);
+    
+    assertTrue(Math.abs(center1.x - centers[1].x) < 0.005);
+    assertTrue(Math.abs(center1.y - centers[1].y) < 0.005);
+    assertTrue(Math.abs(center2.x - centers[0].x) < 0.005);
+    assertTrue(Math.abs(center2.y - centers[0].y) < 0.005);
+
+  }
+
 }
