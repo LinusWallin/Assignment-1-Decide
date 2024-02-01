@@ -463,9 +463,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 isn't able to find 3 points separated by exactly
+   * Tests that Function8 is able to find 3 points separated by exactly
    * A_PTS and B_PTS consecutive intervening points that can be contained
-   * inside or on a circle with RADIUS1.
+   * inside or on a circle with RADIUS1, when the radius is larger.
    */
   @Test
   public void testFunction8_0(){
@@ -481,9 +481,9 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 is able to find 3 points separated by exactly
+   * Tests that Function8 isn't able to find 3 points separated by exactly
    * A_PTS and B_PTS consecutive intervening points that can be contained
-   * inside or on a circle with RADIUS1, when the radius is larger.
+   * inside or on a circle with RADIUS1.
    */
   @Test
   public void testFunction8_1(){
@@ -501,7 +501,8 @@ public class CMVTest {
   /**
    * Tests that Function8 returns true if the distance from each of the
    * possible circle centers have a larger distance to at least one of
-   * the points than the given RADIUS1.
+   * the points than the given RADIUS1. Also tests that false is returned
+   * if the distance is less for all points.
    */
   @Test
   public void testFunction8_2(){
