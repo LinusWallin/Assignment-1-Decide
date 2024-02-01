@@ -556,4 +556,28 @@ public class CMV {
 
     return false;
   }
+
+  /**
+   * Evaluate the conditions for given attributes
+   * @return the CMV computed from LICs
+   */
+  public boolean[] computeCMV() {
+    return new boolean[] {
+      cmvFunction0(),
+      cmvFunction1(),
+      cmvFunction2(),
+      cmvFunction3(),
+      cmvFunction4(),
+      cmvFunction5(),
+      cmvFunction6(),
+      cmvFunction7(),
+      CMVFunction8(),
+      cmvFunction9(),
+      cmvFunction10(),
+      cmvFunction11(),
+      cmvFunction12(),
+      cmvFunction13(),
+      cmvFunction14(),
+    };
+  }
 }
