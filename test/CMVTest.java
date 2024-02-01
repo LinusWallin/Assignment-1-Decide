@@ -448,7 +448,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction7());
   }
 
-  
+  /**
+   * Tests that Function8 isn't able to find 3 points separated by exactly
+   * A_PTS and B_PTS consecutive intervening points that can be contained
+   * inside or on a circle with RADIUS1.
+   */
   @Test
   public void testFunction8_0(){
     Vector2D[] points = new Vector2D[10];
@@ -462,6 +466,11 @@ public class CMVTest {
     assertTrue(cmv.cmvFunction8());
   }
 
+  /**
+   * Tests that Function8 is able to find 3 points separated by exactly
+   * A_PTS and B_PTS consecutive intervening points that can be contained
+   * inside or on a circle with RADIUS1, when the radius is larger.
+   */
   @Test
   public void testFunction8_1(){
     Vector2D[] points = new Vector2D[10];
@@ -475,6 +484,11 @@ public class CMVTest {
     assertFalse(cmv.cmvFunction8());
   }
 
+  /**
+   * Tests that Function8 returns true if the distance from each of the
+   * possible circle centers have a larger distance to at least one of
+   * the points than the given RADIUS1.
+   */
   @Test
   public void testFunction8_2(){
     Vector2D[] points = new Vector2D[10];
@@ -498,26 +512,26 @@ public class CMVTest {
 
   }
 
-    @Test
-    public void testFunction12_0(){
-        Vector2D[] points = new Vector2D[10];
-        for(int i = 0; i < 10; i++){
-            points[i] = new Vector2D(0, i);
-        }
+  @Test
+  public void testFunction12_0(){
+      Vector2D[] points = new Vector2D[10];
+      for(int i = 0; i < 10; i++){
+          points[i] = new Vector2D(0, i);
+      }
 
-        
-        CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
-        assertFalse(cmv.cmvFunction12());
+      
+      CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
+      assertFalse(cmv.cmvFunction12());
 
-        CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
-        assertFalse(cmv1.cmvFunction12());
-        
-        CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
-        assertTrue(cmv2.cmvFunction12());
+      CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
+      assertFalse(cmv1.cmvFunction12());
+      
+      CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
+      assertTrue(cmv2.cmvFunction12());
 
-        CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
-        assertTrue(cmv3.cmvFunction12());
-    }  
+      CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
+      assertTrue(cmv3.cmvFunction12());
+  }  
 
 
   // returns false if RADIUS1 is smaller than distance between all 3 points.
