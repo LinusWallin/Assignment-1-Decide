@@ -30,6 +30,9 @@ public class PUM{
         return true;
     }
 
+    public boolean[][] getMatrix(){
+        return this.matrix;
+    }
 
     private void calculatePUM(){
         // here we calculate the PUM matrix based on the cmvVector and the
