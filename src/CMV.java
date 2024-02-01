@@ -322,26 +322,32 @@ public class CMV {
       Vector2D[] centers2 = p1.circleCenters(p3, RADIUS1);
       Vector2D[] centers3 = p2.circleCenters(p3, RADIUS1);
 
+      boolean condition = false;
       if (
         Math.sqrt(p3.squaredDistance(centers1[0])) <= RADIUS1 ||
         Math.sqrt(p3.squaredDistance(centers1[1])) <= RADIUS1
       ) {
-        return false;
+        condition = true;
       }
       if (
         Math.sqrt(p2.squaredDistance(centers2[0])) <= RADIUS1 ||
         Math.sqrt(p2.squaredDistance(centers2[1])) <= RADIUS1
       ) {
-        return false;
+        condition = true;
       }
       if (
         Math.sqrt(p1.squaredDistance(centers3[0])) <= RADIUS1 ||
         Math.sqrt(p1.squaredDistance(centers3[1])) <= RADIUS1
       ) {
-        return false;
+        condition = true;
       }
+
+      if(!condition) return true;
+      
     }
-    return true;
+
+
+    return false;
   }
 
   /**
