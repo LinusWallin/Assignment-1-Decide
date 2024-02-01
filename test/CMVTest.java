@@ -585,4 +585,28 @@ public class CMVTest {
 
         assertFalse(cmv.cmvFunction9());
     }
+
+    //tests true if there is small angle between 3 points that are C_PTS and D_PTS points apart.
+    @Test
+    public void testFunction9_2(){
+        Vector2D[] points = new Vector2D[100];
+
+        double x = 0.0;
+        for(int i=0; i < 100; i++){
+            points[i] = new Vector2D(x,0.0);
+            x = x + 1.0;
+        }
+
+        //.....89...93.....99 expected 3 points returning true. 
+        int C_PTS = 3;
+        int D_PTS = 5;
+        points[89]= new Vector2D(89.0,0.0);
+        points[93]= new Vector2D(93.0,0.0);
+        points[99]= new Vector2D(99.0,10.0);
+        double EPSILON = 1.0;
+        CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
+
+        assertTrue(cmv.cmvFunction9());
+    }
+
 }
