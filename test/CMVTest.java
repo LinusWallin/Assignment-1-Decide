@@ -657,9 +657,8 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function11 returns false when the x-value of the
-   * point is larger than that of the point that is G_PTS
-   * consecutive points apart from the current point.
+   * Test that Function11 returns false when G_PTS is equal to 
+   * NUMPOINTS - 1.
    */
   @Test
   public void testFunction11_1(){
