@@ -191,8 +191,8 @@ public class CMV {
    */
 
   public boolean cmvFunction3() {
-    if (POINTS.length > 2) {
-      for (int i = 0; POINTS.length > i + 2; i++) {
+    if (this.NUMPOINTS > 2) {
+      for (int i = 0; this.NUMPOINTS > i + 2; i++) {
         double area =
           this.POINTS[i].traingleArea(this.POINTS[i + 1], this.POINTS[i + 2]);
 
