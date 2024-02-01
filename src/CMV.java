@@ -126,9 +126,8 @@ public class CMV {
 
   /**
    * Evaluates Condition 1.
-   * Calculates the circumradius of three consecutive points with a formula.
-   * If these points are collinear, sets the circumradius to be 1/4th of the sum of side lengths.
-   * @return false if any circumradius is greater than RADIUS1, true otherwise.
+   * Check if there exist 3 consecutive that cannot be contained by a circle of radius RADIUS1 
+   * @return false if no such three points exist, true otherwise.
    */
   public boolean cmvFunction1() {
     for (int i = 0; i <= this.NUMPOINTS - 3; i++) {
@@ -136,22 +135,8 @@ public class CMV {
       Vector2D point2 = this.POINTS[i + 1];
       Vector2D point3 = this.POINTS[i + 2];
 
-      double a = Math.sqrt(point1.squaredDistance(point2));
-      double b = Math.sqrt(point2.squaredDistance(point3));
-      double c = Math.sqrt(point3.squaredDistance(point1));
+      if(!point1.areFittingInCircle(point2, point3, RADIUS1)) return true;
 
-      if (c == a + b || b == a + c || a == b + c) { //If the points are collinear
-        double r = (a + b + c) / 4;
-        if (r > this.RADIUS1) return true;
-        continue;
-      }
-
-      double r =
-        a *
-        b *
-        c /
-        Math.sqrt((a + b + c) * (b + c - a) * (c + a - b) * (a + b - c)); //Finds the Circumradius of the triangle
-      if (r > this.RADIUS1) return true;
     }
     return false;
   }
