@@ -292,18 +292,29 @@ public class CMV {
      * 1 ≤ A PTS, 1 ≤ B PTS
      * A PTS + B PTS ≤ (NUMPOINTS − 3)
      */
-    public boolean CMVFunction8(){
-        
+    public boolean CMVFunction8(){  
+
         for(int i = 0; i + A_PTS + B_PTS + 2 < NUMPOINTS; i++){
             Vector2D p1 = POINTS[i];
             Vector2D p2 = POINTS[i+A_PTS+1];
             Vector2D p3 = POINTS[i+A_PTS+B_PTS+2];
 
-            if(p1.circleRadius(p2,p3) > RADIUS1){
-                return true;
+            Vector2D[] centers1 = p1.circleCenters(p2, RADIUS1);
+            Vector2D[] centers2 = p1.circleCenters(p3, RADIUS1);
+            Vector2D[] centers3 = p2.circleCenters(p3, RADIUS1);
+
+            if(p3.squaredDistance(centers1[0]) <= RADIUS1 || p3.squaredDistance(centers1[1]) <= RADIUS1){
+              return false;
             }
+            if(p2.squaredDistance(centers2[0]) <= RADIUS1 || p2.squaredDistance(centers2[1]) <= RADIUS1){
+              return false;
+            }
+            if(p1.squaredDistance(centers3[0]) <= RADIUS1 || p1.squaredDistance(centers3[1]) <= RADIUS1){
+              return false;
+            }
+
         }
-        return false;
+        return true;
     }
 
     /**

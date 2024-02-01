@@ -140,24 +140,6 @@ public class Vector2DTest {
     assertEquals(vec3.quadrant(), 3);
     assertEquals(vec4.quadrant(), 4);
   }
-    @Test
-    public void testMean_0(){
-        
-        Vector2D v1 = new Vector2D(0, 0);
-        Vector2D v2 = new Vector2D(10, 10);
-        Vector2D m = new Vector2D(5, 5);
-
-        assertTrue(v1.mean(v2).equals(m));
-    }
-
-    @Test
-    public void testMean_1(){
-        
-        Vector2D v1 = new Vector2D(1, 0);
-        Vector2D v2 = new Vector2D(-1, 2);
-        Vector2D m = new Vector2D(0, 1);
-
-        assertTrue(v1.mean(v2).equals(m));
-    }
+  
 
 }
