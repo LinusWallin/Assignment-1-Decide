@@ -163,6 +163,40 @@ public class Vector2D {
         return new Vector2D[]{center1, center2};
     }
 
+    /**
+     * Decide if there exist a circle of radius @radius that contains this, @p2 and @p3
+     * @param p2 the second point
+     * @param p3 the third point
+     * @param radius the radius of the circle
+     * @return true if such circle exist, false otherwise
+     */
+    public boolean areFittingInCircle(Vector2D p2, Vector2D p3, double radius){
+      Vector2D[] centers1 = this.circleCenters(p2, radius);
+      Vector2D[] centers2 = this.circleCenters(p3, radius);
+      Vector2D[] centers3 = p2.circleCenters(p3, radius);
+
+      if (
+        Math.sqrt(p3.squaredDistance(centers1[0])) <= radius ||
+        Math.sqrt(p3.squaredDistance(centers1[1])) <= radius
+      ) {
+        return true;
+      }
+      if (
+        Math.sqrt(p2.squaredDistance(centers2[0])) <= radius ||
+        Math.sqrt(p2.squaredDistance(centers2[1])) <= radius
+      ) {
+        return true;
+      }
+      if (
+        Math.sqrt(this.squaredDistance(centers3[0])) <= radius ||
+        Math.sqrt(this.squaredDistance(centers3[1])) <= radius
+      ) {
+        return true;
+      }
+
+      return false;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
