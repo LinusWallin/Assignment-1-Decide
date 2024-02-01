@@ -376,6 +376,55 @@ public class CMVTest {
         assertTrue(cmv3.cmvFunction12());
     }  
 
+
+  // returns false if RADIUS1 is smaller than distance between all 3 points.
+  @Test
+  public void testFunction13_0(){
+      Vector2D[] points = new Vector2D[100];
+      
+      double x = 0.0; 
+      for(int i=0; i < 100; i++){
+          points[i] = new Vector2D(x,0.0);
+          x = x + 0.1;
+      }
+  
+      int A_PTS = 1;
+      int B_PTS = 1;
+      double RADIUS1 = 1.0;
+      double RADIUS2 = 0.0;
+
+      CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
+
+      assertFalse(cmv.cmvFunction13());
+  }
+
+  // return true when 2 pair of points exists.
+  @Test
+  public void testFunction13_1(){
+      Vector2D[] points = new Vector2D[100];
+       
+      double x = 1.0;
+      for(int i=0; i < 100; i++){
+          points[i] = new Vector2D(x,0.0);
+      }
+
+      points[19] = new Vector2D(1000.0,1000.0);
+      points[20] = new Vector2D(0.0,0.0);
+
+      points[77] = new Vector2D(3000.1,3000.0);
+      points[78] = new Vector2D(3000.2,3000.0);
+      points[79] = new Vector2D(3000.3,3000.0);
+  
+      int A_PTS = 1;
+      int B_PTS = 1;
+      double RADIUS2 = 0.5;
+      double RADIUS1 = 790.0;
+
+      CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
+
+      assertTrue(cmv.cmvFunction13());
+  }
+
   @Test
   public void testFunction14_0() {
     Vector2D[] points = new Vector2D[100];

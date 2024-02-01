@@ -2,7 +2,6 @@ import java.security.InvalidParameterException;
 import java.util.LinkedList;
 
 public class CMV {
-
   private double LENGTH1; // Length in LICs 0, 7, 12
   private double RADIUS1; // Radius in LICs 1, 8, 13
   private double EPSILON; // Deviation from PI in LICs 2, 9
@@ -99,6 +98,10 @@ public class CMV {
         this.PI = 3.1415926535;
     }
 
+  /**
+   * Evaluates LIC 0
+   * @return true if two conscutive points are less than LENGTH1 distance from eachother. false otherwise.
+   */
   public boolean cmvFunction0() {
     if (this.NUMPOINTS == 0) {
       return false;
@@ -388,4 +391,58 @@ public class CMV {
 
     return false;
   }
+
+    /**
+     * Evaluates LIC 13
+     *
+     * Condition 1: There exists at least one set of three data points, separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. 
+     *
+     * Condition 2: There exists at least one set of three data points (which can be
+     * the same or different from the three data points just mentioned) separated by exactly A PTS
+     * and B PTS consecutive intervening points, respectively, that can be contained in or on a
+     * circle of radius RADIUS2. 
+     *
+     * @return True if both conditions are met, false otherwise
+     */
+    boolean cmvFunction13(){
+        boolean[] result = {false,false};
+        if(this.NUMPOINTS <5){
+            return false;
+        }
+        for(int i=0; i<this.NUMPOINTS-this.A_PTS-this.B_PTS; i++){
+            if(result[0] && result[1]) break;
+            Vector2D first = this.POINTS[i];
+            Vector2D second = this.POINTS[i+this.A_PTS];
+            Vector2D last = this.POINTS[i+this.A_PTS+this.B_PTS];
+
+
+            Vector2D centroid = first.centroid(second,last);
+
+            double squaredradius1 = Math.pow(this.RADIUS2,2);
+            double squaredradius2 = Math.pow(this.RADIUS2,2);
+
+            double distfirst = centroid.squaredDistance(first);
+            double distsecond = centroid.squaredDistance(second);
+            double distlast = centroid.squaredDistance(last);
+            if(!result[0]){
+                if(distfirst >= squaredradius1 || distsecond >= squaredradius1 || distlast >= squaredradius1){
+                    result[0] =  true;
+                }
+            }
+            if(!result[1]){
+                if(distfirst <= squaredradius2 && distsecond <= squaredradius2 && distlast <= squaredradius2){
+                    result[1] = true;
+                }
+            }
+        }
+
+        if(result[0] && result[1]){
+            return true;
+        }
+
+        return false;
+    }
+
 }
