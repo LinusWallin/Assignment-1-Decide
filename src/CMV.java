@@ -158,7 +158,7 @@ public class CMV {
    */
 
   public boolean cmvFunction2() {
-    for (int i = 0; i < this.POINTS.length - 2; i++) {
+    for (int i = 0; i < this.NUMPOINTS - 2; i++) {
       Vector2D first = this.POINTS[i];
       Vector2D sec = this.POINTS[i + 1];
       Vector2D third = this.POINTS[i + 2];
@@ -212,11 +212,11 @@ public class CMV {
   public boolean cmvFunction4() {
     LinkedList<Integer> quadrantQueue = new LinkedList<>();
 
-    for (int i = 0; i < QPTS; i++) {
-      quadrantQueue.add(POINTS[i].quadrant());
+    for (int i = 0; i < this.QPTS; i++) {
+      quadrantQueue.add(this.POINTS[i].quadrant());
     }
 
-    for (int i = 0; i < POINTS.length - QPTS; i++) {
+    for (int i = 0; i < this.NUMPOINTS - this.QPTS; i++) {
       int count = 0;
 
       for (int j = 0; j < 4; j++) {
@@ -225,9 +225,9 @@ public class CMV {
         }
       }
 
-      if (count >= QUADS) return true;
+      if (count >= this.QUADS) return true;
 
-      quadrantQueue.add(POINTS[QPTS + i].quadrant());
+      quadrantQueue.add(this.POINTS[this.QPTS + i].quadrant());
       quadrantQueue.poll();
     }
 
@@ -241,7 +241,7 @@ public class CMV {
    * @return true if any such points can be found, false otherwise.
    */
   public boolean cmvFunction5() {
-    for (int i = 0; i < this.POINTS.length - 1; i++) {
+    for (int i = 0; i < this.NUMPOINTS - 1; i++) {
       if (this.POINTS[i + 1].x < this.POINTS[i].x) return true;
     }
 
@@ -256,11 +256,11 @@ public class CMV {
    */
 
   public boolean cmvFunction6() {
-    if (this.POINTS.length < 3) {
+    if (this.NUMPOINTS < 3) {
       return false;
     }
     Vector2D start = this.POINTS[0];
-    Vector2D end = this.POINTS[this.POINTS.length - 1];
+    Vector2D end = this.POINTS[this.NUMPOINTS - 1];
     Vector2D midpoint = start.midPoint(end);
 
     for (Vector2D p : this.POINTS) {
@@ -309,12 +309,12 @@ public class CMV {
         boolean condition1 = false;
         boolean condition2 = false;
 
-        for(int i = 0; i < NUMPOINTS - K_PTS - 1; i++){
-            double distance = Math.sqrt(POINTS[i].squaredDistance(POINTS[i + K_PTS + 1]));
-            if(distance > LENGTH1){
+        for(int i = 0; i < this.NUMPOINTS - this.K_PTS - 1; i++){
+            double distance = Math.sqrt(this.POINTS[i].squaredDistance(this.POINTS[i + this.K_PTS + 1]));
+            if(distance > this.LENGTH1){
                 condition1 = true;
             }
-            if(distance < LENGTH2){
+            if(distance < this.LENGTH2){
                 condition2 = true;
             }
         }
@@ -329,13 +329,13 @@ public class CMV {
    */
 
   public boolean cmvFunction10() {
-    if (this.POINTS.length < 5) {
+    if (this.NUMPOINTS < 5) {
       return false;
     }
-    for (int i = 0; i < this.POINTS.length - this.E_PTS - this.F_PTS; i++) {
+    for (int i = 0; i < this.NUMPOINTS - this.E_PTS - this.F_PTS - 2; i++) {
       Vector2D first = this.POINTS[i];
-      Vector2D vertex = this.POINTS[i + E_PTS];
-      Vector2D last = this.POINTS[i + E_PTS + F_PTS];
+      Vector2D vertex = this.POINTS[i + E_PTS + 1];
+      Vector2D last = this.POINTS[i + E_PTS + F_PTS + 2];
 
       double line1 = Math.sqrt(first.squaredDistance(vertex));
       double line2 = Math.sqrt(vertex.squaredDistance(last));
@@ -377,15 +377,15 @@ public class CMV {
    * @return true if result1 && result2, false otherwise.
    */
   public boolean cmvFunction14() {
-    if (NUMPOINTS < 5) return false;
+    if (this.NUMPOINTS < 5) return false;
 
     boolean result1 = false;
     boolean result2 = false;
-    for (int i = 0; i < this.NUMPOINTS - this.E_PTS - this.F_PTS; i++) {
+    for (int i = 0; i < this.NUMPOINTS - this.E_PTS - this.F_PTS - 2; i++) {
       if (result1 && result2) return true;
       Vector2D point1 = this.POINTS[i];
-      Vector2D point2 = this.POINTS[i + this.E_PTS];
-      Vector2D point3 = this.POINTS[i + this.E_PTS + this.F_PTS];
+      Vector2D point2 = this.POINTS[i + this.E_PTS + 1];
+      Vector2D point3 = this.POINTS[i + this.E_PTS + this.F_PTS + 2];
 
       double area = point1.traingleArea(point2, point3);
 
@@ -417,11 +417,11 @@ public class CMV {
         if(this.NUMPOINTS <5){
             return false;
         }
-        for(int i=0; i<this.NUMPOINTS-this.A_PTS-this.B_PTS; i++){
+        for(int i=0; i<this.NUMPOINTS-this.A_PTS-this.B_PTS-2; i++){
             if(result[0] && result[1]) break;
             Vector2D first = this.POINTS[i];
-            Vector2D second = this.POINTS[i+this.A_PTS];
-            Vector2D last = this.POINTS[i+this.A_PTS+this.B_PTS];
+            Vector2D second = this.POINTS[i+this.A_PTS+1];
+            Vector2D last = this.POINTS[i+this.A_PTS+this.B_PTS+2];
 
 
             Vector2D centroid = first.centroid(second,last);
@@ -468,14 +468,14 @@ public class CMV {
      * @return true if angle between 3 separated points is close to PI, false otherwise.
      */
     boolean cmvFunction9(){
-        if(NUMPOINTS <5){
+        if(this.NUMPOINTS <5){
             return false;
         }
 
-        for(int i=0; i<NUMPOINTS-C_PTS-D_PTS-2; i++){
+        for(int i=0; i<this.NUMPOINTS-this.C_PTS-this.D_PTS-2; i++){
             Vector2D first = this.POINTS[i];
-            Vector2D vertex = this.POINTS[i+C_PTS+1];
-            Vector2D last = this.POINTS[i+C_PTS+D_PTS+2];
+            Vector2D vertex = this.POINTS[i+this.C_PTS+1];
+            Vector2D last = this.POINTS[i+this.C_PTS+this.D_PTS+2];
 
             //if vertex and first or last coincide. reject
             if(first.x == vertex.x && first.y == vertex.y){
