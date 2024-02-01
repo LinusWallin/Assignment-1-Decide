@@ -107,14 +107,26 @@ public class Vector2D {
         return Math.sqrt(squaredDistance(intersect));
     }
 
-    public Vector2D circleCenter(Vector2D v1, double radius){
-        Vector2D d1 = new Vector2D(this.x - v1.x, this.y - v1.y);
-        Vector2D m1 = midPoint(v1);
-        double a1 = -d1.x/d1.y;
-        double b1 = m1.y - a1*m1.x;
-        
-        return new Vector2D(0, 0);
+
+    /**
+     * Create a new Vector2D from the result of the addition between this and o
+     * @param o The Vector2D we want to add to this
+     * @return The new Vector2D this + o
+     */
+    public Vector2D add(Vector2D o){
+      return new Vector2D(this.x + o.x, this.y + o.y);
     }
+
+    /**
+     * Create a new Vector2D from the result of the multiplication between this and scalar
+     * @param scalar The scalar we want to multiply with this
+     * @return The new Vector2D this*scalar
+     */
+    public Vector2D multiply(double scalar){
+      return new Vector2D(this.x * scalar, this.y * scalar);
+    }
+
+    
 
 
     @Override
