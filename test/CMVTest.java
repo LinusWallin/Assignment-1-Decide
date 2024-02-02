@@ -22,7 +22,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction0());
+    assertTrue(cmv.evaluateLIC_0());
   }
 
   /**
@@ -40,7 +40,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 2.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction0());
+    assertFalse(cmv.evaluateLIC_0());
   }
 
   /**
@@ -60,7 +60,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction0());
+    assertTrue(cmv.evaluateLIC_0());
   }
 
   /**
@@ -78,7 +78,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction1());
+    assertTrue(cmv.evaluateLIC_1());
   }
 
   /**
@@ -96,7 +96,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction1());
+    assertFalse(cmv.evaluateLIC_1());
   }
 
   /**
@@ -117,7 +117,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction1());
+    assertFalse(cmv.evaluateLIC_1());
   }
 
   /**
@@ -138,7 +138,7 @@ public class CMVTest {
     CMV t = new CMV(points, 100, 0, 0, -1E9, 10.0, 0, 0, 5.0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0);
 
     
-    assertTrue(t.cmvFunction2());
+    assertTrue(t.evaluateLIC_2());
   }
 
   /**
@@ -156,7 +156,7 @@ public class CMVTest {
 
     CMV t = new CMV(points, 3, 0, 0, 1.0, 10.0, 0, 0, 5.0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0);
 
-    assertFalse(t.cmvFunction2());
+    assertFalse(t.evaluateLIC_2());
   }
 
   /**
@@ -173,7 +173,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 3, 1, 0, 0.0, 3.99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction3());
+    assertTrue(cmv.evaluateLIC_3());
   }
 
   /**
@@ -193,7 +193,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 1, 0, 0.0, 3.99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction3());
+    assertFalse(cmv.evaluateLIC_3());
   }
 
   /**
@@ -211,7 +211,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction3());
+    assertFalse(cmv.evaluateLIC_3());
   }
 
   /**
@@ -227,7 +227,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 2, 1, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction3());
+    assertFalse(cmv.evaluateLIC_3());
   }
 
   /**
@@ -243,7 +243,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction4());
+    assertFalse(cmv.evaluateLIC_4());
   }
 
   /**
@@ -261,7 +261,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction4());
+    assertTrue(cmv.evaluateLIC_4());
   }
 
   /**
@@ -277,7 +277,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0,1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction4());
+    assertTrue(cmv.evaluateLIC_4());
   }
 
   /**
@@ -294,7 +294,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction5());
+    assertFalse(cmv.evaluateLIC_5());
   }
 
   /**
@@ -311,7 +311,7 @@ public class CMVTest {
     
     CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction5());
+    assertFalse(cmv.evaluateLIC_5());
   }
 
   /**
@@ -330,7 +330,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 1, 0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction5());
+    assertTrue(cmv.evaluateLIC_5());
   }
 
   /**
@@ -351,7 +351,7 @@ public class CMVTest {
 
     CMV t = new CMV(points, 100, 0, 0, -1E9, 10.0, 0, 0, 10.0, 17, 0, 0, 0, 0, 0, 6, 7, 0, 0, 0, 0);
 
-    assertTrue(t.cmvFunction6());
+    assertTrue(t.evaluateLIC_6());
   }
 
   /**
@@ -372,7 +372,7 @@ public class CMVTest {
 
     CMV t = new CMV(points, 100, 0, 0, -1E9, 10.0, 0, 0, 10.0, 1, 0, 0, 0, 0, 0, 6, 7, 0, 0, 0, 0);
 
-    assertFalse(t.cmvFunction6());
+    assertFalse(t.evaluateLIC_6());
   }
 
   /**
@@ -389,7 +389,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 8.99, 0, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction7());
+    assertTrue(cmv.evaluateLIC_7());
   }
 
   /**
@@ -406,7 +406,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 3, 0.5, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction7());
+    assertTrue(cmv.evaluateLIC_7());
   }
 
   /**
@@ -423,7 +423,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 9, 0, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction7());
+    assertFalse(cmv.evaluateLIC_7());
   }
 
   /**
@@ -439,7 +439,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 2, 0.5, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction7());
+    assertFalse(cmv.evaluateLIC_7());
   }
 
   /**
@@ -459,7 +459,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction7());
+    assertFalse(cmv.evaluateLIC_7());
   }
 
   /**
@@ -477,7 +477,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 1, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction8());
+    assertTrue(cmv.evaluateLIC_8());
   }
 
   /**
@@ -495,7 +495,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 1.415, 0.0, 0.0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction8());
+    assertFalse(cmv.evaluateLIC_8());
   }
 
   /**
@@ -519,11 +519,11 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0.5, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction8());
+    assertTrue(cmv.evaluateLIC_8());
 
     cmv = new CMV(points, 10, 0, 7.072, 0.0, 0.0, 0, 0, 0, 0, 8, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction8());
+    assertFalse(cmv.evaluateLIC_8());
 
   }
 
@@ -547,7 +547,7 @@ public class CMVTest {
       double EPSILON = 0.01;
       CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
-      assertFalse(cmv.cmvFunction9());
+      assertFalse(cmv.evaluateLIC_9());
   }
 
   /**
@@ -575,7 +575,7 @@ public class CMVTest {
       double EPSILON = 1.0;
       CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
-      assertTrue(cmv.cmvFunction9());
+      assertTrue(cmv.evaluateLIC_9());
   }
 
   /**
@@ -601,7 +601,7 @@ public class CMVTest {
       double EPSILON = 1.0;
       CMV cmv = new CMV(points, 100, 0, 0, EPSILON, 0, 0, 0, 0, 0, 0, 0, 0, C_PTS, D_PTS, 0, 0, 0, 0,0,0);
 
-      assertTrue(cmv.cmvFunction9());
+      assertTrue(cmv.evaluateLIC_9());
   }
 
   /**
@@ -625,7 +625,7 @@ public class CMVTest {
 
     CMV t = new CMV(points, 100, 0, 0, -1E9, 24.9, 0, 0, 10.0, 0, 0, 0, 0, 0, 0, E, F, 0, 0, 0, 0);
 
-    assertTrue(t.cmvFunction10());
+    assertTrue(t.evaluateLIC_10());
   }
 
   /**
@@ -649,7 +649,7 @@ public class CMVTest {
 
     CMV t = new CMV(points, 100, 0, 0, -1E9, 24.9, 0, 0, 10.0, 0, 0, 0, 0, 0, 0, E, F, 0, 0, 0, 0);
 
-    assertFalse(t.cmvFunction10());
+    assertFalse(t.evaluateLIC_10());
   }
 
   /**
@@ -668,7 +668,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction11());
+    assertTrue(cmv.evaluateLIC_11());
   }
 
   /**
@@ -686,7 +686,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction11());
+    assertFalse(cmv.evaluateLIC_11());
   }
 
   /**
@@ -704,7 +704,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertFalse(cmv.cmvFunction11());
+    assertFalse(cmv.evaluateLIC_11());
   }
 
   /**
@@ -723,7 +723,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0);
     
-    assertFalse(cmv.cmvFunction11());
+    assertFalse(cmv.evaluateLIC_11());
   }
 
   /**
@@ -745,16 +745,16 @@ public class CMVTest {
 
         
         CMV cmv = new CMV(points, 10, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0);
-        assertFalse(cmv.cmvFunction12());
+        assertFalse(cmv.evaluateLIC_12());
 
         CMV cmv1 = new CMV(points, 10, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0);
-        assertFalse(cmv1.cmvFunction12());
+        assertFalse(cmv1.evaluateLIC_12());
         
         CMV cmv2 = new CMV(points, 10, 3.9, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4.1, 0, 0);
-        assertTrue(cmv2.cmvFunction12());
+        assertTrue(cmv2.evaluateLIC_12());
 
         CMV cmv3 = new CMV(points, 10, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6.1, 0, 0);
-        assertTrue(cmv3.cmvFunction12());
+        assertTrue(cmv3.evaluateLIC_12());
     }  
 
 
@@ -778,7 +778,7 @@ public class CMVTest {
 
         CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
-        assertFalse(cmv.cmvFunction13());
+        assertFalse(cmv.evaluateLIC_13());
     }
 
     /**
@@ -809,7 +809,7 @@ public class CMVTest {
 
         CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
-      assertTrue(cmv.cmvFunction13());
+      assertTrue(cmv.evaluateLIC_13());
   }
 
     /**
@@ -832,11 +832,11 @@ public class CMVTest {
 
       CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
-      assertFalse(cmv.cmvFunction13());
+      assertFalse(cmv.evaluateLIC_13());
   }
 
     /**
-     * test if cmvFunction13 returns false if only condition 2 met.
+     * test if evaluateLIC_13 returns false if only condition 2 met.
      */
   @Test
   public void testFunction13_3(){
@@ -855,7 +855,7 @@ public class CMVTest {
 
       CMV cmv = new CMV(points, 100, 0, RADIUS1, 0, 0, 0, 0, 0, 0, 0, A_PTS, B_PTS, 0, 0, 0, 0, 0, 0,RADIUS2,0);
 
-      assertFalse(cmv.cmvFunction13());
+      assertFalse(cmv.evaluateLIC_13());
   }
 
     /**
@@ -876,7 +876,7 @@ public class CMVTest {
 
       CMV cmv = new CMV(points, 100, 0, 0, 0.0, 4.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 8);
 
-      assertTrue(cmv.cmvFunction14());
+      assertTrue(cmv.evaluateLIC_14());
     }
 
     /**
@@ -897,7 +897,7 @@ public class CMVTest {
 
       CMV cmv = new CMV(points, 100, 0, 0, 0.0, 6.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-      assertFalse(cmv.cmvFunction14());
+      assertFalse(cmv.evaluateLIC_14());
 
     }
 

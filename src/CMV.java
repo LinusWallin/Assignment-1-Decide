@@ -108,7 +108,7 @@ public class CMV {
    * Evaluates LIC 0
    * @return true if two conscutive points are less than LENGTH1 distance from eachother. false otherwise.
    */
-  public boolean cmvFunction0() {
+  public boolean evaluateLIC_0() {
     if (this.NUMPOINTS == 0) {
       return false;
     }
@@ -129,7 +129,7 @@ public class CMV {
    * Check if there exist 3 consecutive that cannot be contained by a circle of radius RADIUS1 
    * @return false if no such three points exist, true otherwise.
    */
-  public boolean cmvFunction1() {
+  public boolean evaluateLIC_1() {
     for (int i = 0; i <= this.NUMPOINTS - 3; i++) {
       Vector2D point1 = this.POINTS[i];
       Vector2D point2 = this.POINTS[i + 1];
@@ -147,7 +147,7 @@ public class CMV {
    *
    * @return true if angle < PI - Episilon or angle > PI + EPSILON otherwise false
    */
-  public boolean cmvFunction2() {
+  public boolean evaluateLIC_2() {
     for (int i = 0; i < this.NUMPOINTS - 2; i++) {
       Vector2D first = this.POINTS[i];
       Vector2D sec = this.POINTS[i + 1];
@@ -179,7 +179,7 @@ public class CMV {
    *
    * @return          returns a boolean
    */
-  public boolean cmvFunction3() {
+  public boolean evaluateLIC_3() {
     if (this.NUMPOINTS > 2) {
       for (int i = 0; this.NUMPOINTS > i + 2; i++) {
         double area =
@@ -198,7 +198,7 @@ public class CMV {
    * points that lies in at least QUADS different quadrants
    * @return (boolean)
    */
-  public boolean cmvFunction4() {
+  public boolean evaluateLIC_4() {
     LinkedList<Integer> quadrantQueue = new LinkedList<>();
 
     for (int i = 0; i < this.QPTS; i++) {
@@ -229,7 +229,7 @@ public class CMV {
    * has an x bigger than the next point's x
    * @return true if any such points can be found, false otherwise.
    */
-  public boolean cmvFunction5() {
+  public boolean evaluateLIC_5() {
     for (int i = 0; i < this.NUMPOINTS - 1; i++) {
       if (this.POINTS[i + 1].x < this.POINTS[i].x) return true;
     }
@@ -243,7 +243,7 @@ public class CMV {
    * and last point and every other point where NUMPOINTS >= 3
    * @return true if distance is greater than this.DIST otherwise false
    */
-  public boolean cmvFunction6() {
+  public boolean evaluateLIC_6() {
     if (this.NUMPOINTS < 3 || this.NUMPOINTS < this.N_PTS) {
       return false;
     }
@@ -274,7 +274,7 @@ public class CMV {
    * when NUMPOINTS < 3.
    * @return  true if the distance is greater than LENGHT1, otherwise false
    */
-  public boolean cmvFunction7() {
+  public boolean evaluateLIC_7() {
     if (this.NUMPOINTS >= 3) {
       for (int i = 0; i < this.NUMPOINTS - (this.K_PTS + 1); i++) {
         if (
@@ -297,7 +297,7 @@ public class CMV {
    * 1 ≤ A PTS, 1 ≤ B PTS
    * A PTS + B PTS ≤ (NUMPOINTS − 3)
    */
-  public boolean cmvFunction8() {
+  public boolean evaluateLIC_8() {
     for (int i = 0; i + A_PTS + B_PTS + 2 < NUMPOINTS; i++) {
       Vector2D p1 = POINTS[i];
       Vector2D p2 = POINTS[i + A_PTS + 1];
@@ -325,7 +325,7 @@ public class CMV {
    *
    * @return true if angle between 3 separated points is close to PI, false otherwise.
    */
-  boolean cmvFunction9() {
+  boolean evaluateLIC_9() {
     if (this.NUMPOINTS < 5) {
       return false;
     }
@@ -363,7 +363,7 @@ public class CMV {
    * @return true if area > this.AREA1 otherwise false
    */
 
-  public boolean cmvFunction10() {
+  public boolean evaluateLIC_10() {
     if (this.NUMPOINTS < 5) {
       return false;
     }
@@ -391,7 +391,7 @@ public class CMV {
    * where i<j). The condition is not met when NUMPOINTS < 3.
    * @return (boolean)
    */
-  public boolean cmvFunction11() {
+  public boolean evaluateLIC_11() {
     if (this.NUMPOINTS >= 3) {
       int j = this.G_PTS + 1;
       for (int i = 0; i < this.NUMPOINTS - j; i++) {
@@ -413,7 +413,7 @@ public class CMV {
    * 0 ≤ LENGTH2
    * @return true if both condition are met
    */
-  public boolean cmvFunction12() {
+  public boolean evaluateLIC_12() {
     boolean condition1 = false;
     boolean condition2 = false;
 
@@ -446,7 +446,7 @@ public class CMV {
    *
    * @return True if both conditions are met, false otherwise
    */
-  boolean cmvFunction13() {
+  boolean evaluateLIC_13() {
 
     boolean[] result = { false, false };
     if (this.NUMPOINTS < 5) {
@@ -487,7 +487,7 @@ public class CMV {
    * At the end of iteration, returns true if both conditions were satisfied at least once.
    * @return true if result1 && result2, false otherwise.
    */
-  public boolean cmvFunction14() {
+  public boolean evaluateLIC_14() {
     if (this.NUMPOINTS < 5) return false;
 
     boolean result1 = false;
@@ -515,21 +515,21 @@ public class CMV {
    */
   public boolean[] computeCMV() {
     return new boolean[] {
-      cmvFunction0(),
-      cmvFunction1(),
-      cmvFunction2(),
-      cmvFunction3(),
-      cmvFunction4(),
-      cmvFunction5(),
-      cmvFunction6(),
-      cmvFunction7(),
-      cmvFunction8(),
-      cmvFunction9(),
-      cmvFunction10(),
-      cmvFunction11(),
-      cmvFunction12(),
-      cmvFunction13(),
-      cmvFunction14(),
+      evaluateLIC_0(),
+      evaluateLIC_1(),
+      evaluateLIC_2(),
+      evaluateLIC_3(),
+      evaluateLIC_4(),
+      evaluateLIC_5(),
+      evaluateLIC_6(),
+      evaluateLIC_7(),
+      evaluateLIC_8(),
+      evaluateLIC_9(),
+      evaluateLIC_10(),
+      evaluateLIC_11(),
+      evaluateLIC_12(),
+      evaluateLIC_13(),
+      evaluateLIC_14(),
     };
   }
 }
