@@ -117,7 +117,7 @@ public class CMVTest {
 
     CMV cmv = new CMV(points, 100, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    assertTrue(cmv.cmvFunction1());
+    assertFalse(cmv.cmvFunction1());
   }
 
   /**
