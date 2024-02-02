@@ -10,7 +10,7 @@ Gradle : V8.5 <br>
 git clone <link>
 ```
 
-Update the main variables : **X,Y,PUV,Params,LCM** With appropriate values,
+Update the main variables : **X,Y,PUV,Params,LCM** in src/main.java With appropriate values,
 Then run:
 
 ```
