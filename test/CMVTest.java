@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 public class CMVTest {
 
   /**
-   * Tests that Function0 can identify that a point is further away than 2
+   * Tests that evaluateLIC_0 can identify that a point is further away than 2
    * from one of its adjecent points.
    */
   @Test
-  public void testFunction0_1() {
+  public void testEvaluateLIC_0_1() {
     Vector2D[] points = new Vector2D[100];
 
     for (int i = 0; i < 100; i++) {
@@ -26,12 +26,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function0 can identify that a point isn't further away than LENGTH1
+   * Tests that evaluateLIC_0 can identify that a point isn't further away than LENGTH1
    * from one of its adjecent points, when all points are located on the same
    * position.
    */
   @Test
-  public void testFunction0_2() {
+  public void testEvaluateLIC_0_2() {
     Vector2D[] points = new Vector2D[100];
 
     for (int i = 0; i < 100; i++) {
@@ -44,11 +44,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function0 can identify that a point is further away than LENGTH1
+   * Tests that evaluateLIC_0 can identify that a point is further away than LENGTH1
    * from one of its adjecent points.
    */
   @Test
-  public void testFunction0_3() {
+  public void testEvaluateLIC_0_3() {
     Vector2D[] points = new Vector2D[100];
 
     for (int i = 0; i < 100; i++) {
@@ -64,12 +64,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 returns true when RADIUS1 is large
+   * Tests that evaluateLIC_1 returns true when RADIUS1 is large
    * enough so that three consecutive points can be placed inside or
    * on a circle with radius RADIUS1.
    */
   @Test
-  public void testFunction1_0() {
+  public void testEvaluateLIC_1_0() {
     Vector2D[] points = new Vector2D[100];
 
     for (int i = 0; i < 100; i++) {
@@ -82,12 +82,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 returns false when the radius is too
+   * Tests that evaluateLIC_1 returns false when the radius is too
    * small to create a circle which can contain three consecutive
    * points.
    */
   @Test
-  public void testFunction1_1() {
+  public void testEvaluateLIC_1_1() {
     Vector2D[] points = new Vector2D[100];
 
     for (int i = 0; i < 100; i++) {
@@ -100,12 +100,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function1 returns false when the radius is too
+   * Tests that evaluateLIC_1 returns false when the radius is too
    * small to create a circle which can contain three consecutive
    * points.
    */
   @Test
-  public void testFunction1_2() {
+  public void testEvaluateLIC_1_2() {
     Vector2D[] points = new Vector2D[100];
 
     for (int i = 0; i < 100; i++) {
@@ -121,11 +121,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function2 can identify that there are 3 consecutive points
+   * Tests that evaluateLIC_2 can identify that there are 3 consecutive points
    * which form an angle < PI + EPSILON or angle > PI - EPSILON.
    */
   @Test
-  public void testFunction2_0() {
+  public void testEvaluateLIC_2_0() {
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(1.0, 1.0);
@@ -142,11 +142,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function2 can identify that there are no 3 consecutive points
+   * Tests that evaluateLIC_2 can identify that there are no 3 consecutive points
    * which form an angle < PI - EPSILON or angle > PI + EPSILON.
    */
   @Test
-  public void testFunction2_1() {
+  public void testEvaluateLIC_2_1() {
     double PI = 3.1415926535;
     Vector2D p1 = new Vector2D(1.0, 1.0);
     Vector2D p2 = new Vector2D(2.0, 2.0);
@@ -160,11 +160,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function3 can identify that 3 consecutive create a triangle
+   * Tests that evaluateLIC_3 can identify that 3 consecutive create a triangle
    * with area greater than AREA1.
    */
   @Test
-  public void testFunction3_0() {
+  public void testEvaluateLIC_3_0() {
     Vector2D[] points = new Vector2D[3];
 
     points[0] = new Vector2D(0.0, 0.0);
@@ -177,11 +177,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function3 can identify that there isn't 3 consecutive which
+   * Tests that EvaluateLIC_3 can identify that there isn't 3 consecutive which
    * create a triangle with area greater than AREA1.
    */
   @Test
-  public void testFunction3_1() {
+  public void testEvaluateLIC_3_1() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -197,12 +197,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function3 can identify that there isn't 3 consecutive which
+   * Tests that evaluateLIC_3 can identify that there isn't 3 consecutive which
    * create a triangle with area greater than AREA1, when all points are
    * in the same position.
    */
   @Test
-  public void testFunction3_2() {
+  public void testEvaluateLIC_3_2() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -215,11 +215,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function3 can identify that there isn't 3 consecutive which
+   * Tests that evaluateLIC_3 can identify that there isn't 3 consecutive which
    * create a triangle with area greater than AREA1 when there only is 2 points.
    */
   @Test
-  public void testFunction3_3() {
+  public void testEvaluateLIC_3_3() {
     Vector2D[] points = new Vector2D[2];
 
     points[0] = new Vector2D(0.0, 0.0);
@@ -231,11 +231,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function4 can find Q_PTS consecutive points in at least QUADS
+   * Tests that evaluateLIC_4 can find Q_PTS consecutive points in at least QUADS
    * different quadrants.
    */
   @Test
-  public void testFunction4_0() {
+  public void testEvaluateLIC_4_0() {
     Vector2D[] points = new Vector2D[10];
     for (int i = 0; i < 10; i++) {
       points[i] = new Vector2D(i, i);
@@ -247,11 +247,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function4 can find Q_PTS consecutive points in at least QUADS
+   * Tests that evaluateLIC_4 can find Q_PTS consecutive points in at least QUADS
    * different quadrants, when x-values and y values are negative.
    */
   @Test
-  public void testFunction4_1() {
+  public void testEvaluateLIC_4_1() {
     Vector2D[] points = new Vector2D[10];
     for (int i = 0; i < 10; i++) {
       points[i] = new Vector2D(i, i);
@@ -265,11 +265,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function4 can find Q_PTS consecutive points in at least QUADS
+   * Tests that evaluateLIC_4 can find Q_PTS consecutive points in at least QUADS
    * different quadrants, when both variables are 1.
    */
   @Test
-  public void testFunction4_2() {
+  public void testEvaluateLIC_4_2() {
     Vector2D[] points = new Vector2D[10];
     for (int i = 0; i < 10; i++) {
       points[i] = new Vector2D(i, i);
@@ -281,11 +281,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function5 can identify when there is no point with larger
+   * Tests that evaluateLIC_5 can identify when there is no point with larger
    * x-value than the next point, when all points are at the same position.
    */
   @Test
-  public void testFunction5_0() {
+  public void testEvaluateLIC_5_0() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -298,11 +298,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function5 can identify when there is no point with larger
+   * Tests that evaluateLIC_5 can identify when there is no point with larger
    * x-value than the previous point, when the points are on the line y=x.
    */
   @Test
-  public void testFunction5_1() {
+  public void testEvaluateLIC_5_1() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -315,11 +315,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function5 can identify when there is a point that has a 
+   * Tests that evaluateLIC_5 can identify when there is a point that has a 
    * larger x-value than the next point.
    */
   @Test
-  public void testFunction5_2() {
+  public void testEvaluateLIC_5_2() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -334,12 +334,12 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function6 returns true if the distance to the line
+   * Test that evaluateLIC_6 returns true if the distance to the line
    * for every other point than the start and end points, which
    * represent the line, is greater than DIST.
    */
   @Test
-  public void testFunction6_0() {
+  public void testEvaluateLIC_6_0() {
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
       points[i] = new Vector2D(2.0, 2.0);
@@ -355,12 +355,12 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function6 returns false if the distance to the line
+   * Test that evaluateLIC_6 returns false if the distance to the line
    * for every other point than the start and end points, which
    * represent the line, is less than DIST.
    */
   @Test
-  public void testFunction6_1() {
+  public void testEvaluateLIC_6_1() {
     double PI = 3.1415926535;
     Vector2D[] points = new Vector2D[100];
     for (int i = 0; i < 100; i++) {
@@ -376,11 +376,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function7 can find 2 points separated by K_PTS consecutive
+   * Tests that evaluateLIC_7 can find 2 points separated by K_PTS consecutive
    * points and that are no further apart than LENGTH1.
    */
   @Test
-  public void testFunction7_0() {
+  public void testEvaluateLIC_7_0() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -393,11 +393,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function7 can find 2 points separated by K_PTS consecutive
+   * Tests that evaluateLIC_7 can find 2 points separated by K_PTS consecutive
    * points and that are no further apart than LENGTH1.
    */
   @Test
-  public void testFunction7_1() {
+  public void testEvaluateLIC_7_1() {
     Vector2D[] points = new Vector2D[3];
 
     for (int i = 0; i < 3; i++) {
@@ -410,11 +410,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function7 can't find 2 points separated by K_PTS consecutive
+   * Tests that evaluateLIC_7 can't find 2 points separated by K_PTS consecutive
    * points and that are no further apart than LENGTH1.
    */
   @Test
-  public void testFunction7_2() {
+  public void testEvaluateLIC_7_2() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -427,11 +427,11 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function7 can't find 2 points separated by K_PTS consecutive
+   * Tests that evaluateLIC_7 can't find 2 points separated by K_PTS consecutive
    * points and that are no further apart than LENGTH1 if there only is 2 points.
    */
   @Test
-  public void testFunction7_3() {
+  public void testEvaluateLIC_7_3() {
     Vector2D[] points = new Vector2D[2];
 
     points[0] = new Vector2D(0, 0);
@@ -443,12 +443,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function7 can't find 2 points separated by K_PTS consecutive
+   * Tests that evaluateLIC_7 can't find 2 points separated by K_PTS consecutive
    * points and that are no further apart than LENGTH1, when all points are
    * at the same position.
    */
   @Test
-  public void testFunction7_4() {
+  public void testEvaluateLIC_7_4() {
     Vector2D[] points = new Vector2D[10];
 
     for (int i = 0; i < 10; i++) {
@@ -463,12 +463,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 is able to find 3 points separated by exactly
+   * Tests that evaluateLIC_8 is able to find 3 points separated by exactly
    * A_PTS and B_PTS consecutive intervening points that can be contained
    * inside or on a circle with RADIUS1, when the radius is larger.
    */
   @Test
-  public void testFunction8_0(){
+  public void testEvaluateLIC_8_0(){
     Vector2D[] points = new Vector2D[10];
 
     for(int i = 0; i < 10; i++){
@@ -481,12 +481,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 isn't able to find 3 points separated by exactly
+   * Tests that evaluateLIC_8 isn't able to find 3 points separated by exactly
    * A_PTS and B_PTS consecutive intervening points that can be contained
    * inside or on a circle with RADIUS1.
    */
   @Test
-  public void testFunction8_1(){
+  public void testEvaluateLIC_8_1(){
     Vector2D[] points = new Vector2D[10];
 
     for(int i = 0; i < 10; i++){
@@ -499,13 +499,13 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function8 returns true if the distance from each of the
+   * Tests that evaluateLIC_8 returns true if the distance from each of the
    * possible circle centers have a larger distance to at least one of
    * the points than the given RADIUS1. Also tests that false is returned
    * if the distance is less for all points.
    */
   @Test
-  public void testFunction8_2(){
+  public void testEvaluateLIC_8_2(){
     Vector2D[] points = new Vector2D[10];
 
     for(int i = 0; i < 10; i++){
@@ -528,12 +528,12 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function9 is false when there are no three points
+   * Tests that evaluateLIC_9 is false when there are no three points
    * separated by C_PTS and D_PTS consecutive points, which create
    * an angle < PI - EPSILON or angle > PI + EPSILON.
    */
   @Test
-  public void testFunction9_0(){
+  public void testEvaluateLIC_9_0(){
       Vector2D[] points = new Vector2D[100];
       
       double x = 0.0;
@@ -551,13 +551,13 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function9 is true if there is big angle between
+   * Tests that evaluateLIC_9 is true if there is big angle between
    * 3 points that are C_PTS and D_PTS points apart.
    * Every big angle have an opposite small angle.
    */
   
   @Test
-  public void testFunction9_1(){
+  public void testEvaluateLIC_9_1(){
       Vector2D[] points = new Vector2D[100];
 
       double x = 0.0;
@@ -583,7 +583,7 @@ public class CMVTest {
    * that are C_PTS and D_PTS points apart.
    */
   @Test
-  public void testFunction9_2(){
+  public void testEvaluateLIC_9_2(){
       Vector2D[] points = new Vector2D[100];
 
       double x = 0.0;
@@ -605,12 +605,12 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function10 returns true when the area of the
+   * Test that evaluateLIC_10 returns true when the area of the
    * triangle formed by 3 points separated by E_PTS and F_PTS
    * consecutive points is larger than AREA1.
    */
   @Test
-  public void testFunction10_0() {
+  public void testEvaluateLIC_10_0() {
     double PI = 3.1415926535;
     int E = 6;
     int F = 7;
@@ -629,12 +629,12 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function10 returns false when the area of the
+   * Test that evaluateLIC_10 returns false when the area of the
    * triangle formed by 3 points separated by E_PTS and F_PTS
    * consecutive points is smaller than AREA1.
    */
   @Test
-  public void testFunction10_1() {
+  public void testEvaluateLIC_10_1() {
     double PI = 3.1415926535;
     int E = 6;
     int F = 7;
@@ -653,12 +653,12 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function11 returns true when the x-value of the
+   * Test that EvaluateLIC_11 returns true when the x-value of the
    * point is less than that of the point that is G_PTS
    * consecutive points apart from the current point.
    */
   @Test
-  public void testFunction11_0(){
+  public void testEvaluateLIC_11_0(){
     
     Vector2D[] points = new Vector2D[10];
 
@@ -672,11 +672,11 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function11 returns false when G_PTS is equal to 
+   * Test that evaluateLIC_11 returns false when G_PTS is equal to 
    * NUMPOINTS - 1.
    */
   @Test
-  public void testFunction11_1(){
+  public void testEvaluateLIC_11_1(){
 
     Vector2D[] points = new Vector2D[10];
 
@@ -690,11 +690,11 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function11 returns false when there are only 2
+   * Test that evaluateLIC_11 returns false when there are only 2
    * points.
    */
   @Test
-  public void testFunction11_2(){
+  public void testEvaluateLIC_11_2(){
 
     Vector2D[] points = new Vector2D[2];
 
@@ -708,12 +708,12 @@ public class CMVTest {
   }
 
   /**
-   * Test that Function11 returns false when the x-value of the
+   * Test that evaluateLIC_11 returns false when the x-value of the
    * current point - the x-value of the point that is G_PTS 
    * consecutive points further is less than 0.
    */
   @Test
-  public void testFunction11_3(){
+  public void testEvaluateLIC_11_3(){
 
     Vector2D[] points = new Vector2D[10];
 
@@ -727,17 +727,17 @@ public class CMVTest {
   }
 
   /**
-   * Tests that Function12 returns false if the distance between
+   * Tests that evaluateLIC_12 returns false if the distance between
    * all points separated by K_PTS is less than LENGTH1.
-   * Tests that Function12 returns false if the distance between
+   * Tests that evaluateLIC_12 returns false if the distance between
    * all points separated by K_PTS is greater than LENGTH2.
-   * Tests that Function12 returns true if the distance between
+   * Tests that evaluateLIC_12 returns true if the distance between
    * two points separated by K_PTS is greater than LENGTH1 and
    * the distance between two other points or the same points
    * separated by K_PTS consecutive points is less than LENGTH2.
    */
   @Test
-    public void testFunction12_0(){
+    public void testEvaluateLIC_12_0(){
         Vector2D[] points = new Vector2D[10];
         for(int i = 0; i < 10; i++){
             points[i] = new Vector2D(0, i);
@@ -759,10 +759,10 @@ public class CMVTest {
 
 
     /**
-     * test if Function13 returns false if no condition is met.
+     * test if evaluateLIC_13 returns false if no condition is met.
      */
   @Test
-  public void testFunction13_0(){
+  public void testEvaluateLIC_13_0(){
       Vector2D[] points = new Vector2D[100];
       
       double x = 0.0; 
@@ -782,13 +782,13 @@ public class CMVTest {
     }
 
     /**
-     * Tests if Function13 all points same expect 2 different set of 3 where. 
+     * Tests if evaluateLIC_13 all points same expect 2 different set of 3 where. 
      * one set meets condition 1
      * the other set meets condition 2.
-     * expect the function to return true.
+     * expect the evaluateLIC_ to return true.
      */
   @Test
-  public void testFunction13_1(){
+  public void testEvaluateLIC_13_1(){
       Vector2D[] points = new Vector2D[100];
        
       for(int i=0; i < 100; i++){
@@ -813,10 +813,10 @@ public class CMVTest {
   }
 
     /**
-     * test if Function13 returns false if only condition 1 met.
+     * test if evaluateLIC_13 returns false if only condition 1 met.
      */
   @Test
-  public void testFunction13_2(){
+  public void testEvaluateLIC_13_2(){
       Vector2D[] points = new Vector2D[100];
        
       double x = 1.0;
@@ -839,7 +839,7 @@ public class CMVTest {
      * test if evaluateLIC_13 returns false if only condition 2 met.
      */
   @Test
-  public void testFunction13_3(){
+  public void testEvaluateLIC_13_3(){
       Vector2D[] points = new Vector2D[100];
 
       double x = 0.0;
@@ -859,12 +859,12 @@ public class CMVTest {
   }
 
     /**
-     * Tests that Function 14 returns true when the area given
+     * Tests that evaluateLIC_ 14 returns true when the area given
      * by the three points separated by E_PTS and F_PTS consecutive
      * points is greater than AREA1 but smaller than AREA2.
      */
     @Test
-    public void testFunction14_0() {
+    public void testEvaluateLIC_14_0() {
       Vector2D[] points = new Vector2D[100];
 
       for (int i = 0; i < 100; i++) {
@@ -880,12 +880,12 @@ public class CMVTest {
     }
 
     /**
-     * Tests that Function 14 returns false when the area given
+     * Tests that evaluateLIC_ 14 returns false when the area given
      * by the three points separated by E_PTS and F_PTS consecutive
      * points is equal to AREA1 and larger than AREA2.
      */
     @Test
-    public void testFunction14_1() {
+    public void testEvaluateLIC_14_1() {
       Vector2D[] points = new Vector2D[100];
 
       for (int i = 0; i < 100; i++) {
