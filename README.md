@@ -4,6 +4,27 @@ Java version : V21.0.2 <br>
 JUnit : V5.8.1 <br>
 Gradle : V8.5 <br>
 
+## How to use
+
+```
+git clone <link>
+
+```
+
+Update the main variables :
+X,Y,PUV,Params,LCM
+
+With appropriate values,
+Then run:
+
+```
+javac *.java
+
+java Main.java
+```
+
+To see the LAUNCH result
+
 ## Description
 
 DECIDE() will generate a boolean signal which determines whether an interceptor should be
@@ -53,7 +74,7 @@ generated.
 
 | Way of working        | Details                                                                                                                                                                                             |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Principels            | We agreed that we should follow good coding practices as stated in the lectures, and practice them throughout our assignments. 
+| Principels            | We agreed that we should follow good coding practices as stated in the lectures, and practice them throughout our assignments.                                                                      |
 | Foundations           | We had to create an issue everytime we wanted to edit the main branch and create a seperate branch to work on issue before creating a pull request to merge it back to main.                        |
 | In Use                | We introduced Gradle, JUnit and JavaDocs to help us in our testing and documenting of the Assignment                                                                                                |
 | <mark>In Place</mark> | The practice was adopted by all our team members and we worked well together to implement the deliverables. We do not hesistate to voice out our ideas if we feel that something could be improved. |

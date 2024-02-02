@@ -11,44 +11,8 @@ class Main {
     boolean LAUNCH;
 
     Enums.CONNECTORS[][] LCM = new Enums.CONNECTORS[15][15];
-    boolean[] PUV = new boolean[] {
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-    };
-    Params PARAMETERS = new Params(
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0,
-      0,
-      0.0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0.0,
-      0.0,
-      0.0
-    );
+    boolean[] PUV = new boolean[] {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+    Params PARAMETERS = new Params(0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0 );
     //make X & Y & points
     Vector2D[] points = new Vector2D[NUMPOINTS];
     for (int i = 0; i < NUMPOINTS; i++) {
@@ -65,9 +29,10 @@ class Main {
       }
       LCM[i] = row;
     }
-    //Main DECIDE function & calls
+    //Main DECIDE function & calls 
     LAUNCH = Main.DECIDE(points, NUMPOINTS, LCM, PUV, PARAMETERS);
     System.out.println("LAUNCH : " + LAUNCH);
+
 
     //Dummy input
     System.out.println("Answer: " + DECIDEtest(PUV));
