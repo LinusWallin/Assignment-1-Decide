@@ -1,0 +1,3 @@
+class changes{
+    "new class"
+}
