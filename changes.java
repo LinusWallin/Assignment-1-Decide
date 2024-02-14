@@ -1,1 +1,6 @@
-class changes {}
+class changes {
+
+    void test(){
+        return null
+    }
+}
